@@ -5,219 +5,494 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CORRECT PREDICT | Football Intelligence</title>
+
 <style>
 :root {
-  --navy:#071326;
-  --panel:#101f35;
-  --gold:#f5c542;
-  --cyan:#19d5e8;
-  --white:#ffffff;
-  --muted:#a9b7c9;
+ --navy:#071326;
+ --panel:#101f35;
+ --gold:#f5c542;
+ --cyan:#19d5e8;
+ --white:#ffffff;
+ --muted:#a8b5c8;
+ --red:#ff5555;
 }
-*{box-sizing:border-box}
-body{
- margin:0;background:var(--navy);color:var(--white);
+
+* {
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+}
+
+body {
+ background:var(--navy);
+ color:var(--white);
  font-family:Arial,sans-serif;
+ line-height:1.6;
 }
-header{
- padding:20px 6%;display:flex;justify-content:space-between;
- align-items:center;border-bottom:1px solid #24334b;
+
+header {
+ background:#030b18;
+ padding:18px;
+ border-bottom:2px solid var(--gold);
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:15px;
 }
-.logo{font-size:23px;font-weight:900;color:var(--gold)}
-.logo span{color:var(--cyan)}
-nav a{color:white;text-decoration:none;margin-left:18px;font-size:14px}
-.hero{
- text-align:center;padding:65px 18px 55px;
- background:linear-gradient(140deg,#071326,#122746,#071326);
+
+.logo {
+ font-size:24px;
+ font-weight:bold;
+ color:var(--gold);
 }
-.tag{color:var(--cyan);letter-spacing:3px;font-size:12px}
-h1{font-size:42px;margin:18px 0}
-h1 span{color:var(--gold)}
-.hero p{color:var(--muted);line-height:1.7}
-.btn{
- display:inline-block;background:var(--gold);color:#071326;
- padding:14px 24px;border-radius:7px;text-decoration:none;
- font-weight:bold;border:0;cursor:pointer;margin-top:15px;
+
+.logo span {
+ color:var(--cyan);
 }
-section{padding:35px 6%}
-.section-title{text-align:center;font-size:25px;color:var(--gold)}
-.subtitle{text-align:center;color:var(--muted);font-size:14px}
-.features{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
- gap:14px;margin-top:25px;
+
+nav {
+ display:flex;
+ gap:15px;
+ flex-wrap:wrap;
 }
-.feature,.pick,.price-card{
- background:var(--panel);border:1px solid #263b55;
- border-radius:12px;padding:20px;text-align:center;
+
+nav a {
+ color:white;
+ text-decoration:none;
+ font-size:14px;
 }
-.feature strong{color:var(--cyan);font-size:20px}
-.feature p{color:var(--muted);font-size:13px}
-.pick-grid{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:15px;margin-top:25px;
+
+nav a:hover {
+ color:var(--gold);
 }
-.pick{position:relative;overflow:hidden}
-.pick h3{color:var(--gold)}
-.lock{font-size:30px;color:var(--cyan)}
-.pick p{color:var(--muted);font-size:13px}
-.locked{color:var(--gold);font-weight:bold}
-.price-card{max-width:420px;margin:25px auto}
-.price{font-size:42px;color:var(--gold);font-weight:bold}
-.price small{font-size:14px;color:var(--muted)}
-ul{list-style:none;padding:0;line-height:2.2;color:var(--muted)}
-li:before{content:"✓ ";color:var(--cyan);font-weight:bold}
-button,select,input{
- font:inherit;
+
+.container {
+ width:92%;
+ max-width:1100px;
+ margin:auto;
 }
-.payment-box{
- display:none;background:#172b43;padding:22px;
- border:1px solid var(--gold);border-radius:10px;
- margin-top:20px;text-align:left;
+
+.hero {
+ text-align:center;
+ padding:65px 15px;
+ background:linear-gradient(135deg,#071326,#142c49);
 }
-.payment-box input{
- width:100%;padding:13px;margin:8px 0;
- border:1px solid #455a72;border-radius:6px;
- background:#071326;color:white;
+
+.hero h1 {
+ font-size:36px;
+ color:var(--gold);
 }
-.payment-box label{font-size:13px;color:var(--muted)}
-.copy{background:var(--cyan);padding:10px;border:0;
- border-radius:5px;font-weight:bold;cursor:pointer}
-.note{font-size:12px;color:var(--muted);line-height:1.6}
-footer{
- text-align:center;padding:28px;color:var(--muted);
- border-top:1px solid #263b55;font-size:13px;
+
+.hero p {
+ color:var(--muted);
+ margin:15px 0;
 }
-@media(max-width:600px){
- header{padding:16px 4%}
- nav a{margin-left:8px;font-size:12px}
- h1{font-size:32px}
- section{padding:30px 5%}
+
+.btn {
+ display:inline-block;
+ background:var(--gold);
+ color:#071326;
+ padding:12px 22px;
+ border:0;
+ border-radius:6px;
+ font-weight:bold;
+ cursor:pointer;
+ text-decoration:none;
+ margin:5px;
+}
+
+.btn:hover {
+ opacity:.85;
+}
+
+section {
+ padding:35px 0;
+}
+
+.section-title {
+ color:var(--gold);
+ text-align:center;
+ margin-bottom:22px;
+ font-size:25px;
+}
+
+.cards {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;
+}
+
+.card {
+ background:var(--panel);
+ padding:20px;
+ border:1px solid #263b56;
+ border-radius:10px;
+}
+
+.card h3 {
+ color:var(--cyan);
+ margin-bottom:10px;
+}
+
+.card p {
+ color:var(--muted);
+}
+
+.stats {
+ text-align:center;
+ font-size:26px;
+ color:var(--gold);
+ font-weight:bold;
+}
+
+.small {
+ font-size:13px;
+ color:var(--muted);
+}
+
+.prediction {
+ background:var(--panel);
+ border-left:4px solid var(--cyan);
+ padding:15px;
+ margin-bottom:12px;
+ border-radius:5px;
+}
+
+.prediction strong {
+ color:var(--gold);
+}
+
+.locked {
+ text-align:center;
+ padding:30px;
+ background:#101f35;
+ border:1px solid var(--gold);
+ border-radius:10px;
+}
+
+form {
+ display:grid;
+ gap:12px;
+}
+
+input,select {
+ width:100%;
+ padding:13px;
+ background:#071326;
+ color:white;
+ border:1px solid #52657d;
+ border-radius:5px;
+}
+
+label {
+ color:var(--muted);
+}
+
+#payment,#mpesaDetails,#successMessage {
+ display:none;
+}
+
+.payment-box {
+ background:#071326;
+ border:1px solid var(--gold);
+ padding:20px;
+ border-radius:8px;
+ margin-top:15px;
+}
+
+.number {
+ font-size:25px;
+ color:var(--gold);
+ font-weight:bold;
+}
+
+footer {
+ background:#030b18;
+ text-align:center;
+ padding:25px;
+ color:var(--muted);
+ margin-top:30px;
+}
+
+@media(max-width:600px) {
+ .hero h1 {font-size:27px;}
+ header {justify-content:center;}
+ nav {justify-content:center;}
 }
 </style>
 </head>
+
 <body>
 
 <header>
  <div class="logo">CORRECT <span>PREDICT</span></div>
+
  <nav>
   <a href="#home">Home</a>
   <a href="#predictions">Predictions</a>
   <a href="#premium">Premium</a>
+  <a href="#account">Account</a>
  </nav>
 </header>
 
 <div class="hero" id="home">
- <div class="tag">FOOTBALL INTELLIGENCE PLATFORM</div>
- <h1>Predict. <span>Analyze.</span><br>Win Your Way.</h1>
- <p>Smarter football analysis powered by data, team strength,<br>
- form, scoring patterns and tactical insights.</p>
- <a href="#premium" class="btn">GET PREMIUM ACCESS</a>
+ <div class="container">
+  <h1>FOOTBALL INTELLIGENCE</h1>
+  <p>Smart football analysis. Statistical insights. Better informed predictions.</p>
+  <a href="#predictions" class="btn">View Predictions</a>
+  <a href="#premium" class="btn">Get Premium</a>
+ </div>
 </div>
 
 <section>
- <h2 class="section-title">Our Prediction Markets</h2>
- <p class="subtitle">Multiple football markets in one platform.</p>
- <div class="features">
-  <div class="feature"><strong>1X2</strong><p>Match outcomes</p></div>
-  <div class="feature"><strong>GG / NG</strong><p>Both teams to score</p></div>
-  <div class="feature"><strong>O/U</strong><p>Over and under goals</p></div>
-  <div class="feature"><strong>CS</strong><p>Correct scores</p></div>
-  <div class="feature"><strong>DC</strong><p>Double chance</p></div>
-  <div class="feature"><strong>HT/FT</strong><p>Half-time and full-time</p></div>
+ <div class="container">
+  <h2 class="section-title">OUR PLATFORM</h2>
+
+  <div class="cards">
+   <div class="card">
+    <div class="stats">01</div>
+    <h3>Match Analysis</h3>
+    <p>Team form, goals, home and away performance.</p>
+   </div>
+
+   <div class="card">
+    <div class="stats">02</div>
+    <h3>Correct Scores</h3>
+    <p>Statistical correct-score predictions.</p>
+   </div>
+
+   <div class="card">
+    <div class="stats">03</div>
+    <h3>Daily Picks</h3>
+    <p>Up to 10 carefully analysed daily selections.</p>
+   </div>
+  </div>
  </div>
 </section>
 
 <section id="predictions">
- <h2 class="section-title">Daily Top 10 Predictions</h2>
- <p class="subtitle">Premium members unlock the daily selection.</p>
- <div class="pick-grid" id="picks">
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 01</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 02</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 03</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 04</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 05</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 06</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 07</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 08</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 09</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
-  <div class="pick"><div class="lock">🔒</div><h3>Pick 10</h3><p>Match analysis locked</p><div class="locked">PREMIUM ONLY</div></div>
+ <div class="container">
+  <h2 class="section-title">DAILY PREDICTIONS</h2>
+
+  <div id="predictionContent" class="locked">
+   <h3 style="color:#f5c542">PREMIUM ACCESS REQUIRED</h3>
+   <p style="margin:12px 0">
+    Subscribe to unlock the daily football analysis and predictions.
+   </p>
+   <a href="#premium" class="btn">Unlock Predictions</a>
+  </div>
+
+  <div id="premiumPredictions" style="display:none">
+
+   <div class="prediction">
+    <strong>Daily Pick 01</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 02</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 03</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 04</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 05</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 06</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 07</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 08</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 09</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+   <div class="prediction">
+    <strong>Daily Pick 10</strong>
+    <p>Fixture and analysis awaiting publication.</p>
+   </div>
+
+  </div>
  </div>
 </section>
 
 <section id="premium">
- <h2 class="section-title">Premium Membership</h2>
- <p class="subtitle">Get access to the full daily prediction selection.</p>
- <div class="price-card">
-  <h3>PREMIUM ACCESS</h3>
-  <div class="price">KSh 300 <small>/ 29 days</small></div>
-  <ul>
-   <li>10 daily top picks</li>
-   <li>Correct score predictions</li>
-   <li>Double chance analysis</li>
-   <li>BTTS and goals markets</li>
-   <li>Match statistics and analysis</li>
-   <li>29-day membership</li>
-  </ul>
-  <button class="btn" onclick="showPayment()">SUBSCRIBE NOW</button>
+ <div class="container">
+  <h2 class="section-title">PREMIUM MEMBERSHIP</h2>
 
-  <div class="payment-box" id="payment">
-   <h3 style="color:#f5c542">Choose Payment Method</h3>
-   <label for="method">Payment method</label>
-   <select id="method" onchange="showMpesa()"
-    style="width:100%;padding:12px;margin-top:8px;background:#071326;color:white;border:1px solid #455a72;border-radius:6px">
-    <option value="">Select payment method</option>
-    <option value="mpesa">M-Pesa</option>
-   </select>
+  <div class="card" style="max-width:500px;margin:auto;text-align:center">
+   <h3>CORRECT PREDICT PREMIUM</h3>
 
-   <div id="mpesaDetails" style="display:none">
-    <p>Pay <strong style="color:#f5c542">KSh 300</strong> using M-Pesa Pochi la Biashara.</p>
-    <p>Payment number:</p>
-    <h2 style="color:#19d5e8">0741342508</h2>
-    <button class="copy" onclick="copyNumber()">COPY NUMBER</button>
-    <p class="note">Open M-Pesa, select Pochi la Biashara and make your payment. Keep your transaction confirmation.</p>
-    <h3>Submit payment for verification</h3>
-    <label>Your M-Pesa name</label>
-    <input id="customer" placeholder="Enter your M-Pesa name">
-    <label>M-Pesa transaction code</label>
-    <input id="transaction" placeholder="Enter transaction code">
-    <button class="btn" onclick="submitPayment()">SUBMIT VERIFICATION</button>
-    <p class="note">Your payment will be manually verified. Access is activated after confirmation. Membership expires after 29 days.</p>
+   <div class="stats">KSh 300</div>
+
+   <p>Access period: 29 days</p>
+   <p>Daily football analysis</p>
+   <p>Up to 10 daily picks</p>
+   <p>Correct score analysis</p>
+   <p>GG and over/under analysis</p>
+
+   <button class="btn" onclick="showPayment()">
+    SUBSCRIBE NOW
+   </button>
+
+   <div id="payment" class="payment-box">
+
+    <h3>Choose Payment Method</h3>
+
+    <form onsubmit="return false">
+
+     <label for="method">Payment method</label>
+
+     <select id="method" onchange="showMpesa()">
+      <option value="">Select method</option>
+      <option value="mpesa">M-Pesa</option>
+     </select>
+
+    </form>
+
+    <div id="mpesaDetails">
+
+     <p style="margin-top:15px">Pay using M-Pesa Pochi la Biashara:</p>
+
+     <div class="number">0741342508</div>
+
+     <p>Amount: <strong>KSh 300</strong></p>
+
+     <button class="btn" onclick="copyNumber()">
+      COPY PAYMENT NUMBER
+     </button>
+
+     <hr style="margin:18px 0;border-color:#52657d">
+
+     <h3>Submit Payment Details</h3>
+
+     <form id="paymentForm">
+
+      <input
+       type="text"
+       id="customerName"
+       placeholder="Your full name"
+       required>
+
+      <input
+       type="tel"
+       id="customerPhone"
+       placeholder="Your M-Pesa phone number"
+       required>
+
+      <input
+       type="text"
+       id="transactionCode"
+       placeholder="M-Pesa transaction code"
+       required>
+
+      <button class="btn" type="submit">
+       SUBMIT FOR VERIFICATION
+      </button>
+
+     </form>
+
+     <p id="successMessage" style="color:#19d5e8;margin-top:15px">
+      Details received on this page. Payment must be verified by the administrator.
+     </p>
+
+    </div>
    </div>
+
+  </div>
+ </div>
+</section>
+
+<section id="account">
+ <div class="container">
+  <h2 class="section-title">MEMBER ACCOUNT</h2>
+
+  <div class="card" style="max-width:500px;margin:auto">
+
+   <h3>Member Login</h3>
+
+   <form id="loginForm">
+    <input type="email" placeholder="Email address" required>
+    <input type="password" placeholder="Password" required>
+    <button class="btn" type="submit">LOGIN</button>
+   </form>
+
+   <p class="small" style="margin-top:15px">
+    Account registration and secure login will be connected through Supabase.
+   </p>
+
   </div>
  </div>
 </section>
 
 <footer>
  <div class="logo">CORRECT <span>PREDICT</span></div>
- <p>Football analysis. Smarter decisions.</p>
- <p>Predictions are estimates, not guaranteed results. Bet responsibly.</p>
- <p>© 2026 CORRECT PREDICT. All rights reserved.</p>
+ <p>Football Intelligence Platform</p>
+ <p class="small">Predictions are statistical estimates, not guaranteed outcomes. Bet responsibly.</p>
+ <p class="small">© 2026 CORRECT PREDICT. All rights reserved.</p>
 </footer>
 
 <script>
+
 function showPayment(){
  document.getElementById("payment").style.display="block";
 }
+
 function showMpesa(){
  document.getElementById("mpesaDetails").style.display=
  document.getElementById("method").value==="mpesa"?"block":"none";
 }
+
 function copyNumber(){
  navigator.clipboard.writeText("0741342508")
- .then(()=>alert("Payment number copied"))
- .catch(()=>alert("Payment number: 0741342508"));
+ .then(function(){
+  alert("Payment number copied");
+ })
+ .catch(function(){
+  alert("Please copy 0741342508 manually");
+ });
 }
-function submitPayment(){
- const name=document.getElementById("customer").value.trim();
- const code=document.getElementById("transaction").value.trim();
- if(!name||!code){
-  alert("Please enter your M-Pesa name and transaction code.");
-  return;
+
+document.getElementById("paymentForm").addEventListener(
+ "submit",function(event){
+  event.preventDefault();
+
+  document.getElementById("successMessage").style.display="block";
+
+  alert("Payment details entered. Please wait for manual verification.");
  }
- const message="CORRECT PREDICT PAYMENT VERIFICATION\nName: "+name+
- "\nTransaction code: "+code+"\nAmount: KSh 300";
- window.open("https://wa.me/254741342508?text="+encodeURIComponent(message),"_blank");
-}
+);
+
+document.getElementById("loginForm").addEventListener(
+ "submit",function(event){
+  event.preventDefault();
+  alert("Member login will be activated after Supabase integration.");
+ }
+);
+
 </script>
 </body>
 </html>
