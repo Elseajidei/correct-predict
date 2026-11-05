@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORRECT PREDICT | Football Intelligence</title>
+
+<style>
+:root {
+  --bg:#080B18;
+  --panel:#131B32;
+  --panel2:#202B48;
+  --gold:#F5C542;
+  --magenta:#E83EAD;
+  --cyan:#37D8F5;
+  --orange:#FF9B45;
+  --text:#F5F6FA;
+  --muted:#A5AEC3;
+  --green:#39D98A;
+  --red:#FF6377;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+header{
+  padding:22px 16px;
+  text-align:center;
+  background:#10162A;
+  border-bottom:2px solid var(--gold);
+}
+.logo{
+  font-size:clamp(30px,7vw,48px);
+  font-weight:1000;
+  letter-spacing:2px;
+  margin:0;
+}
+.logo span{color:var(--gold)}
+.tagline{
+  color:var(--muted);
+  margin-top:7px;
+  font-size:12px;
+  letter-spacing:2px;
+}
+nav{
+  display:flex;
+  overflow-x:auto;
+  gap:7px;
+  padding:12px;
+  background:#0E1427;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+nav button{
+  background:var(--panel);
+  color:white;
+  border:1px solid #303D5C;
+  padding:11px 15px;
+  border-radius:7px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+nav button.active{
+  background:var(--gold);
+  color:#111;
+  font-weight:bold;
+}
+.container{
+  width:100%;
+  max-width:1100px;
+  padding:18px;
+  margin:auto;
+}
+.page{display:none}
+.page.active{display:block}
+h2{
+  color:var(--gold);
+  font-size:23px;
+}
+h3{color:var(--cyan)}
+.card{
+  background:var(--panel);
+  border:1px solid #273451;
+  border-radius:12px;
+  padding:17px;
+  margin-bottom:15px;
+}
+.hero{
+  background:linear-gradient(120deg,#181B35,#311A38);
+  border:1px solid var(--magenta);
+  text-align:center;
+  padding:30px 15px;
+  border-radius:14px;
+  margin-bottom:20px;
+}
+.hero h2{
+  font-size:28px;
+  margin:0 0 10px;
+}
+.hero p{color:var(--muted)}
+button.primary{
+  background:var(--gold);
+  color:#111;
+  border:0;
+  padding:13px 20px;
+  border-radius:7px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button.secondary{
+  background:var(--magenta);
+  color:white;
+  border:0;
+  padding:12px 18px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+input,select{
+  width:100%;
+  padding:13px;
+  background:#0B1123;
+  border:1px solid #35415E;
+  color:white;
+  border-radius:7px;
+  margin:7px 0 14px;
+}
+label{
+  color:var(--muted);
+  font-size:13px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:13px;
+}
+.stat{
+  background:var(--panel2);
+  padding:14px;
+  border-radius:9px;
+}
+.stat strong{
+  display:block;
+  color:var(--gold);
+  font-size:22px;
+  margin-top:7px;
+}
+.muted{color:var(--muted)}
+.gold{color:var(--gold)}
+.magenta{color:var(--magenta)}
+.cyan{color:var(--cyan)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.fixture{
+  background:var(--panel);
+  border:1px solid #34415F;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+.teams{
+  font-size:17px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+.prediction{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  flex-wrap:wrap;
+  padding:9px 0;
+  border-top:1px solid #303B55;
+}
+.badge{
+  background:#352A43;
+  color:var(--gold);
+  padding:5px 9px;
+  border-radius:5px;
+  font-size:12px;
+}
+.notice{
+  background:#30291A;
+  border:1px solid var(--gold);
+  padding:13px;
+  border-radius:8px;
+  color:#FFE6A0;
+  margin:12px 0;
+}
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:25px 10px;
+  border-top:1px solid #26314B;
+  margin-top:30px;
+  font-size:12px;
+}
+hr{border:0;border-top:1px solid #303B55;margin:18px 0}
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1 class="logo"><span>CORRECT</span> PREDICT</h1>
+  <div class="tagline">FOOTBALL INTELLIGENCE • DATA • ANALYSIS</div>
+</header>
+
+<nav>
+  <button class="active" onclick="showPage('home',this)">Home</button>
+  <button onclick="showPage('analysis',this)">Match Analysis</button>
+  <button onclick="showPage('odds',this)">5+ Odds</button>
+  <button onclick="showPage('subscription',this)">Subscription</button>
+  <button onclick="showPage('about',this)">About Us</button>
+</nav>
+
+<main class="container">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+  <h2>Think Beyond the Odds.</h2>
+  <p>Intelligent football analysis powered by statistics and match data.</p>
+  <button class="primary" onclick="showPage('analysis')">
+    START MATCH ANALYSIS
+  </button>
+</div>
+
+<h2>Football Intelligence</h2>
+
+<div class="grid">
+  <div class="stat">
+    <span class="muted">Match Analysis</span>
+    <strong>1X2</strong>
+    <small>Home • Draw • Away</small>
+  </div>
+  <div class="stat">
+    <span class="muted">Goal Analysis</span>
+    <strong>GG / NG</strong>
+    <small>Both teams to score</small>
+  </div>
+  <div class="stat">
+    <span class="muted">Goal Markets</span>
+    <strong>O/U 2.5</strong>
+    <small>Over and Under goals</small>
+  </div>
+  <div class="stat">
+    <span class="muted">Correct Scores</span>
+    <strong>TOP 5</strong>
+    <small>Statistical score estimates</small>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Today's Fixtures</h2>
+  <p class="muted">Fixtures are retrieved from the football data service.</p>
+  <button class="primary" onclick="loadFixtures()">LOAD FIXTURES</button>
+  <div id="homeFixtures"></div>
+</div>
+
+<div class="notice">
+  Predictions are statistical estimates, not guaranteed results.
+  Always bet responsibly.
+</div>
+
+</section>
+
+<!-- MATCH ANALYSIS -->
+
+<section id="analysis" class="page">
+
+<h2>Match Analysis Centre</h2>
+<p class="muted">Select a fixture to request its statistical analysis.</p>
+
+<div class="card">
+  <label>Match</label>
+  <select id="matchSelect">
+    <option value="">Load fixtures first</option>
+  </select>
+
+  <button class="primary" onclick="analyseMatch()">
+    ANALYSE MATCH
+  </button>
+
+  <div id="analysisResult"></div>
+</div>
+
+<div class="card">
+  <h3>Analysis Factors</h3>
+  <div class="grid">
+    <div class="stat">
+      Home attack
+      <strong id="homeAttack">--</strong>
+    </div>
+    <div class="stat">
+      Away attack
+      <strong id="awayAttack">--</strong>
+    </div>
+    <div class="stat">
+      Home defence
+      <strong id="homeDefence">--</strong>
+    </div>
+    <div class="stat">
+      Away defence
+      <strong id="awayDefence">--</strong>
+    </div>
+    <div class="stat">
+      Home average goals
+      <strong id="homeGoals">--</strong>
+    </div>
+    <div class="stat">
+      Away average goals
+      <strong id="awayGoals">--</strong>
+    </div>
+  </div>
+</div>
+
+<div id="detailedAnalysis"></div>
+
+</section>
+
+<!-- 5+ ODDS -->
+
+<section id="odds" class="page">
+
+<h2>5+ Odds Analysis</h2>
+<p class="muted">
+  Matches with combined estimated odds of 5.00 or above.
+</p>
+
+<div class="card">
+  <div class="notice">
+    Only statistically analysed selections should appear here.
+    Odds and probabilities must be verified against actual bookmaker prices.
+  </div>
+  <button class="secondary" onclick="loadHighOdds()">
+    LOAD ANALYSED 5+ ODDS
+  </button>
+  <div id="highOddsResults">
+    <p class="muted">No verified selections loaded yet.</p>
+  </div>
+</div>
+
+</section>
+
+<!-- SUBSCRIPTION -->
+
+<section id="subscription" class="page">
+
+<h2>Daily Subscription</h2>
+
+<div class="card">
+  <div style="text-align:center">
+    <p class="muted">CORRECT PREDICT DAILY ACCESS</p>
+    <div style="font-size:43px;font-weight:bold;color:var(--gold)">
+      KSh 50
+    </div>
+    <p>24 hours access</p>
+    <span class="badge">DAILY PLAN</span>
+  </div>
+
+  <hr>
+
+  <h3>Payment Instructions</h3>
+  <p>1. Open your M-Pesa menu.</p>
+  <p>2. Select Pochi la Biashara.</p>
+  <p>3. Pay KSh 50 to:</p>
+
+  <div class="notice" style="text-align:center">
+    <strong style="font-size:23px">0741342508</strong>
+    <p>M-Pesa Pochi la Biashara</p>
+  </div>
+
+  <p>4. Complete your payment.</p>
+  <p>5. Submit your transaction details below for manual verification.</p>
+
+  <hr>
+
+  <h3>Payment Verification Request</h3>
+
+  <form id="paymentForm">
+    <label>Your M-Pesa phone number</label>
+    <input id="payerPhone" type="tel" placeholder="07XXXXXXXX" required>
+
+    <label>M-Pesa transaction code</label>
+    <input id="transactionCode" type="text" placeholder="Enter transaction code" required>
+
+    <button type="submit" class="primary">
+      SUBMIT PAYMENT DETAILS
+    </button>
+  </form>
+
+  <div id="paymentMessage"></div>
+
+  <p class="muted">
+    Submission does not automatically activate your subscription.
+    Access begins after payment verification and activation by the administrator.
+  </p>
+</div>
+
+</section>
+
+<!-- ABOUT US -->
+
+<section id="about" class="page">
+
+<h2>About CORRECT PREDICT</h2>
+
+<div class="card">
+  <h3>Who We Are</h3>
+  <p>
+    CORRECT PREDICT is a football intelligence platform designed
+    to analyse football matches using statistics, team performance,
+    scoring patterns and mathematical probability models.
+  </p>
+
+  <h3>Our Mission</h3>
+  <p>
+    To help football followers make more informed decisions through
+    structured match analysis rather than guessing.
+  </p>
+
+  <h3>Our Analysis</h3>
+  <ul>
+    <li>Last five matches performance.</li>
+    <li>Home and away performance.</li>
+    <li>Average goals scored and conceded.</li>
+    <li>Attack and defensive strength.</li>
+    <li>League position and team performance.</li>
+    <li>1X2 match probabilities.</li>
+    <li>GG/NG and Over/Under 2.5.</li>
+    <li>Correct-score probability estimates.</li>
+  </ul>
+
+  <h3>Subscription Policy</h3>
+  <p>
+    Daily access costs KSh 50 and lasts 24 hours after activation.
+    Payment must be verified before access is granted.
+  </p>
+
+  <div class="notice">
+    <strong>NON-REFUNDABLE PAYMENT POLICY</strong>
+    <p>
+      Payments made for CORRECT PREDICT services are non-refundable.
+      Users should review the subscription details before paying.
+    </p>
+  </div>
+
+  <h3>Important Disclaimer</h3>
+  <p>
+    Football predictions are estimates based on available data.
+    We do not guarantee winning bets, correct scores or profits.
+    Users are responsible for their own betting decisions.
+  </p>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>CORRECT PREDICT</strong>
+  <p>Football Intelligence Platform</p>
+  <p>Statistics • Analysis • Probability</p>
+  © 2026 CORRECT PREDICT. All rights reserved.
+</footer>
+
+<script>
+
+// NAVIGATION
+
+function showPage(id,button){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+
+  if(button) button.classList.add('active');
+  else {
+    const navButton=[...document.querySelectorAll('nav button')]
+      .find(b=>b.getAttribute('onclick')?.includes("'"+id+"'"));
+    if(navButton) navButton.classList.add('active');
+  }
+}
+
+// API CONNECTION
+// IMPORTANT: This is your own backend address.
+// Never place your API-Football secret key in this HTML file.
+
+const API_BASE = "/api";
+
+let fixtures = [];
+
+async function apiRequest(path){
+  const response = await fetch(API_BASE + path);
+
+  if(!response.ok){
+    throw new Error("Server error: "+response.status);
+  }
+
+  return await response.json();
+}
+
+// LOAD FIXTURES
+
+async function loadFixtures(){
+  const home=document.getElementById("homeFixtures");
+  home.innerHTML="<p class='muted'>Loading fixtures...</p>";
+
+  try{
+    const data=await apiRequest("/fixtures");
+
+    fixtures=data.fixtures || data;
+
+    if(!Array.isArray(fixtures) || !fixtures.length){
+      home.innerHTML="<p>No fixtures available.</p>";
+      return;
+    }
+
+    const select=document.getElementById("matchSelect");
+    select.innerHTML='<option value="">Select a match</option>';
+
+    fixtures.forEach((match,index)=>{
+      const option=document.createElement("option");
+      option.value=index;
+      option.textContent=match.home+" vs "+match.away;
+      select.appendChild(option);
+    });
+
+    home.innerHTML=fixtures.map((match,index)=>`
+      <div class="fixture">
+        <div class="teams">
+          ${escapeHTML(match.home)} vs ${escapeHTML(match.away)}
+        </div>
+        <p class="muted">${escapeHTML(match.league || "Football")}</p>
+        <button class="primary" onclick="selectMatch(${index})">
+          ANALYSE
+        </button>
+      </div>
+    `).join("");
+
+  }catch(error){
+    home.innerHTML=`
+      <p class="red">Could not load fixtures.</p>
+      <p class="muted">
+        The secure football API backend must be connected.
+      </p>`;
+  }
+}
+
+function selectMatch(index){
+  document.getElementById("matchSelect").value=index;
+  showPage("analysis");
+  analyseMatch();
+}
+
+// MATCH ANALYSIS
+
+async function analyseMatch(){
+
+  const index=document.getElementById("matchSelect").value;
+  const result=document.getElementById("analysisResult");
+  const details=document.getElementById("detailedAnalysis");
+
+  if(index===""){
+    result.innerHTML="<p class='red'>Select a match first.</p>";
+    return;
+  }
+
+  const match=fixtures[Number(index)];
+
+  result.innerHTML="<p class='muted'>Analysing match statistics...</p>";
+  details.innerHTML="";
+
+  try{
+    const data=await apiRequest("/analysis/"+encodeURIComponent(match.id));
+
+    if(!data || !data.predictions){
+      throw new Error("Incomplete analysis");
+    }
+
+    const p=data.predictions;
+    const s=data.statistics || {};
+
+    document.getElementById("homeAttack").textContent=s.homeAttack ?? "--";
+    document.getElementById("awayAttack").textContent=s.awayAttack ?? "--";
+    document.getElementById("homeDefence").textContent=s.homeDefence ?? "--";
+    document.getElementById("awayDefence").textContent=s.awayDefence ?? "--";
+    document.getElementById("homeGoals").textContent=s.homeAverageGoals ?? "--";
+    document.getElementById("awayGoals").textContent=s.awayAverageGoals ?? "--";
+
+    result.innerHTML=`
+      <h3>${escapeHTML(match.home)} vs ${escapeHTML(match.away)}</h3>
+
+      <div class="prediction">
+        <span>Home win</span>
+        <strong class="gold">${percentage(p.homeWin)}</strong>
+      </div>
+      <div class="prediction">
+        <span>Draw</span>
+        <strong>${percentage(p.draw)}</strong>
+      </div>
+      <div class="prediction">
+        <span>Away win</span>
+        <strong class="magenta">${percentage(p.awayWin)}</strong>
+      </div>
+      <div class="prediction">
+        <span>Both teams score</span>
+        <strong class="cyan">${percentage(p.gg)}</strong>
+      </div>
+      <div class="prediction">
+        <span>Over 2.5 goals</span>
+        <strong>${percentage(p.over25)}</strong>
+      </div>
+      <div class="prediction">
+        <span>Under 2.5 goals</span>
+        <strong>${percentage(p.under25)}</strong>
+      </div>
+    `;
+
+    const scores=Array.isArray(p.correctScores)?p.correctScores:[];
+
+    details.innerHTML=`
+      <div class="card">
+        <h3>Top 5 Correct Scores</h3>
+        ${scores.slice(0,5).map((s,i)=>`
+          <div class="prediction">
+            <span>${i+1}. ${escapeHTML(String(s.score))}</span>
+            <strong class="gold">${percentage(s.probability)}</strong>
+          </div>
+        `).join("") || "<p>No correct-score data available.</p>"}
+      </div>
+
+      <div class="card">
+        <h3>Recent Form</h3>
+        <p>Home: ${escapeHTML(s.homeForm || "Unavailable")}</p>
+        <p>Away: ${escapeHTML(s.awayForm || "Unavailable")}</p>
+        <p>Home last five goals: ${escapeHTML(String(s.homeLastFiveGoals ?? "--"))}</p>
+        <p>Away last five goals: ${escapeHTML(String(s.awayLastFiveGoals ?? "--"))}</p>
+      </div>
+
+      <div class="card">
+        <h3>League Position</h3>
+        <p>Home: ${escapeHTML(String(s.homePosition ?? "Unavailable"))}</p>
+        <p>Away: ${escapeHTML(String(s.awayPosition ?? "Unavailable"))}</p>
+      </div>
+
+      <div class="notice">
+        These probabilities are estimates, not guaranteed outcomes.
+      </div>
+    `;
+
+  }catch(error){
+    result.innerHTML=`
+      <p class="red">Analysis unavailable.</p>
+      <p class="muted">
+        Check the secure backend and match statistics connection.
+      </p>`;
+  }
+}
+
+// 5+ ODDS
+
+async function loadHighOdds(){
+
+  const container=document.getElementById("highOddsResults");
+  container.innerHTML="<p>Loading analysed selections...</p>";
+
+  try{
+    const data=await apiRequest("/high-odds");
+    const items=data.selections || [];
+
+    if(!items.length){
+      container.innerHTML="<p class='muted'>No verified 5+ odds selections available.</p>";
+      return;
+    }
+
+    container.innerHTML=items.map(item=>`
+      <div class="fixture">
+        <div class="teams">
+          ${escapeHTML(item.match)}
+        </div>
+        <p>Selection: <strong class="gold">${escapeHTML(item.selection)}</strong></p>
+        <p>Odds: <strong class="cyan">${escapeHTML(String(item.odds))}</strong></p>
+        <p>Estimated probability: ${percentage(item.probability)}</p>
+        <p class="muted">${escapeHTML(item.reason || "")}</p>
+      </div>
+    `).join("");
+
+  }catch(error){
+    container.innerHTML="<p class='red'>5+ odds service is not connected yet.</p>";
+  }
+}
+
+// PAYMENT SUBMISSION
+
+document.getElementById("paymentForm").addEventListener("submit",async function(e){
+
+  e.preventDefault();
+
+  const phone=document.getElementById("payerPhone").value.trim();
+  const code=document.getElementById("transactionCode").value.trim();
+  const message=document.getElementById("paymentMessage");
+
+  if(!/^(\+254|0)?[17]\d{8}$/.test(phone)){
+    message.innerHTML="<p class='red'>Enter a valid Kenyan phone number.</p>";
+    return;
+  }
+
+  if(code.length<6){
+    message.innerHTML="<p class='red'>Enter a valid transaction code.</p>";
+    return;
+  }
+
+  message.innerHTML="<p class='muted'>Submitting verification request...</p>";
+
+  try{
+    const response=await fetch(API_BASE+"/payments/verify",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        phone:phone,
+        transactionCode:code,
+        amount:50
+      })
+    });
+
+    if(!response.ok) throw new Error("Submission failed");
+
+    message.innerHTML=`
+      <p class='green'>Verification request submitted.</p>
+      <p class='muted'>Your subscription remains pending until the administrator verifies your payment.</p>
+    `;
+
+  }catch(error){
+    message.innerHTML=`
+      <p class='red'>Payment verification server is not connected.</p>
+      <p class='muted'>Please contact the administrator with your transaction details.</p>
+    `;
+  }
+});
+
+// HELPERS
+
+function percentage(value){
+  if(value===undefined || value===null || !Number.isFinite(Number(value))) return "--";
+  const n=Number(value);
+  return (n<=1 ? n*100 : n).toFixed(1)+"%";
+}
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+</script>
+
+</body>
+</html>
