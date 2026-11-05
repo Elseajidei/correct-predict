@@ -4,337 +4,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d19">
+<meta name="theme-color" content="#080d1b">
 <title>CORRECT PREDICT | Football Intelligence</title>
 
 <style>
-:root {
-  --bg:#080d19;
-  --panel:#111c30;
-  --panel2:#192943;
-  --line:#30415d;
-  --gold:#f4c542;
-  --orange:#ff9f1c;
-  --yellow:#ffe34d;
-  --cyan:#20d9ed;
-  --green:#35d48a;
-  --red:#f15b67;
-  --purple:#a78bfa;
-  --white:#f4f7ff;
-  --muted:#aab8ce;
+:root{
+--bg:#080d1b;
+--panel:#121e35;
+--gold:#ffd166;
+--orange:#ff8738;
+--yellow:#ffe34d;
+--cyan:#29d9e8;
+--white:#f5f7ff;
+--muted:#9eacc4;
+--green:#42df9a;
+--red:#ff6575;
 }
-
-* { box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
-
-body {
-  margin:0;
-  background:radial-gradient(circle at 10% 0%,#17243b 0,transparent 32%),var(--bg);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-  line-height:1.5;
+*{box-sizing:border-box}
+body{
+margin:0;
+background:radial-gradient(ellipse at top,#263d60 0%,#101a30 38%,#080d1b 80%);
+color:var(--white);
+font-family:Arial,sans-serif;
 }
-
-.container { width:min(1180px,94%); margin:auto; }
-
-header {
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(8,13,25,.96);
-  border-bottom:1px solid var(--line);
+header{
+text-align:center;
+padding:27px 12px;
+background:linear-gradient(110deg,#101b37,#34456a,#773d23,#a57a21);
+border-bottom:3px solid var(--gold);
 }
-
-.nav {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:14px 0;
-  flex-wrap:wrap;
+.logo{
+font-size:34px;
+font-weight:900;
+letter-spacing:2px;
 }
-
-.brand {
-  font-weight:1000;
-  letter-spacing:1px;
-  font-size:1.35rem;
+.logo span{color:var(--yellow)}
+header p{margin:9px 0;color:white}
+.tagline{color:var(--yellow);font-weight:bold}
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:9px;
+padding:15px 8px;
+background:#0c1528;
+position:sticky;
+top:0;
+z-index:5;
 }
-
-.brand span { color:var(--gold); }
-
-.brand small {
-  display:block;
-  color:var(--cyan);
-  font-size:.62rem;
-  letter-spacing:3px;
+button{
+border:0;
+border-radius:8px;
+padding:12px 17px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(110deg,var(--gold),var(--orange));
+color:#111;
 }
-
-nav { display:flex; gap:8px; flex-wrap:wrap; }
-
-nav a {
-  color:var(--muted);
-  text-decoration:none;
-  font-size:.88rem;
-  padding:8px 10px;
-  border-radius:8px;
+button:hover{filter:brightness(1.15)}
+.navbtn{
+background:#1d2b46;
+border:1px solid #536887;
+color:white;
 }
-
-nav a:hover { background:var(--panel2); color:white; }
-
-.hero { padding:55px 0 30px; text-align:center; }
-
-.eyebrow {
-  color:var(--orange);
-  font-weight:800;
-  letter-spacing:3px;
-  font-size:.76rem;
+main{max-width:1050px;margin:auto;padding:12px}
+section{display:none}
+section.active{display:block}
+.card{
+background:linear-gradient(145deg,#172642,#10192b);
+border:1px solid #344967;
+border-radius:14px;
+padding:19px;
+margin:15px 0;
+box-shadow:0 8px 25px #0005;
 }
-
-h1 {
-  font-size:clamp(2.1rem,6vw,4.2rem);
-  line-height:1.03;
-  margin:12px 0;
-  background:linear-gradient(90deg,var(--gold),var(--orange),var(--yellow),var(--cyan));
-  background-clip:text;
-  -webkit-background-clip:text;
-  color:transparent;
+h2{color:var(--gold);margin-top:0}
+h3{color:var(--cyan)}
+p{line-height:1.55}
+.small{font-size:12px;color:var(--muted)}
+.grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
 }
-
-.hero p {
-  max-width:760px;
-  margin:14px auto;
-  color:var(--muted);
+input,select{
+width:100%;
+padding:12px;
+margin:7px 0 14px;
+background:#081225;
+color:white;
+border:1px solid #536783;
+border-radius:7px;
+font-size:15px;
 }
-
-.actions {
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:22px;
+label{font-size:13px;color:#d5e0f1}
+.result{
+background:#091426;
+border-left:4px solid var(--gold);
+border-radius:8px;
+padding:13px;
+margin:10px 0;
 }
-
-.btn {
-  border:0;
-  border-radius:10px;
-  padding:11px 17px;
-  font-weight:800;
-  cursor:pointer;
+.metric{
+font-size:27px;
+font-weight:bold;
+color:var(--cyan);
 }
-
-.btn:hover { filter:brightness(1.1); }
-
-.primary {
-  background:linear-gradient(110deg,var(--gold),var(--orange));
-  color:#16120a;
+.gold{color:var(--gold)}
+.orange{color:var(--orange)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.score{
+font-size:29px;
+font-weight:900;
+color:var(--yellow);
 }
-
-.secondary {
-  background:var(--panel2);
-  border:1px solid var(--line);
-  color:var(--white);
+.bar{
+height:10px;
+background:#293750;
+border-radius:10px;
+overflow:hidden;
+margin:7px 0 14px;
 }
-
-.cyan { background:var(--cyan); color:#04151a; }
-
-section { padding:27px 0; }
-
-.section-title {
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:16px;
+.bar span{
+display:block;
+height:100%;
+background:linear-gradient(90deg,var(--cyan),var(--gold),var(--orange));
 }
-
-h2 { font-size:1.55rem; margin:0; }
-
-.sub { color:var(--muted); font-size:.9rem; }
-
-.grid {
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:15px;
+hr{border:0;border-top:1px solid #344967;margin:20px 0}
+footer{
+text-align:center;
+padding:25px;
+color:var(--muted);
 }
-
-.card {
-  background:linear-gradient(145deg,rgba(25,41,67,.95),rgba(17,28,48,.98));
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 14px 35px rgba(0,0,0,.25);
+.note{
+background:#2a2416;
+border:1px solid #8a682b;
+padding:12px;
+border-radius:8px;
+font-size:13px;
 }
-
-.span-12 { grid-column:span 12; }
-.span-8 { grid-column:span 8; }
-.span-6 { grid-column:span 6; }
-.span-4 { grid-column:span 4; }
-
-label {
-  display:block;
-  color:var(--muted);
-  font-size:.82rem;
-  margin:10px 0 5px;
-}
-
-input,select,textarea {
-  width:100%;
-  padding:11px 12px;
-  background:#091323;
-  color:var(--white);
-  border:1px solid var(--line);
-  border-radius:9px;
-  outline:none;
-}
-
-input:focus,select:focus,textarea:focus {
-  border-color:var(--cyan);
-}
-
-.row2 {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.pill {
-  display:inline-block;
-  padding:4px 9px;
-  border-radius:30px;
-  font-size:.72rem;
-  font-weight:800;
-  background:#263852;
-  color:var(--cyan);
-  margin:2px;
-}
-
-.gold { color:var(--gold); }
-.orange { color:var(--orange); }
-.cyan-t { color:var(--cyan); }
-.green-t { color:var(--green); }
-.red-t { color:var(--red); }
-.purple-t { color:var(--purple); }
-.muted { color:var(--muted); }
-
-.notice {
-  border-left:4px solid var(--orange);
-  background:rgba(255,159,28,.09);
-  padding:12px 14px;
-  border-radius:8px;
-  color:#ffe0b3;
-  font-size:.88rem;
-  margin:12px 0;
-}
-
-.stats {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:14px;
-}
-
-.stat {
-  background:#091323;
-  border:1px solid var(--line);
-  padding:13px;
-  border-radius:11px;
-}
-
-.stat b {
-  display:block;
-  font-size:1.35rem;
-  color:var(--yellow);
-}
-
-.stat small { color:var(--muted); }
-
-.probbar {
-  height:9px;
-  background:#091323;
-  border-radius:10px;
-  overflow:hidden;
-  margin:6px 0 12px;
-}
-
-.probbar i {
-  display:block;
-  height:100%;
-  border-radius:10px;
-}
-
-.result-line {
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  font-size:.9rem;
-}
-
-.score-list {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.score {
-  padding:10px;
-  background:#091323;
-  border:1px solid var(--line);
-  border-radius:9px;
-  text-align:center;
-}
-
-.score b {
-  display:block;
-  color:var(--gold);
-  font-size:1.1rem;
-}
-
-table { width:100%; border-collapse:collapse; font-size:.88rem; }
-
-th,td {
-  text-align:left;
-  padding:10px 8px;
-  border-bottom:1px solid var(--line);
-}
-
-th { color:var(--cyan); }
-
-.small { font-size:.78rem; color:var(--muted); }
-
-.hidden { display:none!important; }
-
-.tag {
-  font-size:.72rem;
-  padding:4px 8px;
-  border-radius:6px;
-  background:#332b15;
-  color:var(--yellow);
-}
-
-.good { color:var(--green); }
-.risk { color:var(--red); }
-
-footer {
-  border-top:1px solid var(--line);
-  padding:25px 0 40px;
-  color:var(--muted);
-  text-align:center;
-  font-size:.84rem;
-}
-
-@media(max-width:800px) {
-  .span-8,.span-6,.span-4 { grid-column:span 12; }
-  .stats { grid-template-columns:repeat(2,1fr); }
-  nav { width:100%; justify-content:center; }
-  .score-list { grid-template-columns:repeat(2,1fr); }
-}
-
-@media(max-width:480px) {
-  .row2 { grid-template-columns:1fr; }
-  .hero { padding-top:38px; }
-  .card { padding:14px; }
+@media(max-width:600px){
+.grid{grid-template-columns:1fr}
+.logo{font-size:27px}
+.card{padding:15px}
 }
 </style>
 </head>
@@ -342,824 +155,674 @@ footer {
 <body>
 
 <header>
-<div class="container nav">
-  <div class="brand">
-    CORRECT <span>PREDICT</span>
-    <small>FOOTBALL INTELLIGENCE</small>
-  </div>
-  <nav>
-    <a href="#engine">Prediction Engine</a>
-    <a href="#daily">Top Picks</a>
-    <a href="#membership">Membership</a>
-    <a href="#account">Account</a>
-  </nav>
-</div>
+<div class="logo">CORRECT <span>PREDICT</span></div>
+<p>FOOTBALL INTELLIGENCE PLATFORM</p>
+<div class="tagline">THINK STATISTICS. READ THE GAME. PREDICT SMARTER.</div>
 </header>
 
-<main class="container">
+<nav>
+<button class="navbtn" onclick="showPage('home')">HOME</button>
+<button class="navbtn" onclick="showPage('engine')">ANALYSIS ENGINE</button>
+<button class="navbtn" onclick="showPage('subscription')">SUBSCRIPTION</button>
+<button class="navbtn" onclick="showPage('about')">ABOUT US</button>
+</nav>
 
-<section class="hero">
-  <div class="eyebrow">DATA • TACTICS • PROBABILITY</div>
-  <h1>Predict with intelligence.</h1>
-  <p>
-    Analyse football matches using probability, attack and defence strength,
-    formations, tactical context, team form, league importance and odds.
-    No guaranteed wins. No invented statistics.
-  </p>
+<main>
 
-  <div class="actions">
-    <a class="btn primary" href="#engine">Analyse a Match</a>
-    <a class="btn secondary" href="#membership">Daily Access — KSh 50</a>
-  </div>
+<!-- HOME -->
 
-  <div class="stats">
-    <div class="stat"><b>Poisson</b><small>Goal probability model</small></div>
-    <div class="stat"><b>47%+</b><small>Screening threshold</small></div>
-    <div class="stat"><b>10</b><small>Daily pick target</small></div>
-    <div class="stat"><b>360°</b><small>Match analysis</small></div>
-  </div>
-</section>
+<section id="home" class="active">
 
-<section id="membership">
-<div class="section-title">
-  <div>
-    <h2><span class="gold">Daily</span> Membership</h2>
-    <div class="sub">One-day access • KSh 50</div>
-  </div>
-  <span class="pill">MANUAL PAYMENT CONFIRMATION</span>
-</div>
+<div class="card">
+<h2>Welcome to CORRECT PREDICT</h2>
+<p>Football predictions powered by statistical analysis, probability modelling and intelligent match evaluation.</p>
 
 <div class="grid">
-
-<div class="card span-6">
-  <h3>Unlock CORRECT PREDICT</h3>
-  <p class="muted">
-    Select M-Pesa to display payment instructions.
-    Access is activated only after payment is checked.
-  </p>
-
-  <label>Payment method</label>
-  <select id="paymethod">
-    <option value="">Choose payment method</option>
-    <option value="mpesa">M-Pesa</option>
-  </select>
-
-  <div id="mpesaInfo" class="notice hidden">
-    <b>Pay KSh 50 via M-Pesa Pochi la Biashara</b><br>
-    Payment number: <strong>0741342508</strong><br>
-    Enter your transaction code below after payment.
-    Never share your M-Pesa PIN.
-  </div>
-
-  <label>Your name</label>
-  <input id="payer" placeholder="Name used for payment">
-
-  <label>Phone number</label>
-  <input id="phone" type="tel" placeholder="07XXXXXXXX">
-
-  <label>M-Pesa transaction code</label>
-  <input id="receipt" placeholder="Transaction code">
-
-  <button class="btn primary" style="margin-top:14px;width:100%" onclick="submitPayment()">
-    Submit payment details
-  </button>
-
-  <p id="paymentMessage" class="small"></p>
+<div class="result">
+<h3>01. POISSON MODEL</h3>
+<p>Expected goals, score probabilities and match outcome estimates.</p>
+</div>
+<div class="result">
+<h3>02. TEAM INTELLIGENCE</h3>
+<p>Attack, defence, recent form and tactical formations.</p>
+</div>
+<div class="result">
+<h3>03. ODDS INTELLIGENCE</h3>
+<p>Identify possible differences between bookmaker odds and model probabilities.</p>
+</div>
+<div class="result">
+<h3>04. MATCH IMPORTANCE</h3>
+<p>League position, promotion battles, relegation pressure and title races.</p>
+</div>
+<div class="result">
+<h3>05. GOALS ANALYSIS</h3>
+<p>Over 2.5, Under 2.5, BTTS and correct-score probabilities.</p>
+</div>
+<div class="result">
+<h3>06. RISK ASSESSMENT</h3>
+<p>Identify uncertain fixtures, potential upsets and low-confidence selections.</p>
+</div>
 </div>
 
-<div class="card span-6">
-  <h3 class="cyan-t">Access status</h3>
-  <p>No active membership detected on this browser.</p>
-  <div class="notice">
-    This version does not yet verify M-Pesa payments or activate paid accounts.
-    A secure backend and payment integration are required.
-  </div>
-  <p class="small">
-    Intended membership duration: 24 hours after administrator confirmation.
-  </p>
+<button onclick="showPage('engine')">OPEN PREDICTION ENGINE</button>
 </div>
 
+<div class="card">
+<h2>Our principles</h2>
+<p>✓ Independent match analysis</p>
+<p>✓ Last five matches and home/away form</p>
+<p>✓ Attacking and defensive strength</p>
+<p>✓ League position and match importance</p>
+<p>✓ Tactical formation assessment</p>
+<p>✓ Probability and odds comparison</p>
+<p>✓ No invented results or guaranteed winners</p>
 </div>
+
+<div class="card">
+<h2>Daily Intelligence</h2>
+<p>Our objective is to identify the strongest statistical opportunities rather than simply select famous teams.</p>
+<p class="gold"><b>Quality of analysis comes before quantity of predictions.</b></p>
+</div>
+
 </section>
 
-<section id="account">
-<div class="section-title">
-  <div>
-    <h2>Account</h2>
-    <div class="sub">Registration and login interface</div>
-  </div>
-</div>
-
-<div class="grid">
-
-<div class="card span-6">
-  <h3>Create account</h3>
-  <label>Name</label>
-  <input id="regName" placeholder="Your name">
-  <label>Email</label>
-  <input id="regEmail" type="email" placeholder="you@example.com">
-  <label>Password</label>
-  <input id="regPass" type="password" placeholder="Create password">
-  <button class="btn cyan" style="margin-top:12px" onclick="demoAccount('register')">
-    Register
-  </button>
-  <p id="regMsg" class="small"></p>
-</div>
-
-<div class="card span-6">
-  <h3>Login</h3>
-  <label>Email</label>
-  <input id="loginEmail" type="email" placeholder="you@example.com">
-  <label>Password</label>
-  <input id="loginPass" type="password" placeholder="Your password">
-  <button class="btn secondary" style="margin-top:12px" onclick="demoAccount('login')">
-    Login
-  </button>
-  <p id="loginMsg" class="small"></p>
-</div>
-
-</div>
-</section>
+<!-- ANALYSIS ENGINE -->
 
 <section id="engine">
 
-<div class="section-title">
-  <div>
-    <h2><span class="cyan-t">Match</span> Intelligence Engine</h2>
-    <div class="sub">
-      Enter verified statistics. Leave unknown fields blank.
-    </div>
-  </div>
-  <span class="tag">POISSON MODEL</span>
-</div>
+<div class="card">
+<h2>FOOTBALL INTELLIGENCE ENGINE</h2>
+<p class="small">Enter the match statistics below to calculate probabilities. Use comparable home and away statistics from recent matches.</p>
+
+<h3>1. MATCH INFORMATION</h3>
 
 <div class="grid">
-
-<div class="card span-8">
-
-<div class="row2">
-  <div>
-    <label>Home team</label>
-    <input id="home" placeholder="Home team">
-  </div>
-  <div>
-    <label>Away team</label>
-    <input id="away" placeholder="Away team">
-  </div>
+<div>
+<label>Home team</label>
+<input id="homeTeam" placeholder="Enter home team">
+</div>
+<div>
+<label>Away team</label>
+<input id="awayTeam" placeholder="Enter away team">
+</div>
+<div>
+<label>League / competition</label>
+<input id="league" placeholder="Enter competition">
+</div>
+<div>
+<label>Match date</label>
+<input id="matchDate" type="date">
+</div>
+<div>
+<label>Home formation</label>
+<input id="homeFormation" placeholder="e.g. 4-3-3">
+</div>
+<div>
+<label>Away formation</label>
+<input id="awayFormation" placeholder="e.g. 4-2-3-1">
+</div>
 </div>
 
-<div class="row2">
-  <div>
-    <label>League average goals per team</label>
-    <input id="leagueAvg" type="number" step=".01" placeholder="1.35">
-  </div>
-  <div>
-    <label>Home advantage factor</label>
-    <input id="homeAdv" type="number" step=".01" value="1.10">
-  </div>
+<hr>
+
+<h3>2. ATTACK AND DEFENCE</h3>
+
+<div class="grid">
+<div>
+<label>Home average goals scored</label>
+<input id="hg" type="number" min="0" max="10" step=".01" value="1.6">
+</div>
+<div>
+<label>Away average goals scored</label>
+<input id="ag" type="number" min="0" max="10" step=".01" value="1.2">
+</div>
+<div>
+<label>Home average goals conceded</label>
+<input id="hc" type="number" min="0" max="10" step=".01" value="1.0">
+</div>
+<div>
+<label>Away average goals conceded</label>
+<input id="ac" type="number" min="0" max="10" step=".01" value="1.3">
+</div>
 </div>
 
-<h3 class="gold">Attack and defence strength</h3>
+<hr>
 
-<div class="row2">
-  <div>
-    <label>Home attack strength (1 = average)</label>
-    <input id="hAttack" type="number" step=".01" value="1.10">
-  </div>
-  <div>
-    <label>Home defensive weakness (1 = average)</label>
-    <input id="hDef" type="number" step=".01" value="1.00">
-  </div>
-  <div>
-    <label>Away attack strength (1 = average)</label>
-    <input id="aAttack" type="number" step=".01" value="1.00">
-  </div>
-  <div>
-    <label>Away defensive weakness (1 = average)</label>
-    <input id="aDef" type="number" step=".01" value="1.05">
-  </div>
+<h3>3. LAST FIVE MATCHES</h3>
+
+<div class="grid">
+<div>
+<label>Home wins</label>
+<input id="hw" type="number" min="0" max="5" value="3">
+</div>
+<div>
+<label>Away wins</label>
+<input id="aw" type="number" min="0" max="5" value="2">
+</div>
+<div>
+<label>Home draws</label>
+<input id="hd" type="number" min="0" max="5" value="1">
+</div>
+<div>
+<label>Away draws</label>
+<input id="ad" type="number" min="0" max="5" value="1">
+</div>
+<div>
+<label>Home goals scored in last five</label>
+<input id="hgf" type="number" min="0" max="50" value="8">
+</div>
+<div>
+<label>Away goals scored in last five</label>
+<input id="agf" type="number" min="0" max="50" value="6">
+</div>
+<div>
+<label>Home goals conceded in last five</label>
+<input id="hgc" type="number" min="0" max="50" value="4">
+</div>
+<div>
+<label>Away goals conceded in last five</label>
+<input id="agc" type="number" min="0" max="50" value="7">
+</div>
 </div>
 
-<h3 class="orange">Form, formations and match context</h3>
+<hr>
 
-<div class="row2">
-  <div>
-    <label>Home last 5 matches (W/D/L)</label>
-    <input id="hForm" maxlength="5" placeholder="WWDLW">
-  </div>
-  <div>
-    <label>Away last 5 matches (W/D/L)</label>
-    <input id="aForm" maxlength="5" placeholder="DLWWL">
-  </div>
-  <div>
-    <label>Home formation</label>
-    <select id="hFormation">
-      <option value="">Unknown</option>
-      <option>4-3-3</option>
-      <option>4-2-3-1</option>
-      <option>4-4-2</option>
-      <option>3-5-2</option>
-      <option>3-4-3</option>
-      <option>5-3-2</option>
-      <option>4-1-4-1</option>
-    </select>
-  </div>
-  <div>
-    <label>Away formation</label>
-    <select id="aFormation">
-      <option value="">Unknown</option>
-      <option>4-3-3</option>
-      <option>4-2-3-1</option>
-      <option>4-4-2</option>
-      <option>3-5-2</option>
-      <option>3-4-3</option>
-      <option>5-3-2</option>
-      <option>4-1-4-1</option>
-    </select>
-  </div>
-  <div>
-    <label>Home injuries / suspensions</label>
-    <input id="hAbs" placeholder="Verified absences">
-  </div>
-  <div>
-    <label>Away injuries / suspensions</label>
-    <input id="aAbs" placeholder="Verified absences">
-  </div>
-  <div>
-    <label>Importance of the game</label>
-    <select id="importance">
-      <option value="">Unknown</option>
-      <option>Title race</option>
-      <option>Relegation battle</option>
-      <option>Promotion race</option>
-      <option>European qualification</option>
-      <option>Mid-table fixture</option>
-      <option>Local derby</option>
-      <option>Cup knockout / final</option>
-      <option>End-of-season dead rubber</option>
-    </select>
-  </div>
-  <div>
-    <label>Motivation and pressure</label>
-    <select id="motivation">
-      <option value="">Unknown</option>
-      <option>Home team highly motivated</option>
-      <option>Away team highly motivated</option>
-      <option>Both highly motivated</option>
-      <option>Both under pressure</option>
-      <option>Low motivation / rotation possible</option>
-    </select>
-  </div>
+<h3>4. LEAGUE POSITION</h3>
+
+<div class="grid">
+<div>
+<label>Home league position</label>
+<input id="hp" type="number" min="1" value="4">
+</div>
+<div>
+<label>Away league position</label>
+<input id="ap" type="number" min="1" value="10">
+</div>
+<div>
+<label>Total teams in league</label>
+<input id="teams" type="number" min="2" value="20">
+</div>
+<div>
+<label>Match importance</label>
+<select id="importance">
+<option value="Normal league match">Normal league match</option>
+<option value="Title race">Title race</option>
+<option value="Promotion battle">Promotion battle</option>
+<option value="Relegation battle">Relegation battle</option>
+<option value="Cup knockout">Cup knockout</option>
+<option value="Low-stakes match">Low-stakes match</option>
+</select>
+</div>
 </div>
 
-<label>Head-to-head and tactical notes</label>
-<textarea id="notes" rows="2" placeholder="Enter verified information"></textarea>
+<hr>
 
-<h3 class="purple-t">Bookmaker odds comparison</h3>
+<h3>5. HEAD-TO-HEAD</h3>
 
-<div class="row2">
-  <div>
-    <label>Home odds</label>
-    <input id="oddsH" type="number" step=".01" placeholder="2.10">
-  </div>
-  <div>
-    <label>Draw odds</label>
-    <input id="oddsD" type="number" step=".01" placeholder="3.20">
-  </div>
-  <div>
-    <label>Away odds</label>
-    <input id="oddsA" type="number" step=".01" placeholder="3.60">
-  </div>
-  <div>
-    <label>Odds source / time</label>
-    <input id="oddsSource" placeholder="Bookmaker and time">
-  </div>
+<div class="grid">
+<div>
+<label>Home wins in last five H2H</label>
+<input id="h2hHome" type="number" min="0" max="5" value="2">
+</div>
+<div>
+<label>Away wins in last five H2H</label>
+<input id="h2hAway" type="number" min="0" max="5" value="1">
+</div>
 </div>
 
-<button class="btn primary" style="width:100%;margin-top:18px" onclick="analyse()">
-  ANALYSE MATCH
-</button>
+<hr>
 
-<button class="btn secondary" style="width:100%;margin-top:8px" onclick="clearAnalysis()">
-  CLEAR FORM
-</button>
+<h3>6. BOOKMAKER ODDS</h3>
 
+<div class="grid">
+<div>
+<label>Home win odds</label>
+<input id="oh" type="number" min="1.01" step=".01" value="2.00">
+</div>
+<div>
+<label>Draw odds</label>
+<input id="od" type="number" min="1.01" step=".01" value="3.20">
+</div>
+<div>
+<label>Away win odds</label>
+<input id="oa" type="number" min="1.01" step=".01" value="3.50">
+</div>
 </div>
 
-<div class="card span-4">
-  <h3>How the engine works</h3>
-  <p class="muted">
-    The Poisson model estimates expected goals using attack strength,
-    opponent defensive weakness, league scoring baseline and home advantage.
-  </p>
-  <div class="notice">
-    47% is a screening threshold, not proof that a bet is safe.
-  </div>
-  <p>
-    <span class="pill">1X2</span>
-    <span class="pill">BTTS</span>
-    <span class="pill">OVER 2.5</span>
-    <span class="pill">UNDER 1.5</span>
-    <span class="pill">CORRECT SCORE</span>
-  </p>
-  <p class="small">
-    Formations, injuries, motivation and league importance are shown
-    as context. They are not automatically given numerical adjustments
-    without verified data.
-  </p>
+<div class="note">
+<strong>Important:</strong> Enter actual bookmaker odds. The model compares its estimated probabilities with the market's implied probabilities.
 </div>
 
+<br>
+<button onclick="analyse()">RUN FULL MATCH ANALYSIS</button>
+<button class="navbtn" onclick="clearResults()">CLEAR RESULTS</button>
 </div>
 
-<div id="analysisResult" class="card hidden" style="margin-top:15px"></div>
+<div id="output" class="card" style="display:none">
+<h2>INTELLIGENCE REPORT</h2>
+<div id="report"></div>
+</div>
 
 </section>
 
-<section id="daily">
-<div class="section-title">
-  <div>
-    <h2><span class="gold">Daily Top 10</span> Picks</h2>
-    <div class="sub">Save analysed matches to your shortlist.</div>
-  </div>
-  <span class="pill">NO FABRICATED FIXTURES</span>
-</div>
+<!-- SUBSCRIPTION -->
+
+<section id="subscription">
 
 <div class="card">
-  <p class="muted">
-    This starter version does not fetch live fixtures, injuries,
-    league standings or bookmaker odds. Add verified match data
-    through the prediction engine.
-  </p>
+<h2>PREMIUM MEMBERSHIP</h2>
+<div class="metric">KSh 50 / DAY</div>
+<p>Daily subscription for premium football intelligence and analysis.</p>
 
-  <button class="btn secondary" onclick="savePick()">
-    Save latest analysis to Top Picks
-  </button>
+<div class="result">
+<h3>Daily Access</h3>
+<p>Price: <strong class="gold">KSh 50</strong></p>
+<p>Duration: 24 hours after verified activation.</p>
+<p>Renewal: Daily.</p>
+</div>
 
-  <div id="topPicks" style="margin-top:14px">
-    <p class="small">No analysed matches saved yet.</p>
-  </div>
+<h3>PAYMENT METHOD</h3>
+
+<select id="paymentMethod" onchange="paymentInstructions()">
+<option value="">Select payment method</option>
+<option value="mpesa">M-Pesa Pochi la Biashara</option>
+</select>
+
+<div id="paymentDetails" style="display:none">
+<hr>
+<h3>M-PESA PAYMENT INSTRUCTIONS</h3>
+<p>1. Open M-Pesa.</p>
+<p>2. Select Lipa na M-Pesa.</p>
+<p>3. Select Pochi la Biashara.</p>
+<p>4. Enter business number:</p>
+<div class="metric">0741342508</div>
+<p>5. Pay KSh 50.</p>
+<p>6. Keep your M-Pesa transaction message for verification.</p>
+</div>
+
+<div class="note">
+Payment details and subscription activation require a secure server-side verification system. This page does not process payments or activate memberships by itself.
+</div>
+
 </div>
 </section>
 
-<section>
+<!-- ABOUT -->
+
+<section id="about">
+
 <div class="card">
-  <h2>Responsible prediction policy</h2>
-  <div class="grid">
-    <div class="span-4">
-      <p class="green-t"><b>Evidence first</b></p>
-      <p class="small">Use verified team statistics. Unknown data stays unknown.</p>
-    </div>
-    <div class="span-4">
-      <p class="orange"><b>Risk awareness</b></p>
-      <p class="small">Probability is not certainty. Never stake money you cannot afford to lose.</p>
-    </div>
-    <div class="span-4">
-      <p class="cyan-t"><b>Transparency</b></p>
-      <p class="small">This version is a frontend prototype, not a live data service.</p>
-    </div>
-  </div>
+<h2>ABOUT CORRECT PREDICT</h2>
+<p>CORRECT PREDICT is a football intelligence project built around statistical evidence and probability analysis.</p>
+
+<h3>Our mission</h3>
+<p>To help football enthusiasts understand matches through deeper statistical evaluation.</p>
+
+<h3>Our methodology</h3>
+<p>We examine team performance, attacking and defensive strength, tactical formations, competition importance, odds and probability.</p>
+
+<p class="gold"><b>THINK STATISTICS. READ THE GAME. PREDICT SMARTER.</b></p>
 </div>
+
 </section>
 
 </main>
 
 <footer>
-  <div class="container">
-    © 2026 CORRECT PREDICT • FOOTBALL INTELLIGENCE
-    <br>
-    <span class="small">For analysis and education. Football outcomes remain uncertain.</span>
-  </div>
+<strong>CORRECT PREDICT © 2026</strong>
+<p>Football Intelligence Platform</p>
+<p class="small">All probabilities are statistical estimates, not guarantees. Bet responsibly.</p>
 </footer>
 
 <script>
-const $ = id => document.getElementById(id);
 
-let latestAnalysis = null;
+// PAGE NAVIGATION
 
-$("paymethod").addEventListener("change", () => {
-  $("mpesaInfo").classList.toggle("hidden", $("paymethod").value !== "mpesa");
+function showPage(id){
+document.querySelectorAll("main section").forEach(s=>{
+s.classList.remove("active");
 });
-
-function submitPayment() {
-  const name = $("payer").value.trim();
-  const phone = $("phone").value.trim();
-  const receipt = $("receipt").value.trim();
-
-  if ($("paymethod").value !== "mpesa") {
-    $("paymentMessage").textContent = "Please select M-Pesa first.";
-    return;
-  }
-
-  if (!name || !phone || !receipt) {
-    $("paymentMessage").textContent = "Enter your name, phone number and transaction code.";
-    return;
-  }
-
-  $("paymentMessage").textContent =
-    "Details entered. Payment must be manually verified by the administrator. Membership has not yet been activated.";
+document.getElementById(id).classList.add("active");
+window.scrollTo(0,0);
 }
 
-function demoAccount(type) {
-  const target = type === "register" ? "regMsg" : "loginMsg";
+// PAYMENT DISPLAY
 
-  $(target).textContent =
-    "Account interface ready. Secure registration and login require a connected authentication backend.";
+function paymentInstructions(){
+const method=document.getElementById("paymentMethod").value;
+document.getElementById("paymentDetails").style.display=
+method==="mpesa"?"block":"none";
 }
 
-function poisson(k, lambda) {
-  let p = Math.exp(-lambda);
+// INPUT HELPER
 
-  for (let i = 1; i <= k; i++) {
-    p *= lambda / i;
-  }
-
-  return p;
+function get(id){
+return Number(document.getElementById(id).value);
 }
 
-function pct(x) {
-  return (x * 100).toFixed(1) + "%";
+function factorial(n){
+let result=1;
+for(let i=2;i<=n;i++) result*=i;
+return result;
 }
 
-function safeNum(id, fallback, min, max) {
-  const v = parseFloat($(id).value);
+// POISSON PROBABILITY
 
-  if (!Number.isFinite(v)) return fallback;
-
-  return Math.min(max, Math.max(min, v));
+function poisson(goals,lambda){
+return Math.exp(-lambda)*Math.pow(lambda,goals)/factorial(goals);
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[c]));
+// PERCENTAGE
+
+function percent(value){
+return (value*100).toFixed(1)+"%";
 }
 
-function formSummary(s) {
-  if (!s) return "Not supplied";
-
-  const chars = s.toUpperCase().replace(/[^WDL]/g, "").slice(0,5);
-
-  if (!chars) return "No valid W/D/L data";
-
-  let points = 0;
-
-  for (const c of chars) {
-    points += c === "W" ? 3 : c === "D" ? 1 : 0;
-  }
-
-  return chars + " (" + points + "/" + (chars.length * 3) + " points)";
+function safe(value){
+return Number.isFinite(value)?value.toFixed(2):"N/A";
 }
 
-function analyse() {
+// FULL MATCH ANALYSIS
 
-  const home = $("home").value.trim() || "Home team";
-  const away = $("away").value.trim() || "Away team";
+function analyse(){
 
-  const base = safeNum("leagueAvg",1.35,.1,4);
-  const advantage = safeNum("homeAdv",1.10,.5,2);
+const home=document.getElementById("homeTeam").value.trim();
+const away=document.getElementById("awayTeam").value.trim();
 
-  const homeAttack = safeNum("hAttack",1.10,.1,3);
-  const homeDefence = safeNum("hDef",1,.1,3);
-  const awayAttack = safeNum("aAttack",1,.1,3);
-  const awayDefence = safeNum("aDef",1.05,.1,3);
-
-  const lambdaHome = Math.min(5,Math.max(.15,base * homeAttack * awayDefence * advantage));
-  const lambdaAway = Math.min(5,Math.max(.15,base * awayAttack * homeDefence / advantage));
-
-  const homeP = [];
-  const awayP = [];
-
-  for (let i = 0; i <= 8; i++) {
-    homeP.push(poisson(i,lambdaHome));
-    awayP.push(poisson(i,lambdaAway));
-  }
-
-  let homeWin = 0;
-  let draw = 0;
-  let awayWin = 0;
-  let btts = 0;
-  let over25 = 0;
-  let under15 = 0;
-
-  const scores = [];
-
-  for (let i = 0; i <= 8; i++) {
-    for (let j = 0; j <= 8; j++) {
-
-      const probability = homeP[i] * awayP[j];
-
-      if (i > j) homeWin += probability;
-      else if (i === j) draw += probability;
-      else awayWin += probability;
-
-      if (i > 0 && j > 0) btts += probability;
-      if (i + j >= 3) over25 += probability;
-      if (i + j <= 1) under15 += probability;
-
-      scores.push({
-        score:i + "-" + j,
-        probability
-      });
-    }
-  }
-
-  scores.sort((a,b) => b.probability - a.probability);
-
-  const outcomes = [
-    {name:home + " win",p:homeWin,color:"var(--green)"},
-    {name:"Draw",p:draw,color:"var(--yellow)"},
-    {name:away + " win",p:awayWin,color:"var(--orange)"}
-  ];
-
-  const best = outcomes.slice().sort((a,b) => b.p - a.p)[0];
-
-  const odds = [
-    parseFloat($("oddsH").value),
-    parseFloat($("oddsD").value),
-    parseFloat($("oddsA").value)
-  ];
-
-  let oddsHtml = "<p class='small'>Odds not supplied; market comparison unavailable.</p>";
-
-  if (odds.every(x => Number.isFinite(x) && x > 1)) {
-
-    const raw = odds.map(x => 1 / x);
-    const total = raw.reduce((x,y) => x + y,0);
-    const market = raw.map(x => x / total);
-
-    const model = [homeWin,draw,awayWin];
-    const names = [home + " win","Draw",away + " win"];
-
-    const rows = model.map((value,i) => ({
-      name:names[i],
-      model:value,
-      market:market[i],
-      difference:value - market[i]
-    })).sort((a,b) => b.difference - a.difference);
-
-    oddsHtml = `
-      <p class="small">
-        Margin-adjusted implied probabilities.
-        Source: ${escapeHtml($("oddsSource").value || "Not stated")}.
-      </p>
-
-      <table>
-        <tr>
-          <th>Outcome</th>
-          <th>Model</th>
-          <th>Market</th>
-          <th>Difference</th>
-        </tr>
-
-        ${rows.map(r => `
-          <tr>
-            <td>${escapeHtml(r.name)}</td>
-            <td>${pct(r.model)}</td>
-            <td>${pct(r.market)}</td>
-            <td>${(r.difference >= 0 ? "+" : "") + (r.difference * 100).toFixed(1)} pp</td>
-          </tr>
-        `).join("")}
-      </table>
-
-      <p class="small">
-        A positive difference is a possible price discrepancy to investigate,
-        not confirmed value or proof of manipulation.
-      </p>
-    `;
-  }
-
-  const threshold = best.p >= .47;
-
-  latestAnalysis = {
-    home,
-    away,
-    homeWin,
-    draw,
-    awayWin,
-    top:best.name,
-    topP:best.p,
-    threshold
-  };
-
-  $("analysisResult").classList.remove("hidden");
-
-  $("analysisResult").innerHTML = `
-
-    <div class="section-title">
-      <div>
-        <h2>Analysis:
-          <span class="gold">${escapeHtml(home)}</span>
-          vs
-          <span class="cyan-t">${escapeHtml(away)}</span>
-        </h2>
-
-        <div class="sub">
-          Expected goals: ${lambdaHome.toFixed(2)} – ${lambdaAway.toFixed(2)}
-        </div>
-      </div>
-
-      <span class="tag">
-        ${threshold ? "47%+ SCREEN" : "BELOW 47% SCREEN"}
-      </span>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <b>${lambdaHome.toFixed(2)}</b>
-        <small>Home expected goals</small>
-      </div>
-
-      <div class="stat">
-        <b>${lambdaAway.toFixed(2)}</b>
-        <small>Away expected goals</small>
-      </div>
-
-      <div class="stat">
-        <b>${pct(btts)}</b>
-        <small>Both teams to score</small>
-      </div>
-
-      <div class="stat">
-        <b>${pct(over25)}</b>
-        <small>Over 2.5 goals</small>
-      </div>
-    </div>
-
-    <h3 class="gold">Full-time 1X2 probabilities</h3>
-
-    ${outcomes.map(x => `
-      <div class="result-line">
-        <span>${escapeHtml(x.name)}</span>
-        <b>${pct(x.p)}</b>
-      </div>
-
-      <div class="probbar">
-        <i style="width:${x.p * 100}%;background:${x.color}"></i>
-      </div>
-    `).join("")}
-
-    <div class="row2">
-
-      <div>
-        <h3 class="orange">Goal markets</h3>
-        <p>Under 1.5: <b>${pct(under15)}</b></p>
-        <p>Over 2.5: <b>${pct(over25)}</b></p>
-        <p>BTTS Yes: <b>${pct(btts)}</b></p>
-        <p>BTTS No: <b>${pct(1-btts)}</b></p>
-      </div>
-
-      <div>
-        <h3 class="purple-t">Most likely correct scores</h3>
-
-        <div class="score-list">
-          ${scores.slice(0,6).map(s => `
-            <div class="score">
-              <b>${s.score}</b>
-              <small>${pct(s.probability)}</small>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-
-    </div>
-
-    <h3 class="cyan-t">Odds comparison</h3>
-    ${oddsHtml}
-
-    <h3 class="orange">Attack, defence and tactical context</h3>
-
-    <div class="row2">
-
-      <div>
-        <b>${escapeHtml(home)}</b>
-        <p class="small">
-          Form: ${escapeHtml(formSummary($("hForm").value))}<br>
-          Formation: ${escapeHtml($("hFormation").value || "Unknown")}<br>
-          Injuries: ${escapeHtml($("hAbs").value || "Not supplied")}
-        </p>
-      </div>
-
-      <div>
-        <b>${escapeHtml(away)}</b>
-        <p class="small">
-          Form: ${escapeHtml(formSummary($("aForm").value))}<br>
-          Formation: ${escapeHtml($("aFormation").value || "Unknown")}<br>
-          Injuries: ${escapeHtml($("aAbs").value || "Not supplied")}
-        </p>
-      </div>
-
-    </div>
-
-    <p class="small">
-      Game importance: ${escapeHtml($("importance").value || "Unknown")}<br>
-      Motivation: ${escapeHtml($("motivation").value || "Unknown")}<br>
-      Tactical notes: ${escapeHtml($("notes").value || "None supplied")}
-    </p>
-
-    <div class="notice">
-      ${threshold
-        ? "The leading 1X2 outcome meets the 47% screening threshold."
-        : "No 1X2 outcome reaches the 47% screening threshold."}
-      This is a model estimate, not a guarantee.
-      Context information is displayed but not automatically used
-      to adjust expected goals in this version.
-    </div>
-  `;
-
-  $("analysisResult").scrollIntoView({behavior:"smooth"});
+if(!home||!away){
+alert("Enter both team names.");
+return;
 }
 
-function clearAnalysis() {
+const ids=[
+"hg","ag","hc","ac","hw","aw","hd","ad",
+"hgf","agf","hgc","agc","hp","ap","teams",
+"h2hHome","h2hAway","oh","od","oa"
+];
 
-  document.querySelectorAll("#engine input,#engine select,#engine textarea")
-    .forEach(el => {
-      if (el.id === "homeAdv") el.value = "1.10";
-      else if (el.id === "hAttack") el.value = "1.10";
-      else if (el.id === "hDef") el.value = "1.00";
-      else if (el.id === "aAttack") el.value = "1.00";
-      else if (el.id === "aDef") el.value = "1.05";
-      else el.value = "";
-    });
-
-  $("analysisResult").classList.add("hidden");
-  latestAnalysis = null;
+for(const id of ids){
+const el=document.getElementById(id);
+if(el.value===""||!Number.isFinite(Number(el.value))){
+alert("Please complete all statistical fields.");
+return;
+}
 }
 
-function savePick() {
+const hg=get("hg"),ag=get("ag");
+const hc=get("hc"),ac=get("ac");
+const hw=get("hw"),aw=get("aw");
+const hd=get("hd"),ad=get("ad");
+const hgf=get("hgf"),agf=get("agf");
+const hgc=get("hgc"),agc=get("agc");
+const hp=get("hp"),ap=get("ap");
+const teams=get("teams");
+const h2hH=get("h2hHome"),h2hA=get("h2hAway");
+const oh=get("oh"),od=get("od"),oa=get("oa");
 
-  if (!latestAnalysis) {
-    alert("Analyse a match first.");
-    return;
-  }
-
-  let picks = [];
-
-  try {
-    picks = JSON.parse(localStorage.getItem("cp_picks") || "[]");
-  } catch(e) {}
-
-  picks.unshift({
-    ...latestAnalysis,
-    savedAt:new Date().toLocaleString()
-  });
-
-  picks = picks.slice(0,10);
-
-  localStorage.setItem("cp_picks",JSON.stringify(picks));
-
-  renderPicks();
+if(hg<0||ag<0||hc<0||ac<0||
+hw<0||hw>5||aw<0||aw>5||
+hd<0||hd>5||ad<0||ad>5||
+hgf<0||agf<0||hgc<0||agc<0||
+hp<1||ap<1||hp>teams||ap>teams||
+teams<2||h2hH<0||h2hH>5||
+h2hA<0||h2hA>5||oh<=1||od<=1||oa<=1){
+alert("Some entered values are outside the valid range.");
+return;
 }
 
-function renderPicks() {
+// EXPECTED GOALS
+// Combines scoring averages with opponent defensive averages.
 
-  let picks = [];
+let homeLambda=(hg+ac)/2;
+let awayLambda=(ag+hc)/2;
 
-  try {
-    picks = JSON.parse(localStorage.getItem("cp_picks") || "[]");
-  } catch(e) {}
+// Recent form adjustment.
+// This is intentionally modest.
 
-  $("topPicks").innerHTML = picks.length
-    ? `
-      <table>
-        <tr>
-          <th>Match</th>
-          <th>Top outcome</th>
-          <th>Probability</th>
-          <th>Screen</th>
-        </tr>
+homeLambda*=1+(hw-hd-1.5)*0.025;
+awayLambda*=1+(aw-ad-1.5)*0.025;
 
-        ${picks.map(p => `
-          <tr>
-            <td>${escapeHtml(p.home)} vs ${escapeHtml(p.away)}</td>
-            <td>${escapeHtml(p.top)}</td>
-            <td>${pct(p.topP)}</td>
-            <td>${p.threshold
-              ? '<span class="good">47%+</span>'
-              : '<span class="risk">Below</span>'}
-            </td>
-          </tr>
-        `).join("")}
+// Recent goal production and defensive record.
 
-      </table>
+const recentHomeAttack=hgf/5;
+const recentAwayAttack=agf/5;
+const recentHomeDefence=hgc/5;
+const recentAwayDefence=agc/5;
 
-      <button class="btn secondary" style="margin-top:10px" onclick="clearPicks()">
-        Clear saved picks
-      </button>
-    `
-    : "<p class='small'>No analysed matches saved yet.</p>";
+homeLambda=(homeLambda*0.7+
+((recentHomeAttack+recentAwayDefence)/2)*0.3);
+
+awayLambda=(awayLambda*0.7+
+((recentAwayAttack+recentHomeDefence)/2)*0.3);
+
+homeLambda=Math.max(.15,Math.min(4,homeLambda));
+awayLambda=Math.max(.15,Math.min(4,awayLambda));
+
+// POISSON SCORE MATRIX
+
+let homeWin=0;
+let draw=0;
+let awayWin=0;
+let over25=0;
+let under25=0;
+let btts=0;
+let bestScores=[];
+
+for(let h=0;h<=10;h++){
+for(let a=0;a<=10;a++){
+
+const probability=
+poisson(h,homeLambda)*poisson(a,awayLambda);
+
+if(h>a) homeWin+=probability;
+else if(h===a) draw+=probability;
+else awayWin+=probability;
+
+if(h+a>=3) over25+=probability;
+else under25+=probability;
+
+if(h>0&&a>0) btts+=probability;
+
+bestScores.push({
+score:h+" - "+a,
+probability:probability
+});
+}
 }
 
-function clearPicks() {
-  localStorage.removeItem("cp_picks");
-  renderPicks();
+// NORMALIZE PROBABILITIES
+
+const total=homeWin+draw+awayWin;
+homeWin/=total;
+draw/=total;
+awayWin/=total;
+
+bestScores.sort((x,y)=>y.probability-x.probability);
+
+// MARKET PROBABILITIES
+
+const marketTotal=1/oh+1/od+1/oa;
+
+const marketHome=(1/oh)/marketTotal;
+const marketDraw=(1/od)/marketTotal;
+const marketAway=(1/oa)/marketTotal;
+
+// MODEL VERSUS MARKET DIFFERENCE
+
+const edges=[
+{label:home+" win",model:homeWin,market:marketHome,odds:oh},
+{label:"Draw",model:draw,market:marketDraw,odds:od},
+{label:away+" win",model:awayWin,market:marketAway,odds:oa}
+];
+
+edges.sort((x,y)=>
+(y.model-y.market)-(x.model-x.market)
+);
+
+const strongest=edges[0];
+
+// FORM ANALYSIS
+
+const homeForm=hw*3+hd;
+const awayForm=aw*3+ad;
+
+const formText=
+homeForm>awayForm?home+" has the better supplied recent results.":
+awayForm>homeForm?away+" has the better supplied recent results.":
+"The supplied recent results are level.";
+
+// LEAGUE POSITION
+
+const positionText=
+hp<ap?home+" has the higher league position.":
+ap<hp?away+" has the higher league position.":
+"Both teams have the same league position.";
+
+// FORMATION
+
+const hf=document.getElementById("homeFormation").value||"Not supplied";
+const af=document.getElementById("awayFormation").value||"Not supplied";
+
+// CONFIDENCE
+
+const highest=Math.max(homeWin,draw,awayWin);
+
+let confidence="LOW";
+if(highest>=0.55) confidence="HIGH";
+else if(highest>=0.43) confidence="MODERATE";
+
+// RISK
+
+let risk="HIGH";
+if(highest>=0.60)risk="LOW";
+else if(highest>=0.48)risk="MODERATE";
+
+const score1=bestScores[0];
+const score2=bestScores[1];
+const score3=bestScores[2];
+
+// OVERALL ASSESSMENT
+
+let outcome="DRAW";
+if(homeWin>draw&&homeWin>awayWin)outcome=home;
+if(awayWin>draw&&awayWin>homeWin)outcome=away;
+
+const report=document.getElementById("report");
+
+report.innerHTML=`
+
+<div class="result">
+<h3>MATCH</h3>
+<div class="metric">${home} vs ${away}</div>
+<p>${document.getElementById("league").value||"Competition not supplied"}</p>
+<p>Match importance: ${document.getElementById("importance").value}</p>
+</div>
+
+<div class="result">
+<h3>EXPECTED GOALS</h3>
+<div class="grid">
+<div>
+<p>${home}</p>
+<div class="metric">${safe(homeLambda)}</div>
+</div>
+<div>
+<p>${away}</p>
+<div class="metric">${safe(awayLambda)}</div>
+</div>
+</div>
+</div>
+
+<div class="result">
+<h3>FULL TIME 1X2 PROBABILITIES</h3>
+
+<p>${home}: <strong>${percent(homeWin)}</strong></p>
+<div class="bar"><span style="width:${homeWin*100}%"></span></div>
+
+<p>DRAW: <strong>${percent(draw)}</strong></p>
+<div class="bar"><span style="width:${draw*100}%"></span></div>
+
+<p>${away}: <strong>${percent(awayWin)}</strong></p>
+<div class="bar"><span style="width:${awayWin*100}%"></span></div>
+</div>
+
+<div class="result">
+<h3>TOP CORRECT SCORES</h3>
+<div class="score">${score1.score}</div>
+<p>Probability: ${percent(score1.probability)}</p>
+<div class="score">${score2.score}</div>
+<p>Probability: ${percent(score2.probability)}</p>
+<div class="score">${score3.score}</div>
+<p>Probability: ${percent(score3.probability)}</p>
+</div>
+
+<div class="result">
+<h3>GOALS MARKETS</h3>
+<p>Over 2.5: <strong>${percent(over25)}</strong></p>
+<p>Under 2.5: <strong>${percent(under25)}</strong></p>
+<p>Both Teams to Score: <strong>${percent(btts)}</strong></p>
+<p>Both Teams Not to Score: <strong>${percent(1-btts)}</strong></p>
+</div>
+
+<div class="result">
+<h3>ATTACK AND DEFENCE</h3>
+<p>${home} scoring average: ${hg}</p>
+<p>${away} scoring average: ${ag}</p>
+<p>${home} goals conceded average: ${hc}</p>
+<p>${away} goals conceded average: ${ac}</p>
+<p>Home formation: ${hf}</p>
+<p>Away formation: ${af}</p>
+</div>
+
+<div class="result">
+<h3>FORM AND LEAGUE ANALYSIS</h3>
+<p>${formText}</p>
+<p>${positionText}</p>
+<p>${home} last five: ${hw} wins, ${hd} draws.</p>
+<p>${away} last five: ${aw} wins, ${ad} draws.</p>
+<p>H2H home wins: ${h2hH}; away wins: ${h2hA}.</p>
+<p>Importance: ${document.getElementById("importance").value}</p>
+</div>
+
+<div class="result">
+<h3>ODDS INTELLIGENCE</h3>
+<p>${home} market probability: ${percent(marketHome)}</p>
+<p>Draw market probability: ${percent(marketDraw)}</p>
+<p>${away} market probability: ${percent(marketAway)}</p>
+<hr>
+<p>Largest positive model-market difference:</p>
+<h3 class="gold">${strongest.label}</h3>
+<p>Model: ${percent(strongest.model)}</p>
+<p>Market: ${percent(strongest.market)}</p>
+<p>Difference: ${(100*(strongest.model-strongest.market)).toFixed(1)} percentage points</p>
+<p>Possible mismatch only: this is not proof that bookmaker odds are wrong.</p>
+</div>
+
+<div class="result">
+<h3>FINAL MODEL ASSESSMENT</h3>
+<div class="metric">${outcome}</div>
+<p>Highest 1X2 probability outcome.</p>
+<p>Model confidence category: <strong>${confidence}</strong></p>
+<p>Uncertainty assessment: <strong>${risk}</strong></p>
+<p>These are model estimates, not guaranteed selections.</p>
+</div>
+
+<div class="note">
+<strong>DATA LIMITATION:</strong> This report uses manually supplied statistics. It does not independently verify live fixtures, injuries, formations, odds movements, lineups or league tables. Tactical and league context require further evidence.
+</div>
+`;
+
+document.getElementById("output").style.display="block";
+document.getElementById("output").scrollIntoView({behavior:"smooth"});
 }
 
-renderPicks();
+// CLEAR RESULTS
+
+function clearResults(){
+document.getElementById("output").style.display="none";
+document.getElementById("report").innerHTML="";
+}
 
 </script>
+
 </body>
 </html>
