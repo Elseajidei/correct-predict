@@ -5,309 +5,729 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CORRECT PREDICT | Football Intelligence</title>
+
 <style>
-:root{
---bg:#080B18;
---panel:#131B32;
---panel2:#202B48;
---gold:#F5C542;
---magenta:#E83EAD;
---white:#fff;
---muted:#AAB3C5;
+:root {
+  --bg:#080B18;
+  --panel:#131B32;
+  --panel2:#202B48;
+  --gold:#F5C542;
+  --magenta:#E83E91;
+  --cyan:#43D9E8;
+  --white:#F5F7FC;
+  --muted:#AAB4CA;
+  --border:#303C59;
 }
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:var(--bg);
-color:var(--white);
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Arial,sans-serif;
 }
-header{
-background:#10172B;
-padding:20px;
-text-align:center;
-border-bottom:2px solid var(--gold);
+
+header {
+  padding:22px 15px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  background:#0B1022;
 }
-.logo{
-font-size:32px;
-font-weight:900;
-letter-spacing:2px;
-color:var(--gold);
+
+.logo {
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:var(--gold);
 }
-header p{color:var(--muted);font-size:12px}
-nav{
-display:flex;
-gap:8px;
-overflow-x:auto;
-padding:12px;
-background:#10172B;
+
+.tagline {
+  color:var(--muted);
+  margin-top:7px;
+  font-size:13px;
 }
-nav button{
-background:var(--panel2);
-color:white;
-border:1px solid #35415E;
-padding:11px 15px;
-border-radius:8px;
-white-space:nowrap;
+
+nav {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  padding:14px 8px;
+  background:#10172B;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
-nav button.active{
-background:var(--gold);
-color:#080B18;
-font-weight:bold;
+
+nav button {
+  background:var(--panel2);
+  border:1px solid var(--border);
+  color:white;
+  padding:11px 14px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
 }
-main{padding:15px;max-width:950px;margin:auto}
-.page{display:none}
-.page.active{display:block}
-h2{color:var(--gold)}
-.card{
-background:var(--panel);
-padding:16px;
-border:1px solid #293653;
-border-radius:12px;
-margin:12px 0;
+
+nav button.active,
+nav button:hover {
+  background:var(--gold);
+  color:#111;
 }
-.match{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-text-align:center;
+
+main {
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
 }
-.team{flex:1}
-.team img{
-width:42px;
-height:42px;
-object-fit:contain;
-display:block;
-margin:auto auto 8px;
+
+.window {
+  display:none;
+  animation:fade .25s ease;
 }
-.vs{color:var(--gold);font-weight:bold}
-.watermark{
-background:var(--panel2);
-padding:13px;
-text-align:center;
-border-radius:8px;
-position:relative;
-overflow:hidden;
+
+.window.active {display:block}
+
+@keyframes fade {
+  from {opacity:0}
+  to {opacity:1}
 }
-.watermark:after{
-content:"CORRECT PREDICT";
-position:absolute;
-inset:0;
-display:grid;
-place-items:center;
-color:#ffffff18;
-font-size:19px;
-font-weight:bold;
-transform:rotate(-15deg);
-pointer-events:none;
+
+.panel {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:18px;
 }
-button{
-cursor:pointer;
+
+h2 {
+  color:var(--gold);
+  margin-top:0;
 }
-.action{
-background:var(--gold);
-color:#080B18;
-border:0;
-padding:12px 18px;
-border-radius:8px;
-font-weight:bold;
-margin-top:10px;
+
+h3 {color:var(--cyan)}
+
+p {line-height:1.6;color:var(--muted)}
+
+.gold {color:var(--gold)}
+.magenta {color:var(--magenta)}
+.cyan {color:var(--cyan)}
+
+.hero {
+  text-align:center;
+  padding:35px 15px;
+  background:linear-gradient(135deg,#131B32,#28132F);
+  border:1px solid var(--border);
+  border-radius:15px;
+  margin-bottom:20px;
 }
-input{
-width:100%;
-padding:12px;
-margin:7px 0;
-border-radius:7px;
-border:1px solid #43516F;
-background:var(--panel2);
-color:white;
+
+.hero h1 {
+  font-size:34px;
+  margin:5px;
+  color:var(--gold);
 }
-.muted{color:var(--muted);font-size:13px}
-.hidden{display:none!important}
-footer{
-text-align:center;
-padding:25px;
-color:var(--muted);
-font-size:12px;
+
+.hero p {max-width:650px;margin:12px auto}
+
+.btn {
+  border:0;
+  padding:12px 18px;
+  border-radius:7px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:5px 3px;
 }
+
+.btn-gold {background:var(--gold);color:#111}
+.btn-magenta {background:var(--magenta);color:white}
+.btn-dark {background:var(--panel2);color:white;border:1px solid var(--border)}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+
+.stat {
+  background:var(--panel2);
+  padding:18px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.stat strong {
+  display:block;
+  font-size:25px;
+  color:var(--gold);
+  margin-bottom:7px;
+}
+
+.match {
+  background:var(--panel2);
+  padding:15px;
+  margin:12px 0;
+  border-radius:9px;
+  border-left:3px solid var(--magenta);
+}
+
+.teams {
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.team {
+  flex:1;
+}
+
+.team img {
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 7px;
+}
+
+.vs {color:var(--gold)}
+
+.watermark {
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:17px;
+  margin-top:12px;
+  background:#11172A;
+  border-radius:8px;
+}
+
+.watermark::after {
+  content:"PREMIUM MEMBERS ONLY";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(8,11,24,.82);
+  color:var(--gold);
+  font-weight:900;
+  letter-spacing:2px;
+  transform:rotate(-8deg);
+}
+
+.odds-hidden {
+  filter:blur(7px);
+  user-select:none;
+}
+
+input,textarea {
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  background:#0B1225;
+  border:1px solid var(--border);
+  border-radius:7px;
+  color:white;
+}
+
+label {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.payment-details {
+  display:none;
+  background:#211D32;
+  border:1px solid var(--gold);
+  padding:17px;
+  border-radius:9px;
+  margin-top:12px;
+}
+
+.notice {
+  padding:13px;
+  background:#29213B;
+  border-left:3px solid var(--magenta);
+  border-radius:5px;
+  margin:12px 0;
+}
+
+footer {
+  text-align:center;
+  padding:25px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  margin-top:30px;
+}
+
+.small {font-size:12px;color:var(--muted)}
+
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">CORRECT PREDICT</div>
-<p>FOOTBALL INTELLIGENCE</p>
+  <div class="logo">CORRECT PREDICT</div>
+  <div class="tagline">FOOTBALL INTELLIGENCE • DATA • ANALYSIS</div>
 </header>
 
-<nav id="navigation">
-<button class="active" onclick="showPage('home',this)">HOME</button>
-<button onclick="showPage('premium',this)">5+ ODDS</button>
-<button onclick="showPage('analysis',this)">ANALYSIS</button>
-<button onclick="showPage('gg',this)">GG</button>
-<button onclick="showPage('over',this)">OVER/UNDER</button>
-<button onclick="showPage('scores',this)">CORRECT SCORE</button>
-<button onclick="showPage('corners',this)">CORNERS</button>
-<button onclick="showPage('subscription',this)">SUBSCRIPTION</button>
+<nav>
+  <button class="active" onclick="showPage('home',this)">Home</button>
+  <button onclick="showPage('premium',this)">5+ Premium Odds</button>
+  <button onclick="showPage('analysis',this)">Analysis</button>
+  <button onclick="showPage('subscription',this)">Subscribe</button>
+  <button onclick="showPage('about',this)">About Us</button>
+  <button onclick="showPage('admin',this)">Admin</button>
 </nav>
 
 <main>
 
-<section id="home" class="page active">
-<h2>Welcome to CORRECT PREDICT</h2>
-<p class="muted">Your football intelligence platform.</p>
+<!-- HOME WINDOW -->
+<section id="home" class="window active">
 
-<h2>5+ ODDS PREMIUM</h2>
-<div class="card">
-<div class="match">
-<div class="team">
-<img src="https://media.api-sports.io/football/teams/50.png" alt="Team logo">
-Team A
-</div>
-<div class="vs">VS</div>
-<div class="team">
-<img src="https://media.api-sports.io/football/teams/42.png" alt="Team logo">
-Team B
-</div>
-</div>
-<div class="watermark">
-<strong>ODDS: •••••</strong>
-<p class="muted">Premium odds protected</p>
-</div>
-<button class="action" onclick="showPage('premium')">View Premium Analysis</button>
-</div>
+  <div class="hero">
+    <h1>CORRECT PREDICT</h1>
+    <h3>Football Intelligence Platform</h3>
+    <p>
+      Make informed football decisions through statistics,
+      match analysis and probability-based predictions.
+    </p>
+    <button class="btn btn-gold" onclick="showPage('premium')">
+      VIEW 5+ PREMIUM ODDS
+    </button>
+    <button class="btn btn-magenta" onclick="showPage('analysis')">
+      DAILY ANALYSIS
+    </button>
+  </div>
+
+  <div class="grid">
+    <div class="stat">
+      <strong>5+ ODDS</strong>
+      Premium selections
+    </div>
+    <div class="stat">
+      <strong>DAILY</strong>
+      Match analysis
+    </div>
+    <div class="stat">
+      <strong>DATA</strong>
+      Football intelligence
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Welcome to Correct Predict</h2>
+    <p>
+      Explore our premium selections, match statistics,
+      daily football analysis and subscription services.
+    </p>
+  </div>
+
 </section>
 
-<section id="premium" class="page">
-<h2>5+ ODDS PREMIUM</h2>
-<p class="muted">High-odds selections with detailed analysis.</p>
-<div id="premiumMatches">
-<div class="card">
-<h3>Premium selections</h3>
-<p>Fixtures and selections will appear here after the API/backend is connected.</p>
-<p class="muted">Combined odds are only displayed to authorized subscribers.</p>
-</div>
-</div>
+<!-- PREMIUM ODDS WINDOW -->
+<section id="premium" class="window">
+
+  <div class="panel">
+    <h2>5+ PREMIUM ODDS</h2>
+    <p>
+      High-odds selections with a separate analysis for
+      every fixture.
+    </p>
+
+    <div class="notice">
+      <strong class="gold">PREMIUM ACCESS</strong>
+      <p>Odds are protected for subscribers.</p>
+    </div>
+
+    <div id="premiumMatches">
+
+      <div class="match">
+        <div class="teams">
+          <div class="team">
+            <img src="https://media.api-sports.io/football/teams/42.png" alt="Arsenal">
+            Arsenal
+          </div>
+          <div class="vs">VS</div>
+          <div class="team">
+            <img src="https://media.api-sports.io/football/teams/40.png" alt="Liverpool">
+            Liverpool
+          </div>
+        </div>
+
+        <div class="watermark">
+          <div class="odds-hidden">
+            <h3>5+ COMBINED ODDS</h3>
+            <p>Premium selection locked</p>
+          </div>
+        </div>
+
+        <p><strong class="gold">Analysis:</strong> Sample fixture display.
+          Actual form, team news and odds must be verified before publishing.
+        </p>
+      </div>
+
+    </div>
+
+    <p class="small">
+      Illustrative display only. No live fixture or bookmaker odds
+      are being supplied by this sample.
+    </p>
+
+    <button class="btn btn-gold" onclick="showPage('subscription')">
+      UNLOCK PREMIUM
+    </button>
+  </div>
+
 </section>
 
-<section id="analysis" class="page">
-<h2>DAILY ANALYSIS</h2>
-<p class="muted">Daily top 10 football predictions.</p>
-<div id="dailyMatches" class="card">
-No daily predictions published yet. Connect the football API and publish predictions through the admin system.
-</div>
+<!-- DAILY ANALYSIS WINDOW -->
+<section id="analysis" class="window">
+
+  <div class="panel">
+    <h2>DAILY PREDICTIONS & ANALYSIS</h2>
+
+    <p>
+      Each match should have its own analysis, including:
+    </p>
+
+    <div class="grid">
+      <div class="stat">
+        <strong>FORM</strong>
+        Last five matches
+      </div>
+      <div class="stat">
+        <strong>H2H</strong>
+        Head-to-head
+      </div>
+      <div class="stat">
+        <strong>GOALS</strong>
+        Scoring statistics
+      </div>
+      <div class="stat">
+        <strong>ODDS</strong>
+        Market analysis
+      </div>
+    </div>
+
+    <div id="dailyMatches">
+      <div class="match">
+        <h3>Daily Match Analysis</h3>
+        <p>Live daily fixtures and verified predictions will appear here when the football API backend is connected.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel">
+    <h2>FOOTBALL INTELLIGENCE ENGINE</h2>
+
+    <label>Home Team</label>
+    <input id="homeTeam" placeholder="Enter home team">
+
+    <label>Away Team</label>
+    <input id="awayTeam" placeholder="Enter away team">
+
+    <button class="btn btn-gold" onclick="analyseMatch()">
+      ANALYSE MATCH
+    </button>
+
+    <div id="analysisResult"></div>
+
+    <p class="small">
+      This basic form does not calculate live probabilities.
+      Connect a verified data service for genuine statistical analysis.
+    </p>
+  </div>
+
 </section>
 
-<section id="gg" class="page">
-<h2>GG PREDICTIONS</h2>
-<div class="card">Both teams to score analysis will appear here.</div>
+<!-- SUBSCRIPTION WINDOW -->
+<section id="subscription" class="window">
+
+  <div class="panel">
+    <h2>PREMIUM SUBSCRIPTION</h2>
+
+    <div class="stat">
+      <strong>KSh 50</strong>
+      One day premium access
+    </div>
+
+    <p>
+      Subscribe to access protected premium predictions
+      and analysis.
+    </p>
+
+    <label>Your Name</label>
+    <input id="customerName" placeholder="Enter your name">
+
+    <label>Phone Number</label>
+    <input id="customerPhone" placeholder="Your M-Pesa number">
+
+    <button class="btn btn-gold" onclick="showPayment()">
+      PAY KSh 50
+    </button>
+
+    <div class="payment-details" id="paymentDetails">
+      <h3 class="gold">M-PESA PAYMENT</h3>
+      <p>Pay through M-Pesa Pochi la Biashara.</p>
+
+      <h2>0741342508</h2>
+
+      <p>Amount: <strong class="gold">KSh 50</strong></p>
+
+      <p>
+        After payment, submit your transaction code
+        for manual verification.
+      </p>
+
+      <label>M-Pesa Transaction Code</label>
+      <input id="transactionCode" placeholder="Enter transaction code">
+
+      <button class="btn btn-magenta" onclick="submitPayment()">
+        SUBMIT PAYMENT DETAILS
+      </button>
+
+      <div id="paymentMessage"></div>
+    </div>
+
+    <div class="notice">
+      Subscription access is activated only after payment
+      has been verified by the administrator.
+    </div>
+
+  </div>
+
 </section>
 
-<section id="over" class="page">
-<h2>OVER / UNDER 2.5</h2>
-<div class="card">Goal averages and over/under analysis will appear here.</div>
+<!-- ABOUT US WINDOW -->
+<section id="about" class="window">
+
+  <div class="panel">
+    <h2>ABOUT CORRECT PREDICT</h2>
+
+    <p>
+      CORRECT PREDICT is a football intelligence platform
+      focused on football statistics, match analysis,
+      probability assessments and premium predictions.
+    </p>
+
+    <h3>Our Mission</h3>
+    <p>
+      To provide football enthusiasts with informative
+      analysis and responsible prediction insights.
+    </p>
+
+    <h3>Important Payment Policy</h3>
+    <p>
+      Payments made for premium access are non-refundable.
+      Please confirm your subscription before making payment.
+    </p>
+
+    <h3>Responsible Betting</h3>
+    <p>
+      Football predictions are not guaranteed results.
+      Always make responsible decisions.
+    </p>
+  </div>
+
 </section>
 
-<section id="scores" class="page">
-<h2>CORRECT SCORES</h2>
-<div class="card">Correct score predictions and probabilities will appear here.</div>
-</section>
+<!-- ADMIN WINDOW -->
+<section id="admin" class="window">
 
-<section id="corners" class="page">
-<h2>TEAM CORNERS</h2>
-<div class="card">Team corner statistics and analysis will appear here.</div>
-</section>
+  <div class="panel">
+    <h2>ADMIN DASHBOARD</h2>
 
-<section id="subscription" class="page">
-<h2>MY SUBSCRIPTION</h2>
-<div class="card">
-<p>Daily premium access: <strong>KSh 50</strong></p>
-<button class="action" onclick="openPayment()">PAY TO SUBSCRIBE</button>
-<div id="paymentDetails" class="hidden">
-<h3>Payment instructions</h3>
-<p>Pay KSh 50 through M-Pesa Pochi la Biashara.</p>
-<p><strong>Payment number: 0741342508</strong></p>
-<p>Enter your M-Pesa transaction code below for manual verification.</p>
-<input id="transaction" placeholder="M-Pesa transaction code">
-<button class="action" onclick="submitPayment()">Submit payment details</button>
-</div>
-<p id="paymentMessage" class="muted"></p>
-</div>
-</section>
+    <p>
+      Administrator configuration area.
+      Secure server-side authentication must be added before public launch.
+    </p>
 
-<section id="admin" class="page">
-<h2>ADMIN DASHBOARD</h2>
-<div class="card">
-<p>Administrator login</p>
-<input id="adminPassword" type="password" placeholder="Admin password">
-<button class="action" onclick="adminLogin()">LOGIN</button>
-<div id="adminPanel" class="hidden">
-<h3>API configuration</h3>
-<p class="muted">API keys must be stored on a secure backend, not in public HTML.</p>
-<p>Backend API URL</p>
-<input id="apiUrl" placeholder="https://your-backend.onrender.com">
-<button class="action" onclick="saveApiUrl()">Save backend URL</button>
-<h3>Prediction publishing</h3>
-<textarea id="predictionText" placeholder="Enter prediction and analysis" style="width:100%;height:120px;background:#202B48;color:white;padding:12px"></textarea>
-<button class="action" onclick="publishPrediction()">Publish daily analysis</button>
-<p id="adminMessage"></p>
-</div>
-</div>
+    <label>Admin Access Code</label>
+    <input id="adminCode" type="password" placeholder="Admin access code">
+
+    <button class="btn btn-gold" onclick="adminLogin()">
+      OPEN ADMIN
+    </button>
+
+    <div id="adminPanel" style="display:none">
+
+      <hr>
+
+      <h3>API CONFIGURATION</h3>
+
+      <label>API-Football API Key</label>
+      <input id="apiKey" type="password" placeholder="Configure through secure backend">
+
+      <p class="small">
+        Do not save a private API key in this public HTML file.
+        Server-side API integration is required.
+      </p>
+
+      <h3>Premium Match Management</h3>
+
+      <label>Home Team</label>
+      <input id="newHome" placeholder="Home team">
+
+      <label>Away Team</label>
+      <input id="newAway" placeholder="Away team">
+
+      <label>Analysis</label>
+      <textarea id="newAnalysis" placeholder="Enter verified match analysis"></textarea>
+
+      <button class="btn btn-magenta" onclick="addPremiumMatch()">
+        ADD PREMIUM MATCH
+      </button>
+
+      <div id="adminMessage"></div>
+
+      <h3>Payment Verification</h3>
+      <p>
+        Payment records and subscriber activation require a secure
+        database and payment verification backend.
+      </p>
+
+    </div>
+  </div>
+
 </section>
 
 </main>
 
 <footer>
-CORRECT PREDICT © 2026
-<br>Football analysis and probability estimates. No guaranteed outcomes.
+  <div class="gold"><strong>CORRECT PREDICT</strong></div>
+  <p>Football Intelligence Platform</p>
+  <p class="small">Predictions are estimates, not guaranteed outcomes.</p>
+  <p class="small">© 2026 CORRECT PREDICT. All rights reserved.</p>
 </footer>
 
 <script>
-function showPage(id,button){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-const page=document.getElementById(id);
-if(page)page.classList.add('active');
-document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-if(button)button.classList.add('active');
-window.scrollTo(0,0);
+
+function showPage(page,button) {
+
+  document.querySelectorAll('.window').forEach(section => {
+    section.classList.remove('active');
+  });
+
+  document.getElementById(page).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  if(button) button.classList.add('active');
+
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function openPayment(){
-document.getElementById('paymentDetails').classList.remove('hidden');
+function showPayment() {
+
+  const name = document.getElementById('customerName').value.trim();
+  const phone = document.getElementById('customerPhone').value.trim();
+
+  if(!name || !phone) {
+    alert('Please enter your name and phone number first.');
+    return;
+  }
+
+  document.getElementById('paymentDetails').style.display='block';
 }
 
-function submitPayment(){
-const code=document.getElementById('transaction').value.trim();
-if(!code){
-alert('Enter your M-Pesa transaction code.');
-return;
-}
-document.getElementById('paymentMessage').textContent=
-'Payment submitted for manual verification. Access is not activated until confirmed.';
+function submitPayment() {
+
+  const code = document.getElementById('transactionCode').value.trim();
+
+  if(!code) {
+    alert('Enter your M-Pesa transaction code.');
+    return;
+  }
+
+  document.getElementById('paymentMessage').innerHTML =
+    '<p class="gold">Details entered. Please contact the administrator for manual verification. No payment has been verified or access activated yet.</p>';
 }
 
-function adminLogin(){
-const password=document.getElementById('adminPassword').value;
-if(password===''){
-alert('Enter admin password.');
-return;
-}
-alert('Connect secure admin authentication before using this dashboard.');
+function analyseMatch() {
+
+  const home = document.getElementById('homeTeam').value.trim();
+  const away = document.getElementById('awayTeam').value.trim();
+
+  if(!home || !away) {
+    alert('Enter both team names.');
+    return;
+  }
+
+  document.getElementById('analysisResult').innerHTML =
+    '<div class="notice"><strong class="gold">' +
+    home + ' vs ' + away +
+    '</strong><p>Fixture submitted. Connect the football API and analysis backend to retrieve verified statistics and calculate predictions.</p></div>';
 }
 
-function saveApiUrl(){
-const url=document.getElementById('apiUrl').value.trim();
-if(!url)return alert('Enter your backend URL.');
-document.getElementById('adminMessage').textContent=
-'Backend URL entered. Secure backend integration is still required.';
+function adminLogin() {
+
+  alert('Admin authentication has not yet been connected. A secure server-side login must be configured before enabling administration.');
+
 }
 
-function publishPrediction(){
-const prediction=document.getElementById('predictionText').value.trim();
-if(!prediction)return alert('Enter analysis first.');
-document.getElementById('dailyMatches').textContent=prediction;
-document.getElementById('adminMessage').textContent='Preview published on this browser only.';
+function addPremiumMatch() {
+
+  const home = document.getElementById('newHome').value.trim();
+  const away = document.getElementById('newAway').value.trim();
+  const analysis = document.getElementById('newAnalysis').value.trim();
+
+  if(!home || !away || !analysis) {
+    alert('Fill in both teams and the analysis.');
+    return;
+  }
+
+  const match = document.createElement('div');
+  match.className='match';
+
+  const teams = document.createElement('div');
+  teams.className='teams';
+
+  const homeName = document.createElement('div');
+  homeName.className='team';
+  homeName.textContent=home;
+
+  const vs = document.createElement('div');
+  vs.className='vs';
+  vs.textContent='VS';
+
+  const awayName = document.createElement('div');
+  awayName.className='team';
+  awayName.textContent=away;
+
+  teams.append(homeName,vs,awayName);
+
+  const watermark = document.createElement('div');
+  watermark.className='watermark';
+
+  const hidden = document.createElement('div');
+  hidden.className='odds-hidden';
+  hidden.textContent='PREMIUM ODDS LOCKED';
+
+  watermark.appendChild(hidden);
+
+  const description = document.createElement('p');
+  description.textContent='Analysis: '+analysis;
+
+  match.append(teams,watermark,description);
+
+  document.getElementById('premiumMatches').appendChild(match);
+
+  document.getElementById('adminMessage').textContent =
+    'Match added to this browser session. Connect a database for permanent publishing.';
+
 }
+
 </script>
+
 </body>
 </html>
