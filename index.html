@@ -1,127 +1,498 @@
-   '<div class="result"><b class="gold">'+s.h+" - "+s.a+
-   '</b> <span class="muted">Estimated probability: '+(s.p*100).toFixed(1)+"%</span></div>"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORRECT PREDICT | Football Intelligence</title>
+
+<style>
+:root {
+ --bg:#080B18;--panel:#131B32;--panel2:#202B48;
+ --gold:#F5C542;--magenta:#E83EAD;--orange:#FF8738;
+ --yellow:#FFE45C;--cyan:#00D6C9;--purple:#A855F7;
+ --white:#F7F8FF;--muted:#AAB4CC;--border:#34415F;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:radial-gradient(circle at top,#192746,#080B18 65%);
+ color:var(--white);font-family:Arial,sans-serif;min-height:100vh;
+}
+header{
+ text-align:center;padding:24px 12px;
+ background:linear-gradient(120deg,#10182e,#292044,#351638);
+ border-bottom:2px solid var(--gold);
+ box-shadow:0 8px 30px #0008;
+}
+.logo{
+ font-size:clamp(27px,6vw,43px);font-weight:1000;
+ letter-spacing:2px;color:var(--gold);
+ text-shadow:0 3px #805600,0 0 20px #f5c54288;
+}
+.tagline{font-size:11px;letter-spacing:3px;color:var(--cyan);margin-top:8px}
+nav{
+ display:flex;justify-content:center;flex-wrap:wrap;gap:8px;
+ padding:12px;background:#0d1428;position:sticky;top:0;z-index:10;
+}
+nav button{
+ padding:11px 14px;border:1px solid var(--border);
+ border-radius:9px;background:var(--panel);color:white;
+ font-weight:bold;cursor:pointer;
+}
+nav button.active,nav button:hover{background:var(--gold);color:#111}
+main{width:min(1050px,94%);margin:22px auto}
+.page{display:none}.page.active{display:block}
+.card{
+ background:linear-gradient(145deg,var(--panel),#0e172c);
+ border:1px solid var(--border);border-radius:16px;
+ padding:17px;margin-bottom:17px;box-shadow:0 9px 25px #0006;
+}
+h2{color:var(--gold)}h3{color:var(--cyan)}
+.gold{color:var(--gold)}.muted{color:var(--muted);font-size:13px}
+label{display:block;color:var(--cyan);font-size:13px;margin-top:10px}
+input,select{
+ width:100%;background:#080f20;color:white;border:1px solid #435477;
+ padding:13px;border-radius:9px;margin:7px 0 13px;font-size:15px;
+}
+button.primary{
+ width:100%;padding:13px;border:0;border-radius:9px;
+ background:linear-gradient(110deg,var(--gold),var(--orange));
+ color:#17111a;font-weight:900;cursor:pointer;
+}
+button.secondary{
+ background:var(--panel2);border:1px solid var(--cyan);
+ color:white;padding:11px;border-radius:9px;cursor:pointer;
+}
+button:disabled{opacity:.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
+.stat{
+ background:var(--panel2);border:1px solid #39496b;
+ padding:13px;border-radius:11px;text-align:center;
+}
+.stat small{display:block;color:var(--muted);font-size:10px;margin-bottom:7px}
+.stat strong{font-size:19px;color:var(--gold)}
+.fixture{
+ background:linear-gradient(145deg,#202b48,#10182d);
+ border:1px solid #485779;border-left:4px solid var(--magenta);
+ border-radius:13px;padding:14px;margin:12px 0;
+ box-shadow:0 8px 18px #0007;animation:appear .4s ease;
+}
+@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:8px}
+.team img{
+ width:48px;height:48px;object-fit:contain;background:white;
+ border-radius:50%;padding:5px;box-shadow:0 4px 12px #0009;
+}
+.team-name{font-size:13px;font-weight:bold;margin-top:7px;overflow-wrap:anywhere}
+.vs{color:var(--gold);font-size:20px;font-weight:1000;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{transform:scale(1.15);color:var(--magenta)}}
+.fixture-meta{text-align:center;color:var(--muted);font-size:12px;margin:10px}
+.fixture button{margin-top:10px}
+.bar{height:11px;background:#080f20;border-radius:20px;overflow:hidden;margin:8px 0 14px}
+.bar span{display:block;height:100%;border-radius:20px}
+.message{padding:13px;border-radius:9px;background:#202b48;color:var(--yellow);margin:12px 0;font-size:13px;overflow-wrap:anywhere}
+footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid var(--border);font-size:12px}
+@media(max-width:500px){
+ nav button{padding:10px;font-size:12px}
+ .card{padding:13px}.team img{width:40px;height:40px}
+}
+</style>
+</head>
+
+<body>
+<header>
+ <div class="logo">⚽ CORRECT PREDICT</div>
+ <div class="tagline">FOOTBALL INTELLIGENCE • STATISTICAL ANALYSIS</div>
+</header>
+
+<nav>
+ <button class="active" onclick="showPage('home',this)">HOME</button>
+ <button onclick="showPage('analysis',this)">MATCH ANALYSIS</button>
+ <button onclick="showPage('subscription',this)">SUBSCRIPTION</button>
+ <button onclick="showPage('about',this)">ABOUT US</button>
+</nav>
+
+<main>
+
+<section id="home" class="page active">
+ <div class="card">
+  <h2>Welcome to CORRECT PREDICT</h2>
+  <p>Football intelligence using team performance, scoring statistics and probability models.</p>
+  <div class="grid">
+   <div class="stat"><small>ANALYSIS</small><strong>Statistical</strong></div>
+   <div class="stat"><small>ENGINE</small><strong>Poisson</strong></div>
+   <div class="stat"><small>DATA</small><strong>API-Football</strong></div>
+  </div>
+ </div>
+ <div class="card">
+  <h3>Match Centre</h3>
+  <p class="muted">Load fixtures and study matches using statistical analysis.</p>
+  <button class="primary" onclick="showPage('analysis',document.querySelectorAll('nav button')[1])">OPEN MATCH ANALYSIS</button>
+ </div>
+ <div class="card">
+  <h3>Our analysis covers</h3>
+  <ul>
+   <li>Last five matches and team form</li>
+   <li>Home and away goal averages</li>
+   <li>Attack and defensive indicators</li>
+   <li>Expected goals and correct scores</li>
+   <li>Home, draw and away probabilities</li>
+   <li>Both teams to score and over/under goals</li>
+   <li>Formations and league standings when available</li>
+  </ul>
+ </div>
+</section>
+
+<section id="analysis" class="page">
+ <div class="card">
+  <h2>Match Analysis Centre</h2>
+  <label>API-Football API key</label>
+  <input id="apiKey" type="password" placeholder="Enter your API-Football key">
+  <button class="secondary" onclick="saveKey()">SAVE API KEY</button>
+
+  <label>Select fixture date</label>
+  <input id="matchDate" type="date">
+  <button class="primary" id="loadButton" onclick="loadFixtures()">LOAD FIXTURES</button>
+  <div id="fixtureStatus" class="message">Enter your API key and load fixtures.</div>
+ </div>
+
+ <div class="card">
+  <h3>Available Matches</h3>
+  <div id="fixtureCards"></div>
+ </div>
+
+ <div class="card">
+  <h2>Detailed Match Report</h2>
+  <div id="analysisOutput" class="message">Select a match above to generate its analysis.</div>
+ </div>
+</section>
+
+<section id="subscription" class="page">
+ <div class="card">
+  <h2>Daily Subscription</h2>
+  <div class="stat">
+   <small>DAILY ACCESS</small>
+   <strong>KSh 50</strong>
+  </div>
+  <p>Pay KSh 50 for daily access to CORRECT PREDICT.</p>
+  <h3>M-Pesa Payment</h3>
+  <p>Pay through Pochi la Biashara:</p>
+  <h2 class="gold">0741342508</h2>
+  <button class="secondary" onclick="copyNumber()">COPY PAYMENT NUMBER</button>
+  <label>M-Pesa transaction code</label>
+  <input id="transaction" placeholder="Enter transaction code">
+  <label>Your phone number</label>
+  <input id="customerPhone" placeholder="07XXXXXXXX">
+  <button class="primary" onclick="submitPayment()">SUBMIT PAYMENT DETAILS</button>
+  <div id="paymentStatus" class="message">Payment details require manual administrator verification. This demo does not activate subscriptions automatically.</div>
+ </div>
+</section>
+
+<section id="about" class="page">
+ <div class="card">
+  <h2>About CORRECT PREDICT</h2>
+  <p>CORRECT PREDICT is a football statistical analysis platform designed to help users examine matches using available football data.</p>
+  <h3>Our approach</h3>
+  <p>We examine recent performance, scoring averages, attacking strength, defensive indicators and mathematical probability models.</p>
+  <p class="muted">Predictions are estimates, not guaranteed results. Always consider team news and other relevant information.</p>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ CORRECT PREDICT © 2026<br>
+ Football Intelligence • Statistical Analysis
+</footer>
+
+<script>
+const API="https://v3.football.api-sports.io";
+let fixtures=[];
+let currentKey=localStorage.getItem("cp_api_key")||"";
+
+document.getElementById("apiKey").value=currentKey;
+
+const today=new Date();
+document.getElementById("matchDate").value=
+ today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+
+function showPage(id,button){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+ if(button)button.classList.add("active");
+}
+
+function saveKey(){
+ const key=document.getElementById("apiKey").value.trim();
+ if(!key){alert("Enter your API key first.");return;}
+ currentKey=key;
+ localStorage.setItem("cp_api_key",key);
+ document.getElementById("fixtureStatus").innerText="API key saved in this browser.";
+}
+
+async function api(endpoint){
+ const response=await fetch(API+endpoint,{
+  headers:{"x-apisports-key":currentKey}
+ });
+ if(!response.ok)throw new Error("API request failed. HTTP "+response.status);
+ const data=await response.json();
+ if(data.errors && Object.keys(data.errors).length){
+  throw new Error(JSON.stringify(data.errors));
+ }
+ return data.response||[];
+}
+
+function safe(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+async function loadFixtures(){
+ currentKey=document.getElementById("apiKey").value.trim();
+ const date=document.getElementById("matchDate").value;
+ const status=document.getElementById("fixtureStatus");
+ const container=document.getElementById("fixtureCards");
+ const button=document.getElementById("loadButton");
+
+ if(!currentKey){status.innerText="Please enter your API-Football key.";return;}
+ if(!date){status.innerText="Please select a date.";return;}
+
+ localStorage.setItem("cp_api_key",currentKey);
+ button.disabled=true;
+ status.innerText="Loading football fixtures...";
+ container.innerHTML="";
+
+ try{
+  fixtures=await api("/fixtures?date="+encodeURIComponent(date));
+  if(!fixtures.length){
+   status.innerText="No fixtures returned for this date. Check another date or your API access.";
+   return;
+  }
+
+  status.innerText="Loaded "+fixtures.length+" fixtures successfully.";
+
+  fixtures.forEach((match,index)=>{
+   const home=match.teams.home;
+   const away=match.teams.away;
+   const time=new Date(match.fixture.date).toLocaleString();
+
+   const card=document.createElement("div");
+   card.className="fixture";
+   card.innerHTML=`
+    <div class="fixture-meta">${safe(match.league.name)} • ${safe(match.league.country)}</div>
+    <div class="teams">
+     <div class="team">
+      <img src="${safe(home.logo)}" alt="" onerror="this.style.display='none'">
+      <div class="team-name">${safe(home.name)}</div>
+     </div>
+     <div class="vs">VS</div>
+     <div class="team">
+      <img src="${safe(away.logo)}" alt="" onerror="this.style.display='none'">
+      <div class="team-name">${safe(away.name)}</div>
+     </div>
+    </div>
+    <div class="fixture-meta">${safe(time)} • ${safe(match.fixture.status.long)}</div>
+    <button class="primary" onclick="analyseMatch(${index})">ANALYSE MATCH</button>
+   `;
+   container.appendChild(card);
+  });
+ }catch(error){
+  status.innerText="Fixture loading error: "+error.message;
+ }finally{
+  button.disabled=false;
+ }
+}
+
+function average(values){
+ return values.length?values.reduce((a,b)=>a+b,0)/values.length:1.1;
+}
+
+function poisson(lambda,k){
+ let p=Math.exp(-lambda);
+ for(let i=1;i<=k;i++)p*=lambda/i;
+ return p;
+}
+
+function bar(label,value,color){
+ const percent=Math.max(0,Math.min(100,value));
+ return `<p><b>${safe(label)}: ${percent.toFixed(1)}%</b></p>
+ <div class="bar"><span style="width:${percent}%;background:${color}"></span></div>`;
+}
+
+async function analyseMatch(index){
+ const match=fixtures[index];
+ const output=document.getElementById("analysisOutput");
+ output.innerHTML="Loading team statistics. Please wait...";
+
+ try{
+  const home=match.teams.home;
+  const away=match.teams.away;
+  const league=match.league;
+  const season=league.season||new Date(match.fixture.date).getFullYear();
+
+  const [homeMatches,awayMatches]=await Promise.all([
+   api("/fixtures?team="+home.id+"&last=5&season="+season),
+   api("/fixtures?team="+away.id+"&last=5&season="+season)
+  ]);
+
+  function formStats(matches,teamId){
+   let scored=0,conceded=0,wins=0,draws=0,losses=0,games=0;
+   matches.forEach(m=>{
+    const isHome=m.teams.home.id===teamId;
+    const gf=isHome?m.goals.home:m.goals.away;
+    const ga=isHome?m.goals.away:m.goals.home;
+    if(gf===null||ga===null)return;
+    scored+=gf;conceded+=ga;games++;
+    if(gf>ga)wins++;else if(gf===ga)draws++;else losses++;
+   });
+   return {
+    scored:games?scored/games:1.1,
+    conceded:games?conceded/games:1.1,
+    wins,draws,losses,games
+   };
+  }
+
+  const hf=formStats(homeMatches,home.id);
+  const af=formStats(awayMatches,away.id);
+
+  const homeExpected=Math.max(.15,(hf.scored+af.conceded)/2);
+  const awayExpected=Math.max(.15,(af.scored+hf.conceded)/2);
+
+  let homeP=0,drawP=0,awayP=0;
+  const scores=[];
+
+  for(let h=0;h<=6;h++){
+   for(let a=0;a<=6;a++){
+    const probability=poisson(homeExpected,h)*poisson(awayExpected,a);
+    scores.push({h,a,p:probability});
+    if(h>a)homeP+=probability;
+    else if(h===a)drawP+=probability;
+    else awayP+=probability;
+   }
+  }
+
+  const total=homeP+drawP+awayP;
+  homeP=homeP/total*100;
+  drawP=drawP/total*100;
+  awayP=awayP/total*100;
+
+  scores.sort((a,b)=>b.p-a.p);
+  const top=scores.slice(0,5);
+
+  let btts=0,over25=0;
+  scores.forEach(s=>{
+   if(s.h>0&&s.a>0)btts+=s.p;
+   if(s.h+s.a>2)btts=btts;
+   if(s.h+s.a>2)over25+=s.p;
+  });
+
+  const maxAttack=Math.max(homeExpected,awayExpected,.1);
+  const homeAttack=homeExpected/maxAttack*100;
+  const awayAttack=awayExpected/maxAttack*100;
+  const homeDefence=100/(1+hf.conceded);
+  const awayDefence=100/(1+af.conceded);
+
+  const scoreHTML=top.map(s=>
+   `<div class="message"><b class="gold">${s.h} - ${s.a}</b> &nbsp; Estimated probability: ${(s.p*100).toFixed(1)}%</div>`
   ).join("");
 
-  const table=standings?standings.find(t=>
-   t.team.id===home.id || t.team.id===away.id
-  ):null;
-  const homeTable=standings?standings.find(t=>t.team.id===home.id):null;
-  const awayTable=standings?standings.find(t=>t.team.id===away.id):null;
+  let standings=[];
+  try{
+   standings=await api("/standings?league="+league.id+"&season="+season);
+  }catch(e){}
+
+  const table=standings[0]?.league?.standings?.flat()||[];
+  const ht=table.find(t=>t.team.id===home.id);
+  const at=table.find(t=>t.team.id===away.id);
+
+  let lineups=[];
+  if(match.fixture.status.short==="1H"||match.fixture.status.short==="HT"||
+     match.fixture.status.short==="2H"||match.fixture.status.short==="FT"){
+   try{lineups=await api("/fixtures/lineups?fixture="+match.fixture.id);}catch(e){}
+  }
 
   const homeLine=lineups.find(x=>x.team.id===home.id);
   const awayLine=lineups.find(x=>x.team.id===away.id);
 
-  const homeFormation=homeLine?homeLine.formation:"Not yet available";
-  const awayFormation=awayLine?awayLine.formation:"Not yet available";
-
-  let importance="Not enough information to assess.";
-  if(homeTable && awayTable){
-   const gap=Math.abs(homeTable.points-awayTable.points);
-   importance=gap<=3?
-   "Teams are close in league points. This could be an important fixture.":
-   "Current league points difference: "+gap+". Consider each team's league objectives.";
-  }
-
-  const html=`
-  <div class="card">
-   <h2>${safe(home.name)} vs ${safe(away.name)}</h2>
-   <p>${safe(match.league.name)} | ${safe(match.league.country)}</p>
-   <p class="muted">Kickoff: ${safe(match.fixture.date)}</p>
-   <div class="grid">
-    <div class="stat"><small>HOME LAST 5</small>
-     <strong>${hf.wins}W ${hf.draws}D ${hf.losses}L</strong></div>
-    <div class="stat"><small>AWAY LAST 5</small>
-     <strong>${af.wins}W ${af.draws}D ${af.losses}L</strong></div>
+  output.innerHTML=`
+   <div class="card">
+    <h2>${safe(home.name)} vs ${safe(away.name)}</h2>
+    <p>${safe(league.name)} • ${safe(league.country)}</p>
+    <div class="grid">
+     <div class="stat"><small>HOME LAST 5</small><strong>${hf.wins}W ${hf.draws}D ${hf.losses}L</strong></div>
+     <div class="stat"><small>AWAY LAST 5</small><strong>${af.wins}W ${af.draws}D ${af.losses}L</strong></div>
+    </div>
    </div>
-  </div>
 
-  <div class="card">
-   <h3>Home and Away Goal Averages</h3>
-   <div class="grid">
-    <div class="stat"><small>HOME SCORED AT HOME</small>
-     <strong>${hh.scored.toFixed(2)}</strong></div>
-    <div class="stat"><small>HOME CONCEDED AT HOME</small>
-     <strong>${hh.conceded.toFixed(2)}</strong></div>
-    <div class="stat"><small>AWAY SCORED AWAY</small>
-     <strong>${aa.scored.toFixed(2)}</strong></div>
-    <div class="stat"><small>AWAY CONCEDED AWAY</small>
-     <strong>${aa.conceded.toFixed(2)}</strong></div>
+   <div class="card">
+    <h3>Goal Averages</h3>
+    <div class="grid">
+     <div class="stat"><small>HOME SCORED</small><strong>${hf.scored.toFixed(2)}</strong></div>
+     <div class="stat"><small>HOME CONCEDED</small><strong>${hf.conceded.toFixed(2)}</strong></div>
+     <div class="stat"><small>AWAY SCORED</small><strong>${af.scored.toFixed(2)}</strong></div>
+     <div class="stat"><small>AWAY CONCEDED</small><strong>${af.conceded.toFixed(2)}</strong></div>
+    </div>
+    <p class="muted">Based on ${hf.games} home-team recent matches and ${af.games} away-team recent matches. These are overall recent averages, not venue-only averages.</p>
    </div>
-   <p class="muted">Based on the last five available matches in the relevant venue. Actual sample size: home ${hh.games}, away ${aa.games}.</p>
-  </div>
 
-  <div class="card">
-   <h3>Attack Strength</h3>
-   ${bar(home.name,ha,"#00D6C9")}
-   ${bar(away.name,at,"#E83EAD")}
-   <h3>Defensive Strength</h3>
-   ${bar(home.name,hd,"#F5C542")}
-   ${bar(away.name,ad,"#A855F7")}
-   <p class="muted">These are comparative indicators derived from recent goal averages, not official team ratings.</p>
-  </div>
-
-  <div class="card">
-   <h3>Expected Goals</h3>
-   <div class="grid">
-    <div class="stat"><small>HOME EXPECTED GOALS</small>
-     <strong>${homeExpected.toFixed(2)}</strong></div>
-    <div class="stat"><small>AWAY EXPECTED GOALS</small>
-     <strong>${awayExpected.toFixed(2)}</strong></div>
+   <div class="card">
+    <h3>Attack Strength</h3>
+    ${bar(home.name,homeAttack,"#00D6C9")}
+    ${bar(away.name,awayAttack,"#E83EAD")}
+    <h3>Defensive Indicators</h3>
+    ${bar(home.name,homeDefence,"#F5C542")}
+    ${bar(away.name,awayDefence,"#A855F7")}
    </div>
-   <h2 class="gold">Most likely score: ${predictions[0].h} - ${predictions[0].a}</h2>
-  </div>
 
-  <div class="card">
-   <h3>Top 5 Correct Scores</h3>
-   ${scoreHTML}
-   <p class="muted">Poisson estimates based on venue-specific goal averages.</p>
-  </div>
-
-  <div class="card">
-   <h3>Match Outcome Probabilities</h3>
-   ${bar("Home win",homeP,"#00D6C9")}
-   ${bar("Draw",drawP,"#F5C542")}
-   ${bar("Away win",awayP,"#E83EAD")}
-   <h3>Goal Markets</h3>
-   <p>Both teams to score: <b class="gold">${(btts*100).toFixed(1)}%</b></p>
-   <p>Over 2.5 goals: <b class="gold">${(over25*100).toFixed(1)}%</b></p>
-   <p>Under 2.5 goals: <b class="gold">${(100-over25*100).toFixed(1)}%</b></p>
-   <p class="muted">Model estimates, not guaranteed outcomes or calibrated betting odds.</p>
-  </div>
-
-  <div class="card">
-   <h3>Formations and Tactical Information</h3>
-   <div class="grid">
-    <div class="stat"><small>HOME FORMATION</small>
-     <strong>${safe(homeFormation)}</strong></div>
-    <div class="stat"><small>AWAY FORMATION</small>
-     <strong>${safe(awayFormation)}</strong></div>
+   <div class="card">
+    <h3>Expected Goals</h3>
+    <div class="grid">
+     <div class="stat"><small>HOME XG</small><strong>${homeExpected.toFixed(2)}</strong></div>
+     <div class="stat"><small>AWAY XG</small><strong>${awayExpected.toFixed(2)}</strong></div>
+    </div>
+    <h2>Leading score: ${top[0].h} - ${top[0].a}</h2>
    </div>
-   <p class="muted">Formations are shown only when lineup data is available from the API, normally near kickoff.</p>
-  </div>
 
-  <div class="card">
-   <h3>League Position and Match Importance</h3>
-   ${homeTable?'<p>'+safe(home.name)+' position: <b class="gold">'+homeTable.rank+'</b> | Points: '+homeTable.points+'</p>':'<p>Home league position unavailable.</p>'}
-   ${awayTable?'<p>'+safe(away.name)+' position: <b class="gold">'+awayTable.rank+'</b> | Points: '+awayTable.points+'</p>':'<p>Away league position unavailable.</p>'}
-   <p>${safe(importance)}</p>
-   <p class="muted">League positions depend on available API standings. Motivation, relegation pressure and title objectives need further contextual analysis.</p>
-  </div>
+   <div class="card">
+    <h3>Top 5 Correct Scores</h3>
+    ${scoreHTML}
+    <p class="muted">Poisson estimates based on recent goal averages.</p>
+   </div>
 
-  <div class="card">
-   <h3>Final Statistical Assessment</h3>
-   <p>Home attack indicator: ${ha}%</p>
-   <p>Away attack indicator: ${at}%</p>
-   <p>Home defensive indicator: ${hd}%</p>
-   <p>Away defensive indicator: ${ad}%</p>
-   <h2 class="gold">Model's Leading Score: ${predictions[0].h} - ${predictions[0].a}</h2>
-   <p class="muted">Always compare these estimates with team news, injuries, suspensions and actual odds before making decisions.</p>
-  </div>`;
+   <div class="card">
+    <h3>Match Outcome Probabilities</h3>
+    ${bar("Home win",homeP,"#00D6C9")}
+    ${bar("Draw",drawP,"#F5C542")}
+    ${bar("Away win",awayP,"#E83EAD")}
+    <h3>Goal Markets</h3>
+    <p>Both teams to score: <b class="gold">${(btts*100).toFixed(1)}%</b></p>
+    <p>Over 2.5 goals: <b class="gold">${(over25*100).toFixed(1)}%</b></p>
+    <p>Under 2.5 goals: <b class="gold">${(100-over25*100).toFixed(1)}%</b></p>
+   </div>
 
-  output.innerHTML=html;
+   <div class="card">
+    <h3>League Positions</h3>
+    <p>${ht?safe(home.name)+" position: "+ht.rank+" | Points: "+ht.points:"Home position unavailable."}</p>
+    <p>${at?safe(away.name)+" position: "+at.rank+" | Points: "+at.points:"Away position unavailable."}</p>
+    <h3>Formations</h3>
+    <p>Home: ${safe(homeLine?.formation||"Not available")}</p>
+    <p>Away: ${safe(awayLine?.formation||"Not available")}</p>
+    <p class="muted">Lineup formations are shown only when supplied by the API.</p>
+   </div>
 
- }catch(e){
-  output.innerHTML='<div class="card"><h3>Analysis Error</h3><p>'+safe(e.message)+'</p><p class="muted">Check your API key, subscription limits and internet connection.</p></div>';
+   <div class="card">
+    <h3>Final Statistical Assessment</h3>
+    <p>Home attack indicator: ${homeAttack.toFixed(1)}%</p>
+    <p>Away attack indicator: ${awayAttack.toFixed(1)}%</p>
+    <p>Home defensive indicator: ${homeDefence.toFixed(1)}%</p>
+    <p>Away defensive indicator: ${awayDefence.toFixed(1)}%</p>
+    <p class="muted">These are model estimates, not guarantees or calibrated betting odds. Consider injuries, suspensions and team news.</p>
+   </div>
+  `;
+ }catch(error){
+  output.innerHTML=`<div class="message">Analysis error: ${safe(error.message)}. Check API access and available statistics.</div>`;
  }
 }
 
@@ -134,14 +505,10 @@ function copyNumber(){
 function submitPayment(){
  const code=document.getElementById("transaction").value.trim();
  const phone=document.getElementById("customerPhone").value.trim();
- if(!code || !phone){
-  alert("Enter your M-Pesa transaction code and phone number.");
-  return;
- }
+ if(!code||!phone){alert("Enter your M-Pesa transaction code and phone number.");return;}
  document.getElementById("paymentStatus").innerText=
- "Details entered. Contact the administrator for manual verification. No payment has been verified or subscription activated by this demo.";
+ "Details submitted on this demo page. Contact the administrator for manual verification. No payment has been verified or subscription activated.";
 }
-
 </script>
 </body>
 </html>
