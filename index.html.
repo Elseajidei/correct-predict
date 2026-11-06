@@ -3,307 +3,205 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CORRECT PREDICT | Football Intelligence</title>
-
 <style>
 :root{
---bg:#080B18;
---panel:#141B30;
---panel2:#202943;
---gold:#F5C542;
---pink:#E83E91;
---cyan:#42D9E8;
---white:#F5F6FA;
---muted:#A6ADC1;
---line:#303B56;
---green:#35D49A;
+--bg:#080B18;--panel:#141B30;--panel2:#202943;
+--gold:#F5C542;--pink:#E83E91;--cyan:#42D9E8;
+--white:#F5F7FF;--muted:#A7B0C5;--green:#29C987;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,sans-serif}
-header{
-background:#10172B;border-bottom:2px solid var(--gold);
-padding:18px;display:flex;justify-content:space-between;
-align-items:center;gap:12px;flex-wrap:wrap
-}
-.brand{font-size:30px;font-weight:900;color:var(--gold);letter-spacing:1px}
-.brand span{color:var(--pink)}
-.tagline{font-size:11px;color:var(--muted);margin-top:5px}
-button{cursor:pointer;border:0;border-radius:7px;padding:11px 15px;font-weight:bold}
-.gold{background:var(--gold);color:#111}
-.pink{background:var(--pink);color:white}
-.darkbtn{background:var(--panel2);color:white;border:1px solid #465474}
-.green{background:var(--green);color:#071b16}
-nav{
-display:flex;gap:7px;overflow-x:auto;padding:12px;
-background:#0D1426;position:sticky;top:0;z-index:10
-}
-nav button{white-space:nowrap;background:var(--panel);color:white;font-size:12px}
+header{padding:18px;background:#10182C;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:10}
+.brand{font-size:25px;font-weight:900;color:var(--gold)}
+.brand span{color:var(--cyan)}
+header p{font-size:11px;color:var(--muted);margin:5px 0 0}
+nav{display:flex;gap:7px;overflow-x:auto;background:#0D1426;padding:12px}
+nav button{white-space:nowrap;background:var(--panel2);color:white;border:1px solid #34415F;padding:11px;border-radius:7px}
 nav button.active{background:var(--gold);color:#111}
-main{max-width:1150px;margin:auto;padding:16px}
+main{max-width:1000px;margin:auto;padding:16px}
 .page{display:none}
 .page.active{display:block}
-.hero{
-background:linear-gradient(120deg,#19213A,#381B3C);
-padding:28px 20px;border-radius:13px;border:1px solid #59405D;margin-bottom:18px
-}
-.hero h1{font-size:35px;margin:0 0 10px;color:var(--gold)}
-.hero p{color:#D1D5E3;line-height:1.7}
-.section-title{color:var(--gold);font-size:22px;margin:23px 0 13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px;margin-bottom:13px}
-.card h3{margin:0 0 12px;color:var(--gold)}
-.muted{color:var(--muted);font-size:13px;line-height:1.6}
-.match{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
-.team{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:bold;flex:1}
-.logo{width:34px;height:34px;border-radius:50%;background:#303D5D;display:grid;place-items:center;color:var(--gold);font-size:12px;border:1px solid var(--gold);object-fit:contain}
-.odds{font-size:20px;font-weight:900;color:var(--gold)}
-.badge{display:inline-block;padding:5px 9px;border-radius:5px;background:#27334F;color:var(--cyan);font-size:11px;margin:3px}
-input,textarea,select{
-width:100%;padding:12px;margin:7px 0;background:#0C1324;
-border:1px solid var(--line);color:white;border-radius:6px
-}
-textarea{min-height:90px;resize:vertical}
+h2{color:var(--gold)}
+h3{color:var(--cyan)}
+.card{background:var(--panel);border:1px solid #293653;border-radius:12px;padding:17px;margin:14px 0}
+.hero{text-align:center;padding:35px 15px;background:linear-gradient(130deg,#17233D,#101629);border:1px solid var(--gold);border-radius:14px}
+.hero h1{color:var(--gold)}
+button{cursor:pointer}
+.btn{background:var(--gold);color:#111;border:0;padding:12px 17px;border-radius:7px;font-weight:bold;margin:4px}
+.cyan{background:var(--cyan)}
+.red{background:var(--pink);color:white}
+input,select,textarea{width:100%;padding:12px;background:#0D1426;color:white;border:1px solid #34415F;border-radius:7px;margin:7px 0 13px}
 label{font-size:13px;color:var(--muted)}
-.form-row{margin:12px 0}
-.stat{font-size:25px;font-weight:bold;color:var(--gold)}
-.watermark-box{position:relative;overflow:hidden}
-.watermark{
-position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-pointer-events:none;z-index:2;font-size:clamp(22px,5vw,38px);
-font-weight:900;color:#ffffff30;transform:rotate(-20deg);
-letter-spacing:3px;text-align:center
-}
-.blurred{filter:blur(4px);user-select:none}
-.locked{
-position:absolute;inset:0;z-index:3;display:flex;align-items:center;
-justify-content:center;flex-direction:column;text-align:center;
-background:#080B1880;padding:15px
-}
-.locked strong{color:var(--gold);font-size:21px}
+.match{padding:12px 0;border-bottom:1px solid #34415F}
+.odds{color:var(--gold);font-weight:bold}
+.muted,.small{color:var(--muted);font-size:13px}
+.notice{padding:12px;background:#19243B;border-left:3px solid var(--cyan);margin:12px 0;font-size:13px}
+.watermark{font-size:32px;font-weight:900;color:rgba(245,197,66,.15);text-align:center;padding:20px}
+.status{color:var(--green)}
 .hidden{display:none!important}
-.good{color:var(--green)}
-.bad{color:#FF7373}
-hr{border:0;border-top:1px solid var(--line);margin:16px 0}
-footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid var(--line);margin-top:35px;font-size:12px}
 table{width:100%;border-collapse:collapse;font-size:13px}
-td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+td,th{padding:10px 5px;border-bottom:1px solid #34415F;text-align:left}
 th{color:var(--gold)}
-.small{font-size:11px}
-@media(max-width:500px){
-.brand{font-size:25px}
-.hero h1{font-size:28px}
-main{padding:10px}
-.match{flex-wrap:wrap}
-}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+@media(max-width:500px){main{padding:10px}.hero h1{font-size:23px}}
 </style>
 </head>
-
 <body>
 
 <header>
-<div>
 <div class="brand">CORRECT <span>PREDICT</span></div>
-<div class="tagline">FOOTBALL INTELLIGENCE • DATA • ANALYSIS</div>
-</div>
-<button class="gold" onclick="showPage('subscribe')">SUBSCRIBE</button>
+<p>FOOTBALL INTELLIGENCE • STATISTICS • ANALYSIS</p>
 </header>
 
-<nav id="navigation">
-<button class="active" data-page="home" onclick="showPage('home',this)">HOME</button>
-<button data-page="premium" onclick="showPage('premium',this)">5+ ODDS</button>
-<button data-page="daily" onclick="showPage('daily',this)">DAILY ANALYSIS</button>
-<button data-page="gg" onclick="showPage('gg',this)">GG</button>
-<button data-page="over" onclick="showPage('over',this)">OVER/UNDER</button>
-<button data-page="scores" onclick="showPage('scores',this)">CORRECT SCORES</button>
-<button data-page="corners" onclick="showPage('corners',this)">CORNERS</button>
-<button data-page="subscribe" onclick="showPage('subscribe',this)">SUBSCRIPTION</button>
-<button data-page="about" onclick="showPage('about',this)">ABOUT US</button>
-<button data-page="admin" onclick="showPage('admin',this)">ADMIN</button>
+<nav>
+<button class="active" onclick="page('home',this)">HOME</button>
+<button onclick="page('premium',this)">5+ ODDS</button>
+<button onclick="page('daily',this)">DAILY ANALYSIS</button>
+<button onclick="page('gg',this)">GG</button>
+<button onclick="page('over',this)">OVER/UNDER</button>
+<button onclick="page('scores',this)">CORRECT SCORES</button>
+<button onclick="page('corners',this)">CORNERS</button>
+<button onclick="page('subscription',this)">SUBSCRIPTION</button>
+<button onclick="page('about',this)">ABOUT</button>
+<button onclick="page('admin',this)">ADMIN</button>
 </nav>
 
 <main>
 
-<!-- HOME -->
 <section id="home" class="page active">
 <div class="hero">
+<p class="small">WELCOME TO</p>
 <h1>CORRECT PREDICT</h1>
-<h2>Think With Statistics. Predict With Intelligence.</h2>
-<p>Football analysis based on team form, goals, attacking strength,
-defensive performance, home and away statistics.</p>
-<button class="gold" onclick="showPage('premium')">VIEW 5+ ODDS</button>
-<button class="pink" onclick="showPage('subscribe')">GET PREMIUM ACCESS</button>
+<p>Smart football analysis. Statistical predictions. Better decisions.</p>
+<button class="btn" onclick="page('daily')">DAILY ANALYSIS</button>
+<button class="btn cyan" onclick="page('premium')">PREMIUM ODDS</button>
 </div>
 
-<h2 class="section-title">PREMIUM 5+ ODDS</h2>
+<div class="card">
+<h2>⭐ PREMIUM 5+ ODDS</h2>
+<p>Access our premium football selections and analysis.</p>
 <div id="homePremium"></div>
+<button class="btn" onclick="page('premium')">VIEW PREMIUM</button>
+</div>
 
-<h2 class="section-title">OUR PREDICTION WINDOWS</h2>
-<div class="grid">
-<div class="card"><h3>Daily Analysis</h3><p class="muted">Detailed match-by-match statistical assessments.</p><button class="darkbtn" onclick="showPage('daily')">OPEN ANALYSIS</button></div>
-<div class="card"><h3>GG Predictions</h3><p class="muted">Both teams to score analysis.</p><button class="darkbtn" onclick="showPage('gg')">OPEN GG</button></div>
-<div class="card"><h3>Over/Under</h3><p class="muted">Goal totals and scoring trends.</p><button class="darkbtn" onclick="showPage('over')">OPEN OVER/UNDER</button></div>
-<div class="card"><h3>Correct Scores</h3><p class="muted">Scoreline probabilities and reasoning.</p><button class="darkbtn" onclick="showPage('scores')">OPEN SCORES</button></div>
-<div class="card"><h3>Team Corners</h3><p class="muted">Team corner statistics and analysis.</p><button class="darkbtn" onclick="showPage('corners')">OPEN CORNERS</button></div>
+<div class="card">
+<h2>📊 DAILY PREDICTIONS</h2>
+<p>Explore football matches and statistical analysis.</p>
+<button class="btn cyan" onclick="page('daily')">OPEN ANALYSIS</button>
+</div>
+
+<div class="card">
+<h2>OUR CATEGORIES</h2>
+<button class="btn" onclick="page('gg')">GG</button>
+<button class="btn" onclick="page('over')">OVER/UNDER</button>
+<button class="btn" onclick="page('scores')">CORRECT SCORES</button>
+<button class="btn" onclick="page('corners')">TEAM CORNERS</button>
 </div>
 </section>
 
-<!-- PREMIUM -->
 <section id="premium" class="page">
-<h2 class="section-title">5+ ODDS PREMIUM</h2>
-<p class="muted">Combined odds, fixtures and individual selections.</p>
-<div id="premiumList"></div>
+<h2>⭐ PREMIUM 5+ ODDS</h2>
+<p class="muted">Premium selections and detailed match analysis.</p>
+<div id="premiumContent"></div>
+<div id="premiumLock" class="card">
+<div class="watermark">PREMIUM CONTENT</div>
+<h3>MEMBERS ONLY</h3>
+<p>Subscribe to unlock premium predictions.</p>
+<button class="btn" onclick="page('subscription')">SUBSCRIBE KSH 50</button>
+</div>
 </section>
 
-<!-- DAILY ANALYSIS -->
 <section id="daily" class="page">
-<h2 class="section-title">DAILY FOOTBALL ANALYSIS</h2>
-<p class="muted">Each fixture has its own analysis window.</p>
-<div id="dailyList"></div>
+<h2>📊 DAILY ANALYSIS</h2>
+<p class="muted">Match form, home and away performance, goals and probabilities.</p>
+<div id="dailyContent"></div>
 </section>
 
-<!-- GG -->
 <section id="gg" class="page">
-<h2 class="section-title">BOTH TEAMS TO SCORE</h2>
-<div id="ggList"></div>
+<h2>⚽ BOTH TEAMS TO SCORE</h2>
+<p class="muted">GG selections based on scoring and defensive statistics.</p>
+<div id="ggContent"></div>
 </section>
 
-<!-- OVER UNDER -->
 <section id="over" class="page">
-<h2 class="section-title">OVER / UNDER 2.5 GOALS</h2>
-<div id="overList"></div>
+<h2>📈 OVER / UNDER 2.5</h2>
+<p class="muted">Goal expectations and statistical analysis.</p>
+<div id="overContent"></div>
 </section>
 
-<!-- SCORES -->
 <section id="scores" class="page">
-<h2 class="section-title">CORRECT SCORE ANALYSIS</h2>
-<div id="scoresList"></div>
+<h2>🎯 CORRECT SCORES</h2>
+<p class="muted">Predicted scorelines with supporting analysis.</p>
+<div id="scoresContent"></div>
 </section>
 
-<!-- CORNERS -->
 <section id="corners" class="page">
-<h2 class="section-title">TEAM CORNERS</h2>
-<div id="cornersList"></div>
+<h2>🚩 TEAM CORNERS</h2>
+<p class="muted">Team corner statistics and selections.</p>
+<div id="cornersContent"></div>
 </section>
 
-<!-- SUBSCRIPTION -->
-<section id="subscribe" class="page">
-<div class="hero">
-<h1>PREMIUM ACCESS</h1>
-<div class="stat">KSh 50 / DAY</div>
-<p>Get access to premium predictions and detailed analysis for
-24 hours after payment verification.</p>
-</div>
-
+<section id="subscription" class="page">
+<h2>👑 MY SUBSCRIPTION</h2>
 <div class="card">
-<h3>Daily Premium Subscription</h3>
-<p>Price: <strong>KSh 50</strong></p>
-<p class="muted">Access duration: 24 hours after approval.</p>
-<button class="gold" onclick="revealPayment()">PAY TO SUBSCRIBE</button>
+<h3>DAILY PREMIUM ACCESS</h3>
+<h1 class="gold">KSH 50</h1>
+<p>Daily premium access for 24 hours after approval.</p>
+<div class="notice">Pay using M-Pesa Pochi la Biashara.</div>
+<button class="btn" onclick="document.getElementById('paymentForm').classList.toggle('hidden')">PAY TO SUBSCRIBE</button>
 
-<div id="paymentDetails" class="hidden">
-<hr>
-<h3>M-Pesa Payment Details</h3>
-<p>Pay KSh 50 to Pochi la Biashara.</p>
-<div class="stat">0741342508</div>
-<p class="muted">Enter your transaction code and phone number
-after making payment.</p>
-
+<div id="paymentForm" class="hidden">
+<h3>M-PESA PAYMENT DETAILS</h3>
+<h2>0741342508</h2>
+<label>Your full name</label>
+<input id="payerName" placeholder="Enter your name">
+<label>Your phone number</label>
+<input id="payerPhone" placeholder="07XXXXXXXX">
 <label>M-Pesa transaction code</label>
-<input id="mpesaCode" placeholder="Enter transaction code">
-<label>Your M-Pesa phone number</label>
-<input id="customerPhone" placeholder="07XXXXXXXX">
-
-<button class="pink" onclick="submitPayment()">SUBMIT PAYMENT DETAILS</button>
-<p id="paymentMessage" class="muted"></p>
+<input id="transactionCode" placeholder="Enter transaction code">
+<button class="btn cyan" onclick="sendPayment()">SUBMIT PAYMENT</button>
 </div>
 </div>
-
 <div class="card">
-<h3>Subscription Status</h3>
-<p id="subscriptionStatus" class="muted">No active subscription detected.</p>
+<h3>MY ACCESS STATUS</h3>
+<div id="accessStatus"></div>
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="page">
-<h2 class="section-title">ABOUT CORRECT PREDICT</h2>
+<h2>ABOUT CORRECT PREDICT</h2>
 <div class="card">
-<h3>Our Mission</h3>
-<p class="muted">CORRECT PREDICT provides football intelligence
-using statistical analysis, team performance, attacking and
-defensive strength, home and away form and goal trends.</p>
-
-<h3>Prediction Disclaimer</h3>
-<p class="muted">Football predictions are estimates, not guaranteed
-outcomes. Betting involves financial risk. Always gamble responsibly.</p>
-
-<h3>Payment Policy</h3>
-<p class="muted">Subscription payments are non-refundable once paid.
-Users should confirm the subscription price and payment details
-before sending money. Contact the administrator if payment has
-been made but access has not been activated.</p>
-
-<h3>Subscription</h3>
-<p class="muted">Daily premium access costs KSh 50 and lasts 24 hours
-after administrator approval.</p>
+<h3>OUR MISSION</h3>
+<p>To provide football enthusiasts with structured match analysis, statistics and informed predictions.</p>
+<h3>OUR ANALYSIS</h3>
+<p>We examine team form, home and away performance, goals scored, defensive records, head-to-head records and available statistics.</p>
+<p class="gold">Predictions are probabilities, not guarantees. No outcome is certain.</p>
 </div>
 </section>
 
-<!-- ADMIN -->
 <section id="admin" class="page">
-<h2 class="section-title">ADMIN DASHBOARD</h2>
-
-<div id="adminLogin" class="card">
-<h3>Administrator Login</h3>
+<h2>⚙ ADMIN DASHBOARD</h2>
+<div class="card" id="loginBox">
+<h3>ADMIN LOGIN</h3>
+<label>Administrator password</label>
 <input id="adminPassword" type="password" placeholder="Admin password">
-<button class="gold" onclick="adminLogin()">LOGIN</button>
-<p class="muted">Initial demonstration password: ChangeMe123!</p>
+<button class="btn" onclick="login()">LOGIN</button>
+<p class="small">Demo login only. Replace with secure server-side authentication before public launch.</p>
+<div id="loginMessage"></div>
 </div>
 
 <div id="adminPanel" class="hidden">
 
-<div class="grid">
 <div class="card">
-<h3>ADD PREDICTION</h3>
+<h3>PUBLISH PREDICTION</h3>
+<label>Match</label>
+<input id="match" placeholder="Team A vs Team B">
 
-<label>Home team</label>
-<input id="homeTeam" placeholder="Home team">
-
-<label>Away team</label>
-<input id="awayTeam" placeholder="Away team">
-
-<label>Home team logo URL (optional)</label>
-<input id="homeLogo" placeholder="Logo image URL">
-
-<label>Away team logo URL (optional)</label>
-<input id="awayLogo" placeholder="Logo image URL">
-
-<label>Selection / market</label>
-<input id="selection" placeholder="Example: Over 1.5 goals">
-
-<label>Individual odds</label>
-<input id="odd" type="number" step="0.01" placeholder="1.50">
-
-<label>Probability estimate (%)</label>
-<input id="probability" type="number" min="1" max="99" placeholder="65">
-
-<label>Risk level</label>
-<select id="risk">
-<option>Low</option>
-<option>Medium</option>
-<option>High</option>
-</select>
-
-<label>Match date and time</label>
-<input id="matchDate" type="datetime-local">
-
-<label>Match analysis</label>
-<textarea id="analysis" placeholder="Explain statistics and reasoning"></textarea>
-
-<label>Category</label>
+<label>Prediction category</label>
 <select id="category">
-<option value="premium">5+ Premium Odds</option>
+<option value="premium">5+ Odds Premium</option>
 <option value="daily">Daily Analysis</option>
 <option value="gg">GG</option>
 <option value="over">Over/Under 2.5</option>
@@ -311,367 +209,259 @@ after administrator approval.</p>
 <option value="corners">Team Corners</option>
 </select>
 
-<button class="gold" onclick="addPrediction()">ADD PREDICTION</button>
+<label>Prediction</label>
+<input id="prediction" placeholder="Enter selection">
+
+<label>Odds (optional)</label>
+<input id="matchOdds" placeholder="Example: 1.85">
+
+<label>Probability (optional)</label>
+<input id="probability" placeholder="Example: 65%">
+
+<label>Analysis</label>
+<textarea id="analysis" rows="4" placeholder="Enter match statistics and reasoning"></textarea>
+
+<button class="btn" onclick="publish()">PUBLISH PREDICTION</button>
 </div>
 
 <div class="card">
-<h3>PREMIUM SUMMARY</h3>
-<p class="muted">Combined odds from premium selections.</p>
-<div class="stat" id="combinedOdds">1.00</div>
-<p class="muted">Premium selections: <span id="fixtureCount">0</span></p>
-<hr>
-<button class="pink" onclick="clearPredictions()">CLEAR ALL PREDICTIONS</button>
-</div>
+<h3>MANAGE PREDICTIONS</h3>
+<div id="managePredictions"></div>
 </div>
 
 <div class="card">
-<h3>API CONFIGURATION</h3>
-<p class="muted">API configuration interface. Real API keys must be
-stored securely on a backend server, not in public HTML or browser storage.</p>
-<label>Football API key (demonstration field)</label>
-<input id="apiKey" type="password" placeholder="API key">
-<button class="darkbtn" onclick="document.getElementById('apiMessage').textContent='Demo only. Connect a secure backend to configure your live API.'">SAVE API SETTINGS</button>
-<p id="apiMessage" class="muted"></p>
-</div>
-
-<div class="card">
-<h3>PAYMENT VERIFICATION</h3>
-<p class="muted">Review customer payment requests.</p>
+<h3>M-PESA PAYMENT REQUESTS</h3>
 <div id="paymentRequests"></div>
 </div>
 
 <div class="card">
-<h3>MANUAL SUBSCRIPTION ACTIVATION</h3>
-<label>Customer phone number</label>
-<input id="activatePhone" placeholder="07XXXXXXXX">
-<label>Access duration in hours</label>
-<input id="activateHours" type="number" value="24">
-<button class="gold" onclick="activateSubscription()">ACTIVATE ACCESS</button>
-<p id="activationMessage" class="muted"></p>
+<h3>API CONFIGURATION</h3>
+<p class="small">API keys should be configured on a secure backend, never exposed in public website code.</p>
+<label>API key status</label>
+<p>Backend connection not configured.</p>
 </div>
 
 <div class="card">
-<h3>CHANGE ADMIN PASSWORD</h3>
-<label>New password</label>
-<input id="newAdminPassword" type="password" placeholder="New password">
-<button class="darkbtn" onclick="changeAdminPassword()">CHANGE PASSWORD</button>
-<p class="muted">This browser-only demonstration password is not secure for a public website.</p>
+<h3>ADMIN SESSION</h3>
+<button class="btn red" onclick="logout()">LOG OUT</button>
 </div>
-
-<button class="pink" onclick="adminLogout()">LOG OUT</button>
 </div>
 </section>
 
 </main>
 
 <footer>
-<strong>CORRECT PREDICT</strong><br>
-Football intelligence and statistical analysis.<br>
-Predictions are not guaranteed. Bet responsibly.
+<strong>CORRECT PREDICT</strong>
+<p>Football Intelligence • Statistics • Analysis</p>
+<p>Predictions are not guaranteed. Bet responsibly.</p>
 </footer>
 
 <script>
-const $ = id => document.getElementById(id);
+const ADMIN_PASSWORD="ChangeThisAdminPassword";
 
-function read(key, fallback){
-try{
-const value=localStorage.getItem(key);
-return value===null?fallback:JSON.parse(value);
-}catch(e){return fallback;}
+function getData(key){
+try{return JSON.parse(localStorage.getItem(key)||"[]")}
+catch(e){return []}
 }
-
-function save(key,value){
-localStorage.setItem(key,JSON.stringify(value));
+function saveData(key,data){
+localStorage.setItem(key,JSON.stringify(data));
 }
-
-let predictions=read("cp_predictions",[]);
-let payments=read("cp_payments",[]);
-let subscriptions=read("cp_subscriptions",{});
-let adminPassword=localStorage.getItem("cp_admin_password")||"ChangeMe123!";
-let adminLoggedIn=false;
-
-function escapeHTML(value){
-return String(value??"").replace(/[&<>"']/g,function(c){
-return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-});
-}
-
-function showPage(page,button){
+function page(id,btn){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-$(page).classList.add("active");
-
+document.getElementById(id).classList.add("active");
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(button)button.classList.add("active");
-else{
-const navButton=document.querySelector('nav button[data-page="'+page+'"]');
-if(navButton)navButton.classList.add("active");
+if(btn)btn.classList.add("active");
+refresh();
+window.scrollTo(0,0);
 }
 
-if(page==="admin")refreshAdmin();
-if(page==="subscribe")refreshSubscription();
+function isSubscribed(){
+let expiry=Number(localStorage.getItem("subscriptionExpiry")||0);
+return expiry>Date.now();
 }
 
-function isSubscribed(phone){
-const item=subscriptions[phone];
-return !!item&&item.expiry>Date.now();
-}
-
-function getCurrentSubscription(){
-const phone=localStorage.getItem("cp_current_phone");
-return phone&&isSubscribed(phone)?phone:null;
-}
-
-function renderPrediction(p,locked){
-const homeLogo=p.homeLogo?
-'<img class="logo" src="'+escapeHTML(p.homeLogo)+'" alt="" onerror="this.style.display=\'none\'">':
-'<div class="logo">'+escapeHTML(p.home.slice(0,2).toUpperCase())+'</div>';
-
-const awayLogo=p.awayLogo?
-'<img class="logo" src="'+escapeHTML(p.awayLogo)+'" alt="" onerror="this.style.display=\'none\'">':
-'<div class="logo">'+escapeHTML(p.away.slice(0,2).toUpperCase())+'</div>';
-
-const details=`
-<div class="card">
-<div class="match">
-<div class="team">${homeLogo}<span>${escapeHTML(p.home)}</span></div>
-<strong>VS</strong>
-<div class="team">${awayLogo}<span>${escapeHTML(p.away)}</span></div>
-</div>
-<div class="match">
-<span class="badge">${escapeHTML(p.selection)}</span>
-<strong class="odds">${Number(p.odd).toFixed(2)}</strong>
-</div>
-<div class="muted">
-Probability estimate: ${Number(p.probability)||"Not supplied"}%
-<br>Risk: ${escapeHTML(p.risk||"Not supplied")}
-${p.date?'<br>Match time: '+escapeHTML(p.date):""}
-</div>
-<hr>
-<h3>Match Analysis</h3>
-<p class="muted">${escapeHTML(p.analysis||"Analysis not yet supplied.")}</p>
-</div>`;
-
-if(!locked)return details;
-
-return `
-<div class="watermark-box">
-<div class="blurred">${details}</div>
-<div class="watermark">PREMIUM</div>
-<div class="locked">
-<strong>PREMIUM CONTENT</strong>
-<p>Subscribe for KSh 50 per day to view full predictions and analysis.</p>
-<button class="gold" onclick="showPage('subscribe')">UNLOCK ACCESS</button>
-</div>
-</div>`;
-}
-
-function renderCategory(category,target,locked){
-const items=predictions.filter(p=>p.category===category);
-if(!items.length){
-$(target).innerHTML='<div class="card"><p class="muted">No predictions published yet. Check back later.</p></div>';
+function renderPredictions(category,elementId,locked){
+let data=getData("predictions").filter(x=>x.category===category);
+let el=document.getElementById(elementId);
+if(!data.length){
+el.innerHTML='<div class="card"><p class="muted">No predictions published yet.</p></div>';
 return;
 }
-$(target).innerHTML=items.map(p=>renderPrediction(p,locked)).join("");
-}
-
-function renderAll(){
-const premiumLocked=!getCurrentSubscription();
-
-renderCategory("premium","premiumList",premiumLocked);
-renderCategory("daily","dailyList",premiumLocked);
-renderCategory("gg","ggList",premiumLocked);
-renderCategory("over","overList",premiumLocked);
-renderCategory("scores","scoresList",premiumLocked);
-renderCategory("corners","cornersList",premiumLocked);
-
-const homeItems=predictions.filter(p=>p.category==="premium").slice(0,3);
-$("homePremium").innerHTML=homeItems.length?
-homeItems.map(p=>renderPrediction(p,premiumLocked)).join(""):
-'<div class="card"><p class="muted">Premium predictions will appear here when published by the administrator.</p></div>';
-
-const premium=predictions.filter(p=>p.category==="premium");
-let total=1;
-premium.forEach(p=>total*=Number(p.odd)||1);
-$("combinedOdds").textContent=total.toFixed(2);
-$("fixtureCount").textContent=premium.length;
-refreshSubscription();
-}
-
-function addPrediction(){
-if(!adminLoggedIn)return alert("Administrator login required.");
-
-const home=$("homeTeam").value.trim();
-const away=$("awayTeam").value.trim();
-const selection=$("selection").value.trim();
-const odd=Number($("odd").value);
-
-if(!home||!away||!selection||!odd||odd<=1){
-return alert("Please enter both teams, selection and valid odds.");
-}
-
-const p={
-id:Date.now(),
-home,away,
-homeLogo:$("homeLogo").value.trim(),
-awayLogo:$("awayLogo").value.trim(),
-selection,odd,
-probability:$("probability").value,
-risk:$("risk").value,
-date:$("matchDate").value,
-analysis:$("analysis").value.trim(),
-category:$("category").value
-};
-
-predictions.push(p);
-save("cp_predictions",predictions);
-
-["homeTeam","awayTeam","homeLogo","awayLogo","selection","odd",
-"probability","matchDate","analysis"].forEach(id=>$(id).value="");
-
-renderAll();
-alert("Prediction published successfully.");
-}
-
-function clearPredictions(){
-if(!adminLoggedIn)return;
-if(confirm("Delete all predictions?")){
-predictions=[];
-save("cp_predictions",predictions);
-renderAll();
-}
-}
-
-function revealPayment(){
-$("paymentDetails").classList.remove("hidden");
-}
-
-function submitPayment(){
-const code=$("mpesaCode").value.trim().toUpperCase();
-const phone=$("customerPhone").value.trim();
-
-if(!code||!/^0\d{9}$/.test(phone)){
-return alert("Enter a valid M-Pesa transaction code and 10-digit phone number.");
-}
-
-if(payments.some(p=>p.code===code)){
-return alert("This transaction code has already been submitted.");
-}
-
-payments.push({
-id:Date.now(),code,phone,amount:50,status:"Pending",
-date:new Date().toLocaleString()
-});
-
-save("cp_payments",payments);
-$("paymentMessage").textContent="Payment submitted for administrator verification. Access is not active until approved.";
-$("mpesaCode").value="";
-$("customerPhone").value="";
-refreshAdmin();
-}
-
-function refreshSubscription(){
-const phone=getCurrentSubscription();
-if(phone){
-const expiry=subscriptions[phone].expiry;
-$("subscriptionStatus").innerHTML=
-'<span class="good">ACTIVE SUBSCRIPTION</span><br>Phone: '+
-escapeHTML(phone)+'<br>Expires: '+new Date(expiry).toLocaleString();
-}else{
-$("subscriptionStatus").textContent="No active subscription detected.";
-}
-}
-
-function adminLogin(){
-if($("adminPassword").value===adminPassword){
-adminLoggedIn=true;
-$("adminLogin").classList.add("hidden");
-$("adminPanel").classList.remove("hidden");
-refreshAdmin();
-}else{
-alert("Incorrect admin password.");
-}
-}
-
-function adminLogout(){
-adminLoggedIn=false;
-$("adminLogin").classList.remove("hidden");
-$("adminPanel").classList.add("hidden");
-$("adminPassword").value="";
-}
-
-function changeAdminPassword(){
-const pass=$("newAdminPassword").value;
-if(!pass||pass.length<8)return alert("Password must have at least 8 characters.");
-adminPassword=pass;
-localStorage.setItem("cp_admin_password",pass);
-$("newAdminPassword").value="";
-alert("Demo password changed.");
-}
-
-function activateSubscription(){
-if(!adminLoggedIn)return;
-const phone=$("activatePhone").value.trim();
-const hours=Number($("activateHours").value);
-
-if(!/^0\d{9}$/.test(phone)||!hours||hours<=0){
-return alert("Enter a valid phone number and duration.");
-}
-
-subscriptions[phone]={expiry:Date.now()+hours*60*60*1000};
-save("cp_subscriptions",subscriptions);
-localStorage.setItem("cp_current_phone",phone);
-
-$("activationMessage").textContent="Access activated for "+phone;
-$("activatePhone").value="";
-renderAll();
-}
-
-function approvePayment(id){
-if(!adminLoggedIn)return;
-const payment=payments.find(p=>p.id===id);
-if(!payment||payment.status!=="Pending")return;
-
-payment.status="Approved";
-subscriptions[payment.phone]={expiry:Date.now()+24*60*60*1000};
-save("cp_payments",payments);
-save("cp_subscriptions",subscriptions);
-alert("Payment approved. Subscription activated for 24 hours.");
-refreshAdmin();
-renderAll();
-}
-
-function rejectPayment(id){
-if(!adminLoggedIn)return;
-const payment=payments.find(p=>p.id===id);
-if(!payment)return;
-payment.status="Rejected";
-save("cp_payments",payments);
-refreshAdmin();
-}
-
-function refreshAdmin(){
-if(!adminLoggedIn)return;
-
-const requests=$("paymentRequests");
-if(!payments.length){
-requests.innerHTML='<p class="muted">No payment requests yet.</p>';
+if(locked&&!isSubscribed()){
+el.innerHTML='<div class="card"><div class="watermark">PREMIUM</div><p>Subscribe to unlock these selections.</p></div>';
 return;
 }
-
-requests.innerHTML=payments.map(p=>`
+el.innerHTML=data.map(x=>`
 <div class="card">
-<strong>${escapeHTML(p.phone)}</strong>
-<p class="muted">Transaction: ${escapeHTML(p.code)}</p>
-<p class="muted">Amount: KSh ${p.amount} | ${escapeHTML(p.date)}</p>
-<p>Status: <span class="${p.status==="Approved"?"good":p.status==="Rejected"?"bad":""}">${escapeHTML(p.status)}</span></p>
-${p.status==="Pending"?`
-<button class="green" onclick="approvePayment(${p.id})">APPROVE & ACTIVATE</button>
-<button class="pink" onclick="rejectPayment(${p.id})">REJECT</button>`:""}
+<h3>${safe(x.match)}</h3>
+<div class="match"><span>Prediction</span><strong class="gold">${safe(x.prediction)}</strong></div>
+${x.odds?`<div class="match"><span>Odds</span><strong class="odds">${safe(x.odds)}</strong></div>`:""}
+${x.probability?`<div class="match"><span>Probability</span><strong>${safe(x.probability)}</strong></div>`:""}
+<p>${safe(x.analysis)}</p>
+<p class="small">Published: ${new Date(x.date).toLocaleString()}</p>
 </div>`).join("");
 }
 
-renderAll();
-</script>
+function safe(value){
+return String(value||"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
 
+function refresh(){
+renderPredictions("premium","premiumContent",true);
+renderPredictions("daily","dailyContent",false);
+renderPredictions("gg","ggContent",false);
+renderPredictions("over","overContent",false);
+renderPredictions("scores","scoresContent",false);
+renderPredictions("corners","cornersContent",false);
+renderHomePremium();
+updateAccess();
+}
+
+function renderHomePremium(){
+let el=document.getElementById("homePremium");
+let data=getData("predictions").filter(x=>x.category==="premium");
+if(!data.length){
+el.innerHTML='<p class="muted">Premium selections will appear here when published.</p>';
+}else{
+el.innerHTML='<div class="watermark">PREMIUM ODDS</div><p>'+data.length+' premium selection(s) available.</p>';
+}
+}
+
+function login(){
+if(document.getElementById("adminPassword").value===ADMIN_PASSWORD){
+sessionStorage.setItem("cpAdmin","yes");
+showAdmin();
+document.getElementById("loginMessage").textContent="";
+}else{
+document.getElementById("loginMessage").textContent="Incorrect password.";
+}
+}
+
+function showAdmin(){
+document.getElementById("loginBox").classList.add("hidden");
+document.getElementById("adminPanel").classList.remove("hidden");
+renderAdmin();
+}
+
+function logout(){
+sessionStorage.removeItem("cpAdmin");
+document.getElementById("loginBox").classList.remove("hidden");
+document.getElementById("adminPanel").classList.add("hidden");
+document.getElementById("adminPassword").value="";
+}
+
+function publish(){
+let match=document.getElementById("match").value.trim();
+let prediction=document.getElementById("prediction").value.trim();
+if(!match||!prediction){
+alert("Enter the match and prediction.");
+return;
+}
+let data=getData("predictions");
+data.unshift({
+id:Date.now(),
+match,
+category:document.getElementById("category").value,
+prediction,
+odds:document.getElementById("matchOdds").value,
+probability:document.getElementById("probability").value,
+analysis:document.getElementById("analysis").value,
+date:new Date().toISOString()
+});
+saveData("predictions",data);
+["match","prediction","matchOdds","probability","analysis"].forEach(id=>document.getElementById(id).value="");
+alert("Prediction published.");
+refresh();
+renderAdmin();
+}
+
+function deletePrediction(id){
+if(!confirm("Delete this prediction?"))return;
+saveData("predictions",getData("predictions").filter(x=>x.id!==id));
+refresh();
+renderAdmin();
+}
+
+function sendPayment(){
+let name=document.getElementById("payerName").value.trim();
+let phone=document.getElementById("payerPhone").value.trim();
+let code=document.getElementById("transactionCode").value.trim();
+if(!name||!phone||!code){
+alert("Complete all payment details.");
+return;
+}
+let requests=getData("paymentRequests");
+requests.unshift({
+id:Date.now(),name,phone,code,status:"Pending",date:new Date().toISOString()
+});
+saveData("paymentRequests",requests);
+alert("Payment request submitted. Wait for administrator verification.");
+document.getElementById("paymentForm").classList.add("hidden");
+["payerName","payerPhone","transactionCode"].forEach(id=>document.getElementById(id).value="");
+refresh();
+}
+
+function approvePayment(id){
+let requests=getData("paymentRequests");
+let request=requests.find(x=>x.id===id);
+if(!request)return;
+if(request.status!=="Pending")return;
+if(!confirm("Confirm that you have independently verified this M-Pesa payment?"))return;
+request.status="Approved";
+request.approvedAt=Date.now();
+saveData("paymentRequests",requests);
+localStorage.setItem("subscriptionExpiry",String(Date.now()+24*60*60*1000));
+renderAdmin();
+refresh();
+}
+
+function rejectPayment(id){
+let requests=getData("paymentRequests");
+let request=requests.find(x=>x.id===id);
+if(request)request.status="Rejected";
+saveData("paymentRequests",requests);
+renderAdmin();
+}
+
+function renderAdmin(){
+let data=getData("predictions");
+document.getElementById("managePredictions").innerHTML=data.length?data.map(x=>`
+<div class="match">
+<div><strong>${safe(x.match)}</strong><br><span class="small">${safe(x.category)} — ${safe(x.prediction)}</span></div>
+<button class="btn red" onclick="deletePrediction(${x.id})">DELETE</button>
+</div>`).join(""):"No predictions published.";
+
+let requests=getData("paymentRequests");
+document.getElementById("paymentRequests").innerHTML=requests.length?requests.map(x=>`
+<div class="card">
+<strong>${safe(x.name)}</strong>
+<p>Phone: ${safe(x.phone)}</p>
+<p>Transaction: ${safe(x.code)}</p>
+<p>Status: ${safe(x.status)}</p>
+${x.status==="Pending"?`
+<button class="btn cyan" onclick="approvePayment(${x.id})">VERIFY & APPROVE</button>
+<button class="btn red" onclick="rejectPayment(${x.id})">REJECT</button>`:""}
+</div>`).join(""):"No payment requests.";
+}
+
+function updateAccess(){
+let el=document.getElementById("accessStatus");
+if(isSubscribed()){
+let expiry=new Date(Number(localStorage.getItem("subscriptionExpiry")));
+el.innerHTML='<p class="status">ACTIVE SUBSCRIPTION</p><p>Expires: '+expiry.toLocaleString()+'</p>';
+}else{
+el.innerHTML='<p class="muted">No active subscription. Submit payment to request access.</p>';
+localStorage.removeItem("subscriptionExpiry");
+}
+}
+
+function start(){
+refresh();
+if(sessionStorage.getItem("cpAdmin")==="yes")showAdmin();
+}
+start();
+</script>
 </body>
 </html>
