@@ -4,119 +4,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CORRECT PREDICT - Football Intelligence</title>
+<title>CORRECT PREDICT | Football Intelligence</title>
 
 <style>
-:root{
- --bg:#080B18;
- --panel:#131B32;
- --panel2:#202B48;
- --gold:#F5C542;
- --magenta:#E83EAD;
- --cyan:#39D9F5;
- --white:#FFFFFF;
- --muted:#AAB4CB;
- --green:#35D08B;
- --red:#FF647C;
+:root {
+  --bg:#080B18;
+  --panel:#131B32;
+  --panel2:#202B48;
+  --gold:#F5C542;
+  --cyan:#20D5E8;
+  --white:#F5F7FF;
+  --muted:#9BA8C2;
+  --border:#293654;
+  --pink:#E83E91;
 }
-*{box-sizing:border-box}
-body{
- margin:0;background:var(--bg);color:var(--white);
- font-family:Arial,sans-serif;
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Arial,sans-serif;
 }
-header{
- background:#10172B;text-align:center;
- padding:24px 10px;border-bottom:2px solid var(--gold);
+header {
+  padding:18px 15px;
+  background:#10182B;
+  border-bottom:2px solid var(--gold);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
 }
-.logo{
- font-size:clamp(32px,8vw,55px);
- font-weight:900;letter-spacing:2px;
- color:var(--gold);
+.logo {
+  font-size:23px;
+  font-weight:900;
+  color:var(--gold);
 }
-.logo span{color:var(--magenta)}
-.tagline{color:var(--muted);margin-top:8px}
-nav{
- display:flex;gap:7px;padding:12px;
- overflow-x:auto;background:#0D1427;
- position:sticky;top:0;z-index:10;
+.logo span {color:var(--cyan)}
+header small {color:var(--muted)}
+nav {
+  display:flex;
+  overflow-x:auto;
+  gap:7px;
+  padding:12px;
+  background:#0D1426;
 }
-nav button{
- white-space:nowrap;background:var(--panel2);
- color:white;border:1px solid #394662;
- padding:11px 15px;border-radius:7px;
+nav button {
+  white-space:nowrap;
+  background:var(--panel);
+  color:white;
+  border:1px solid var(--border);
+  padding:11px 14px;
+  border-radius:7px;
+  cursor:pointer;
 }
-nav button.active{
- background:var(--gold);color:#111;
+nav button.active, nav button:hover {
+  background:var(--gold);
+  color:#101525;
+  font-weight:bold;
 }
-main{max-width:1100px;margin:auto;padding:15px}
-.section{display:none}
-.section.active{display:block}
-.card{
- background:var(--panel);padding:18px;
- border:1px solid #283653;border-radius:12px;
- margin-bottom:16px;
+main {max-width:1100px;margin:auto;padding:16px}
+.page {display:none}
+.page.active {display:block}
+h2 {color:var(--gold);font-size:22px}
+h3 {color:var(--cyan)}
+p {color:var(--muted);line-height:1.5}
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:14px;
 }
-h2{color:var(--gold);margin-top:0}
-h3{color:var(--cyan)}
-p{line-height:1.6}
-.muted,.small{color:var(--muted)}
-.small{font-size:12px}
-.gold{color:var(--gold)}
-.magenta{color:var(--magenta)}
-.green{color:var(--green)}
-.red{color:var(--red)}
-button{cursor:pointer}
-.primary,.secondary{
- border:0;padding:12px 17px;
- border-radius:7px;font-weight:bold;
- margin:5px 3px 5px 0;
+.hero {
+  text-align:center;
+  padding:35px 15px;
+  background:linear-gradient(140deg,#182542,#10172C);
+  border:1px solid var(--gold);
+  border-radius:14px;
 }
-.primary{background:var(--gold);color:#101426}
-.secondary{background:var(--magenta);color:white}
-input,select{
- width:100%;padding:12px;margin:7px 0 13px;
- background:#0B1225;color:white;
- border:1px solid #394662;border-radius:7px;
+.hero h1 {color:var(--gold);font-size:30px}
+.hero strong {color:var(--cyan)}
+.btn {
+  background:var(--gold);
+  color:#101525;
+  border:0;
+  border-radius:7px;
+  padding:12px 18px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:5px 3px;
 }
-.match{
- background:#0D1427;padding:15px;
- border-radius:9px;margin:12px 0;
- border-left:3px solid var(--gold);
+.btn.secondary {
+  background:var(--cyan);
 }
-.match-title{font-size:17px;font-weight:bold}
-.badge{
- display:inline-block;background:#283653;
- padding:5px 9px;border-radius:20px;
- font-size:12px;margin:4px 0;
+.btn.dark {
+  background:var(--panel2);
+  color:white;
+  border:1px solid var(--border);
 }
-.stats{
- display:grid;grid-template-columns:repeat(2,1fr);
- gap:9px;margin-top:12px;
+.match {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
 }
-.stat{
- background:var(--panel2);padding:12px;
- border-radius:7px;overflow-wrap:anywhere;
+.team {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:bold;
 }
-.stat h3{margin-bottom:4px}
-.result{
- background:#0D1427;padding:12px;
- margin:9px 0;border-radius:8px;
+.crest {
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#273654;
+  color:var(--gold);
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold);
+  font-size:11px;
 }
-table{width:100%;border-collapse:collapse}
-td,th{
- padding:10px;text-align:left;
- border-bottom:1px solid #394662;
+.odds {
+  color:var(--gold);
+  font-weight:bold;
+  font-size:17px;
 }
-footer{
- text-align:center;padding:25px;
- color:var(--muted);
- border-top:1px solid #283653;margin-top:30px;
+.watermark {
+  position:relative;
+  overflow:hidden;
 }
-.hidden{display:none}
-hr{border-color:#394662}
-@media(max-width:500px){
- main{padding:10px}
- .stats{grid-template-columns:1fr 1fr}
+.watermark::after {
+  content:"CORRECT PREDICT";
+  position:absolute;
+  top:45%;
+  left:0;
+  width:100%;
+  text-align:center;
+  font-size:30px;
+  font-weight:900;
+  color:rgba(245,197,66,.13);
+  transform:rotate(-15deg);
+  pointer-events:none;
+}
+.locked {
+  filter:blur(3px);
+  user-select:none;
+}
+.notice {
+  padding:12px;
+  background:#202B48;
+  border-left:4px solid var(--gold);
+  border-radius:5px;
+  margin:12px 0;
+}
+input,select,textarea {
+  width:100%;
+  padding:12px;
+  margin:7px 0 14px;
+  background:#0C1427;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:7px;
+}
+label {color:var(--cyan);font-size:13px}
+footer {
+  text-align:center;
+  padding:25px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  margin-top:30px;
+}
+.hidden {display:none!important}
+.stat {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:10px;
+}
+.stat div {
+  background:var(--panel2);
+  padding:15px;
+  border-radius:8px;
+  text-align:center;
+}
+.stat strong {
+  display:block;
+  font-size:22px;
+  color:var(--gold);
+}
+@media(max-width:500px) {
+  .hero h1 {font-size:24px}
+  main {padding:10px}
 }
 </style>
 </head>
@@ -124,724 +206,351 @@ hr{border-color:#394662}
 <body>
 
 <header>
- <div class="logo">CORRECT <span>PREDICT</span></div>
- <div class="tagline">FOOTBALL INTELLIGENCE • STATISTICS • ANALYSIS</div>
+  <div>
+    <div class="logo">CORRECT <span>PREDICT</span></div>
+    <small>Football Intelligence Platform</small>
+  </div>
+  <button class="btn" onclick="showPage('payment')">Subscribe</button>
 </header>
 
 <nav>
- <button class="active" onclick="showPage('home',this)">HOME</button>
- <button onclick="showPage('analysis',this)">MATCH ANALYSIS</button>
- <button onclick="showPage('odds',this)">5+ ODDS</button>
- <button onclick="showPage('subscription',this)">SUBSCRIPTION</button>
- <button onclick="showPage('about',this)">ABOUT US</button>
- <button onclick="showPage('settings',this)">SETTINGS</button>
+  <button class="active" onclick="showPage('home',this)">Home</button>
+  <button onclick="showPage('premium',this)">5+ Odds</button>
+  <button onclick="showPage('daily',this)">Daily Picks</button>
+  <button onclick="showPage('analysis',this)">Analysis</button>
+  <button onclick="showPage('scores',this)">Correct Scores</button>
+  <button onclick="showPage('gg',this)">GG / Goals</button>
+  <button onclick="showPage('payment',this)">Subscribe</button>
+  <button onclick="showPage('admin',this)">Admin</button>
 </nav>
 
 <main>
 
 <!-- HOME -->
-<section id="home" class="section active">
+<section id="home" class="page active">
 
- <div class="card">
-  <h2>WELCOME TO CORRECT PREDICT</h2>
-  <p>Football intelligence powered by statistics and
-  independent match analysis.</p>
-  <p>We examine team performance, attacking strength,
-  defensive records, goals and available bookmaker odds.</p>
-  <h2 class="gold">KSh 50 / DAY</h2>
-  <button class="primary" onclick="showPage('analysis')">
-   START MATCH ANALYSIS
-  </button>
-  <button class="secondary" onclick="showPage('odds')">
-   EXPLORE 5+ ODDS
-  </button>
- </div>
+<div class="hero">
+  <h1>SMART FOOTBALL PREDICTIONS</h1>
+  <p>Statistics. Analysis. Football Intelligence.</p>
+  <strong>Make informed predictions, not guesses.</strong>
+  <br><br>
+  <button class="btn" onclick="showPage('premium')">Explore 5+ Odds</button>
+  <button class="btn secondary" onclick="showPage('analysis')">View Analysis</button>
+</div>
 
- <div class="card">
-  <h2>FIXTURES</h2>
-  <label>Select match date</label>
-  <input type="date" id="matchDate">
-  <button class="primary" onclick="loadFixtures()">LOAD FIXTURES</button>
-  <p id="homeStatus" class="muted">Connect your API key in Settings.</p>
-  <div id="homeMatches"></div>
- </div>
+<div class="stat" style="margin-top:15px">
+  <div><strong>5+</strong><small>Premium Odds</small></div>
+  <div><strong>Daily</strong><small>Predictions</small></div>
+  <div><strong>Stats</strong><small>Match Analysis</small></div>
+</div>
 
- <div class="card">
-  <h2>OUR ANALYSIS</h2>
-  <div class="stats">
-   <div class="stat">Team form</div>
-   <div class="stat">Home attack</div>
-   <div class="stat">Away attack</div>
-   <div class="stat">Defensive records</div>
-   <div class="stat">Goal averages</div>
-   <div class="stat">Match probabilities</div>
-   <div class="stat">Bookmaker odds</div>
-   <div class="stat">Risk assessment</div>
-  </div>
- </div>
+<div class="card">
+  <h2>Today's Featured Premium Picks</h2>
+  <p>Featured matches and odds are displayed below with a watermark. Full predictions require an active subscription.</p>
+  <div id="homePicks"></div>
+  <button class="btn" onclick="showPage('premium')">View Premium Picks</button>
+</div>
+
+<div class="card">
+  <h2>Our Prediction Approach</h2>
+  <p>We evaluate team form, home and away performance, goals scored, defensive strength, head-to-head records and available odds information.</p>
+</div>
 
 </section>
 
-<!-- MATCH ANALYSIS -->
-<section id="analysis" class="section">
+<!-- PREMIUM ODDS -->
+<section id="premium" class="page">
+<h2>5+ PREMIUM ODDS</h2>
+<p>Premium selections, displayed in their own section.</p>
 
- <div class="card">
-  <h2>MATCH ANALYSIS CENTRE</h2>
-  <p>Load fixtures and select a match for statistical analysis.</p>
-  <label>Match date</label>
-  <input type="date" id="analysisDate">
-  <button class="primary" onclick="loadFixtures()">LOAD MATCHES</button>
-  <p id="analysisStatus" class="muted"></p>
-  <div id="analysisMatches"></div>
- </div>
+<div class="notice">
+  Premium predictions are protected. Subscribe to access the full selection and analysis.
+</div>
 
+<div class="card">
+  <div id="premiumPicks"></div>
+</div>
+
+<button class="btn" onclick="showPage('payment')">Unlock Premium Access</button>
 </section>
 
-<!-- 5+ ODDS -->
-<section id="odds" class="section">
-
- <div class="card">
-  <h2>5+ ODDS ANALYSIS</h2>
-  <p>Find a combination of real available bookmaker odds
-  with combined odds of at least 5.00.</p>
-
-  <label>Maximum number of matches</label>
-  <select id="maxPicks">
-   <option value="3">3 matches</option>
-   <option value="4">4 matches</option>
-   <option value="5">5 matches</option>
-   <option value="6">6 matches</option>
-   <option value="7">7 matches</option>
-   <option value="8" selected>8 matches</option>
-  </select>
-
-  <label>Minimum combined odds</label>
-  <input type="number" id="targetOdds" value="5" min="1.01" step="0.1">
-
-  <button class="primary" onclick="analyseOdds()">ANALYSE 5+ ODDS</button>
-
-  <p id="oddsStatus" class="muted"></p>
-  <div id="oddsResults"></div>
- </div>
-
- <div class="card">
-  <h3>HOW WE SELECT</h3>
-  <p>1. Retrieve available bookmaker odds.</p>
-  <p>2. Examine available 1X2 selections.</p>
-  <p>3. Calculate implied probabilities.</p>
-  <p>4. Build a combination reaching the requested odds.</p>
-  <p>5. Display the combined odds and estimated risk.</p>
-  <p class="red">No accumulator is guaranteed. Combined odds alone do not establish that a selection is good value.</p>
- </div>
-
+<!-- DAILY PICKS -->
+<section id="daily" class="page">
+<h2>DAILY PREDICTIONS</h2>
+<p>Daily match selections with individual match information.</p>
+<div id="dailyPicks"></div>
 </section>
 
-<!-- SUBSCRIPTION -->
-<section id="subscription" class="section">
+<!-- ANALYSIS -->
+<section id="analysis" class="page">
+<h2>FOOTBALL ANALYSIS</h2>
+<p>Detailed statistical breakdowns for each selected fixture.</p>
+<div id="analysisPicks"></div>
+</section>
 
- <div class="card">
-  <h2>DAILY SUBSCRIPTION</h2>
-  <div style="font-size:42px;font-weight:bold;color:var(--gold)">
-   KSh 50
-  </div>
-  <p>Daily access to CORRECT PREDICT premium analysis.</p>
- </div>
+<!-- CORRECT SCORES -->
+<section id="scores" class="page">
+<h2>CORRECT SCORE PREDICTIONS</h2>
+<p>Scoreline predictions and supporting statistics.</p>
+<div id="scorePicks"></div>
+</section>
 
- <div class="card">
-  <h2>M-PESA PAYMENT</h2>
-  <p>Make your payment using Pochi la Biashara.</p>
+<!-- GG -->
+<section id="gg" class="page">
+<h2>GG / GOALS MARKET</h2>
+<p>Both Teams To Score, Over/Under and goal predictions.</p>
+<div id="ggPicks"></div>
+</section>
 
+<!-- PAYMENT -->
+<section id="payment" class="page">
+<h2>DAILY SUBSCRIPTION</h2>
+
+<div class="card">
+  <h3>Premium Daily Access</h3>
   <div class="stat">
-   <p>PAYMENT NUMBER</p>
-   <h2 class="gold">0741342508</h2>
-   <button class="primary" onclick="copyPayment()">COPY NUMBER</button>
+    <div><strong>KSh 50</strong><small>Daily subscription</small></div>
   </div>
 
-  <p>After paying, submit your payment details for verification.</p>
+  <p>Choose your payment method to continue.</p>
 
-  <label>Your name</label>
-  <input id="payName" placeholder="Full name">
-
-  <label>Phone number</label>
-  <input id="payPhone" placeholder="07XXXXXXXX">
-
-  <label>M-Pesa transaction code</label>
-  <input id="payCode" placeholder="Transaction code">
-
-  <button class="secondary" onclick="sendPaymentRequest()">
-   SEND PAYMENT DETAILS
+  <button class="btn" onclick="document.getElementById('mpesa').classList.remove('hidden')">
+    Pay with M-Pesa
   </button>
 
-  <p id="paymentMessage" class="muted"></p>
-  <p class="small">Payment details are sent to the business WhatsApp contact for manual verification. Sending details does not automatically activate access.</p>
- </div>
+  <div id="mpesa" class="hidden">
+    <div class="notice">
+      <strong>M-Pesa Pochi la Biashara</strong><br><br>
+      Payment number: <strong>0741342508</strong><br>
+      Amount: <strong>KSh 50</strong>
+    </div>
 
- <div class="card">
-  <h3>SUBSCRIPTION POLICY</h3>
-  <p>Access is activated after payment has been verified.
-  The daily subscription lasts 24 hours from activation.</p>
-  <p>Payments are non-refundable once access has been activated.</p>
-  <p>Incorrect predictions, lost bets or unexpected match results
-  do not qualify for refunds.</p>
- </div>
+    <p>After payment, submit your M-Pesa transaction code for manual verification.</p>
 
+    <label>Customer name</label>
+    <input id="customerName" placeholder="Your name">
+
+    <label>Phone number</label>
+    <input id="customerPhone" placeholder="Your M-Pesa number">
+
+    <label>M-Pesa transaction code</label>
+    <input id="transactionCode" placeholder="Enter transaction code">
+
+    <button class="btn" onclick="submitPayment()">Submit Payment Details</button>
+    <div id="paymentMessage"></div>
+  </div>
+</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section">
+<!-- ADMIN -->
+<section id="admin" class="page">
+<h2>ADMIN DASHBOARD</h2>
 
- <div class="card">
-  <h2>ABOUT CORRECT PREDICT</h2>
+<div class="notice">
+  Administrative interface preview. Production admin login, payment verification and API-key security require a secure backend.
+</div>
 
-  <p>CORRECT PREDICT is a football intelligence and
-  statistical analysis platform.</p>
+<div class="card">
+<h3>API Configuration</h3>
+<label>Football API Key</label>
+<input type="password" id="apiKey" placeholder="Enter API key">
+<p>For security, never store a real API key in this public HTML file. A backend must store and use it privately.</p>
+<button class="btn" onclick="alert('API integration requires a secure backend.')">Configure API</button>
+</div>
 
-  <p>Our goal is to help football followers understand
-  matches through available data, team performance and
-  probability-based analysis.</p>
+<div class="card">
+<h3>Publish a Prediction</h3>
 
-  <h3>OUR MISSION</h3>
-  <p>To provide honest, clear and statistics-based
-  football analysis without inventing match results
-  or promising guaranteed winning predictions.</p>
+<label>Match</label>
+<input id="matchName" placeholder="Home Team vs Away Team">
 
-  <h3>OUR ANALYSIS</h3>
-  <p>We consider:</p>
-  <ul>
-   <li>Recent team form</li>
-   <li>Home and away performance</li>
-   <li>Attacking strength</li>
-   <li>Defensive strength</li>
-   <li>Average goals scored and conceded</li>
-   <li>Available bookmaker odds</li>
-   <li>Estimated probabilities and risk</li>
-  </ul>
+<label>Home team initials</label>
+<input id="homeInitials" placeholder="HOM">
 
-  <h3>SUBSCRIPTION</h3>
-  <p>Our subscription costs KSh 50 per day.
-  Payment must be verified before premium access is activated.</p>
+<label>Away team initials</label>
+<input id="awayInitials" placeholder="AWY">
 
-  <h3>NON-REFUNDABLE PAYMENT POLICY</h3>
-  <p>All subscription payments are non-refundable once
-  access has been activated.</p>
+<label>Market / Prediction</label>
+<input id="prediction" placeholder="Example: Over 2.5">
 
-  <p>Funds paid cannot be refunded because of incorrect
-  predictions, losing bets, unexpected match results,
-  postponed matches or changes in team performance.</p>
+<label>Odds</label>
+<input id="matchOdds" type="number" step="0.01" placeholder="Example: 5.20">
 
-  <p>By subscribing, users acknowledge that football
-  predictions involve uncertainty and that no winning
-  outcome is guaranteed.</p>
+<label>Category</label>
+<select id="category">
+<option value="premium">5+ Premium Odds</option>
+<option value="daily">Daily Predictions</option>
+<option value="analysis">Analysis</option>
+<option value="scores">Correct Scores</option>
+<option value="gg">GG / Goals</option>
+</select>
 
-  <h3>RESPONSIBLE BETTING</h3>
-  <p>Our platform provides analysis, not financial guarantees.
-  Users make their own betting decisions and should only
-  gamble responsibly with money they can afford to lose.
-  Our service is intended for adults of legal betting age.</p>
- </div>
+<label>Match analysis</label>
+<textarea id="matchAnalysis" rows="4" placeholder="Enter statistical analysis..."></textarea>
 
-</section>
+<button class="btn" onclick="addPick()">Publish Prediction</button>
+</div>
 
-<!-- SETTINGS -->
-<section id="settings" class="section">
-
- <div class="card">
-  <h2>API SETTINGS</h2>
-  <p>Connect your API-Football account to retrieve fixtures,
-  statistics and available odds.</p>
-
-  <label>API-Football key</label>
-  <input type="password" id="apiInput" placeholder="Enter API key">
-
-  <button class="primary" onclick="saveAPI()">SAVE API KEY</button>
-  <button class="secondary" onclick="testAPI()">TEST CONNECTION</button>
-
-  <p id="apiStatus" class="muted"></p>
-
-  <p class="small">For testing only, this version stores the API key in this browser. It is not secure for a public commercial website. A backend is needed to protect your API key.</p>
- </div>
+<div class="card">
+<h3>Published Predictions</h3>
+<div id="adminPicks"></div>
+</div>
 
 </section>
 
 </main>
 
 <footer>
- <div class="logo" style="font-size:25px">CORRECT <span>PREDICT</span></div>
- <p>FOOTBALL INTELLIGENCE • STATISTICS • PROBABILITY</p>
- <p>© 2026 CORRECT PREDICT. All Rights Reserved.</p>
+  <div class="logo">CORRECT <span>PREDICT</span></div>
+  <p>Football Intelligence Platform</p>
+  <small>Predictions are estimates, not guaranteed results. Please gamble responsibly.</small>
 </footer>
 
 <script>
+let picks = JSON.parse(localStorage.getItem('cp_picks') || '[]');
 
-const API_URL="https://v3.football.api-sports.io";
-
-let fixtures=[];
-let oddsData=[];
-let analyses={};
-
-function showPage(id,button){
- document.querySelectorAll(".section").forEach(s=>{
-  s.classList.remove("active");
- });
- document.getElementById(id).classList.add("active");
-
- document.querySelectorAll("nav button").forEach(b=>{
-  b.classList.remove("active");
- });
- if(button) button.classList.add("active");
+function savePicks() {
+  localStorage.setItem('cp_picks', JSON.stringify(picks));
 }
 
-function getAPIKey(){
- return localStorage.getItem("correct_predict_api") || "";
+function showPage(id,button) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  if(button) button.classList.add('active');
+
+  renderPicks();
+  window.scrollTo(0,0);
 }
 
-function saveAPI(){
- const key=document.getElementById("apiInput").value.trim();
- if(!key){
-  alert("Please enter your API-Football key.");
-  return;
- }
- localStorage.setItem("correct_predict_api",key);
- document.getElementById("apiStatus").textContent="API key saved.";
-}
-
-async function requestAPI(endpoint){
- const key=getAPIKey();
- if(!key) throw new Error("Please enter your API key in Settings.");
-
- const response=await fetch(API_URL+endpoint,{
-  method:"GET",
-  headers:{"x-apisports-key":key}
- });
-
- if(!response.ok){
-  throw new Error("API error: "+response.status);
- }
-
- const data=await response.json();
-
- if(data.errors && Object.keys(data.errors).length){
-  throw new Error(JSON.stringify(data.errors));
- }
-
- return data.response || [];
-}
-
-async function testAPI(){
- const status=document.getElementById("apiStatus");
- status.textContent="Testing connection...";
-
- try{
-  await requestAPI("/status");
-  status.textContent="API connection successful.";
- }catch(e){
-  status.textContent="Connection failed: "+e.message;
- }
-}
-
-function today(){
- const d=new Date();
- return d.getFullYear()+"-"+
- String(d.getMonth()+1).padStart(2,"0")+"-"+
- String(d.getDate()).padStart(2,"0");
-}
-
-document.getElementById("matchDate").value=today();
-document.getElementById("analysisDate").value=today();
-
-async function loadFixtures(){
-
- const date=document.getElementById("matchDate").value ||
- document.getElementById("analysisDate").value;
-
- const homeStatus=document.getElementById("homeStatus");
- const analysisStatus=document.getElementById("analysisStatus");
-
- homeStatus.textContent="Loading fixtures...";
- analysisStatus.textContent="Loading fixtures...";
-
- try{
-  fixtures=await requestAPI("/fixtures?date="+date);
-  analyses={};
-
-  renderFixtures();
-
-  const message=fixtures.length+" fixtures loaded.";
-  homeStatus.textContent=message;
-  analysisStatus.textContent=message;
-
- }catch(e){
-  homeStatus.textContent=e.message;
-  analysisStatus.textContent=e.message;
- }
-}
-
-function renderFixtures(){
-
- const html=fixtures.map((f,i)=>{
-
-  const home=f.teams.home.name;
-  const away=f.teams.away.name;
-
-  const time=new Date(f.fixture.date).toLocaleTimeString(
-   [],{hour:"2-digit",minute:"2-digit"}
-  );
-
+function matchCard(p,locked=false) {
   return `
-   <div class="match">
-    <div class="match-title">${home} vs ${away}</div>
-    <p class="muted">${f.league.name} | ${time}</p>
-    <span class="badge">${f.fixture.status.short}</span>
-    <button class="primary" onclick="analyseMatch(${i})">
-     ANALYSE
-    </button>
-    <div id="matchResult${i}"></div>
-   </div>
-  `;
- }).join("");
-
- document.getElementById("homeMatches").innerHTML=html;
- document.getElementById("analysisMatches").innerHTML=html;
+  <div class="card">
+    <div class="match">
+      <div class="team">
+        <span class="crest">${escapeHTML(p.home)}</span>
+        ${escapeHTML(p.homeName)}
+      </div>
+      <span style="color:var(--muted)">VS</span>
+      <div class="team">
+        ${escapeHTML(p.awayName)}
+        <span class="crest">${escapeHTML(p.away)}</span>
+      </div>
+    </div>
+    <p>Market: <strong>${escapeHTML(p.prediction)}</strong></p>
+    <div class="${locked?'watermark':''}">
+      <p class="${locked?'locked':''}">
+        Odds: <span class="odds">${Number(p.odds).toFixed(2)}</span>
+      </p>
+    </div>
+    ${locked ? '<button class="btn" onclick="showPage(\\'payment\\')">Unlock</button>' :
+    `<p>Analysis: ${escapeHTML(p.analysis)}</p>`}
+  </div>`;
 }
 
-function val(x){
- if(x===null || x===undefined || x==="") return null;
- const n=Number(x);
- return Number.isFinite(n)?n:null;
+function escapeHTML(value) {
+  return String(value || '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
 }
 
-function averageText(x){
- return x===null?"N/A":x.toFixed(2);
+function renderPicks() {
+  const premium=picks.filter(p=>p.category==='premium');
+  const daily=picks.filter(p=>p.category==='daily');
+  const analysis=picks.filter(p=>p.category==='analysis');
+  const scores=picks.filter(p=>p.category==='scores');
+  const gg=picks.filter(p=>p.category==='gg');
+
+  document.getElementById('homePicks').innerHTML =
+    premium.length ? premium.map(p=>matchCard(p,true)).join('') :
+    '<p>No premium fixtures published yet.</p>';
+
+  document.getElementById('premiumPicks').innerHTML =
+    premium.length ? premium.map(p=>matchCard(p,true)).join('') :
+    '<p>No premium fixtures published yet.</p>';
+
+  document.getElementById('dailyPicks').innerHTML =
+    daily.length ? daily.map(p=>matchCard(p,true)).join('') :
+    '<p>No daily predictions published yet.</p>';
+
+  document.getElementById('analysisPicks').innerHTML =
+    analysis.length ? analysis.map(p=>matchCard(p,false)).join('') :
+    '<p>No match analysis published yet.</p>';
+
+  document.getElementById('scorePicks').innerHTML =
+    scores.length ? scores.map(p=>matchCard(p,true)).join('') :
+    '<p>No correct score predictions published yet.</p>';
+
+  document.getElementById('ggPicks').innerHTML =
+    gg.length ? gg.map(p=>matchCard(p,true)).join('') :
+    '<p>No GG / Goals selections published yet.</p>';
+
+  document.getElementById('adminPicks').innerHTML =
+    picks.length ? picks.map((p,i)=>`
+      <div class="match">
+        <span>${escapeHTML(p.homeName)} vs ${escapeHTML(p.awayName)}</span>
+        <button class="btn dark" onclick="deletePick(${i})">Delete</button>
+      </div>`).join('') :
+    '<p>No published predictions.</p>';
 }
 
-async function teamStatistics(teamId,leagueId,season){
- const data=await requestAPI(
-  "/teams/statistics?team="+teamId+
-  "&league="+leagueId+"&season="+season
- );
- return data[0] || null;
-}
+function addPick() {
+  const homeName=document.getElementById('matchName').value;
+  const initialsHome=document.getElementById('homeInitials').value;
+  const initialsAway=document.getElementById('awayInitials').value;
+  const prediction=document.getElementById('prediction').value;
+  const odds=Number(document.getElementById('matchOdds').value);
+  const category=document.getElementById('category').value;
+  const analysis=document.getElementById('matchAnalysis').value;
 
-async function analyseMatch(i){
+  const teams=homeName.split(' vs ');
 
- const f=fixtures[i];
- const result=document.getElementById("matchResult"+i);
-
- result.innerHTML="<p class='gold'>Analysing statistics...</p>";
-
- try{
-
-  const season=f.league.season;
-
-  const [home,away]=await Promise.all([
-   teamStatistics(f.teams.home.id,f.league.id,season),
-   teamStatistics(f.teams.away.id,f.league.id,season)
-  ]);
-
-  if(!home || !away){
-   throw new Error("Team statistics unavailable.");
+  if(teams.length!==2 || !teams[0].trim() || !teams[1].trim() ||
+     !initialsHome || !initialsAway || !prediction || !odds || odds<=0) {
+    alert('Please complete the match details correctly. Use Home Team vs Away Team.');
+    return;
   }
 
-  const homeAttack=val(home.goals?.for?.average?.home);
-  const awayAttack=val(away.goals?.for?.average?.away);
-
-  const homeDefence=val(home.goals?.against?.average?.home);
-  const awayDefence=val(away.goals?.against?.average?.away);
-
-  const homeExpected=
-   homeAttack!==null && awayDefence!==null?
-   (homeAttack+awayDefence)/2:null;
-
-  const awayExpected=
-   awayAttack!==null && homeDefence!==null?
-   (awayAttack+homeDefence)/2:null;
-
-  const total=
-   homeExpected!==null && awayExpected!==null?
-   homeExpected+awayExpected:null;
-
-  let prediction="Insufficient data";
-
-  if(homeExpected!==null && awayExpected!==null){
-   if(homeExpected>awayExpected+0.25){
-    prediction="HOME ATTACK ADVANTAGE";
-   }else if(awayExpected>homeExpected+0.25){
-    prediction="AWAY ATTACK ADVANTAGE";
-   }else{
-    prediction="BALANCED MATCH";
-   }
-  }
-
-  analyses[i]={
-   fixture:f,
-   homeExpected,
-   awayExpected,
-   total,
-   prediction
-  };
-
-  result.innerHTML=`
-   <div class="stats">
-
-    <div class="stat">
-     <span class="gold">HOME ATTACK</span>
-     <h3>${averageText(homeAttack)}</h3>
-     <small>Home goals scored average</small>
-    </div>
-
-    <div class="stat">
-     <span class="magenta">AWAY ATTACK</span>
-     <h3>${averageText(awayAttack)}</h3>
-     <small>Away goals scored average</small>
-    </div>
-
-    <div class="stat">
-     <b>HOME DEFENCE</b>
-     <h3>${averageText(homeDefence)}</h3>
-     <small>Home goals conceded average</small>
-    </div>
-
-    <div class="stat">
-     <b>AWAY DEFENCE</b>
-     <h3>${averageText(awayDefence)}</h3>
-     <small>Away goals conceded average</small>
-    </div>
-
-    <div class="stat">
-     <b>HOME EXPECTED GOALS</b>
-     <h3>${averageText(homeExpected)}</h3>
-    </div>
-
-    <div class="stat">
-     <b>AWAY EXPECTED GOALS</b>
-     <h3>${averageText(awayExpected)}</h3>
-    </div>
-
-    <div class="stat">
-     <b>TOTAL EXPECTED GOALS</b>
-     <h3>${averageText(total)}</h3>
-    </div>
-
-    <div class="stat">
-     <b>HOME FORM</b>
-     <p>${home.form || "Unavailable"}</p>
-    </div>
-
-    <div class="stat">
-     <b>AWAY FORM</b>
-     <p>${away.form || "Unavailable"}</p>
-    </div>
-
-   </div>
-
-   <h3 class="gold">${prediction}</h3>
-
-   <p class="small">
-    Expected goals are simple estimates using available
-    home and away scoring and conceding averages.
-    They are not verified match probabilities.
-   </p>
-  `;
-
- }catch(e){
-  result.innerHTML="<p class='red'>"+e.message+"</p>";
- }
-}
-
-// REAL BOOKMAKER ODDS
-
-async function analyseOdds(){
-
- const status=document.getElementById("oddsStatus");
- const box=document.getElementById("oddsResults");
-
- const max=Number(document.getElementById("maxPicks").value);
- const target=Number(document.getElementById("targetOdds").value);
-
- if(!fixtures.length){
-  status.textContent="Load fixtures first.";
-  return;
- }
-
- if(!Number.isFinite(target)||target<=1){
-  status.textContent="Enter valid target odds.";
-  return;
- }
-
- status.textContent="Retrieving available bookmaker odds...";
- box.innerHTML="";
-
- try{
-
-  const responses=await Promise.all(
-   fixtures.map(async f=>{
-    try{
-     return await requestAPI("/odds?fixture="+f.fixture.id);
-    }catch(e){
-     return [];
-    }
-   })
-  );
-
-  const candidates=[];
-
-  responses.forEach((response,index)=>{
-
-   const f=fixtures[index];
-
-   response.forEach(item=>{
-
-    (item.bookmakers||[]).forEach(bookmaker=>{
-
-     (bookmaker.bets||[]).forEach(bet=>{
-
-      if(!["Match Winner","1X2"].includes(bet.name)) return;
-
-      const values=(bet.values||[])
-       .filter(v=>["Home","Draw","Away"].includes(v.value))
-       .map(v=>({
-        selection:v.value,
-        odds:Number(v.odd)
-       }))
-       .filter(v=>Number.isFinite(v.odds)&&v.odds>1);
-
-      if(!values.length) return;
-
-      // Select the shortest available 1X2 price.
-      const selected=values.reduce((a,b)=>
-       a.odds<b.odds?a:b
-      );
-
-      candidates.push({
-       id:f.fixture.id,
-       home:f.teams.home.name,
-       away:f.teams.away.name,
-       league:f.league.name,
-       selection:selected.selection,
-       odds:selected.odds,
-       bookmaker:bookmaker.name,
-       probability:1/selected.odds
-      });
-
-     });
-
-    });
-
-   });
-
+  picks.push({
+    homeName:teams[0].trim(),
+    awayName:teams[1].trim(),
+    home:initialsHome,
+    away:initialsAway,
+    prediction,
+    odds,
+    category,
+    analysis
   });
 
-  // Keep only one selection for each fixture.
-  const unique=[...new Map(
-   candidates.map(c=>[c.id,c])
-  ).values()];
+  savePicks();
+  renderPicks();
+  alert('Prediction added to this browser.');
+}
 
-  unique.sort((a,b)=>a.odds-b.odds);
+function deletePick(index) {
+  if(confirm('Delete this prediction?')) {
+    picks.splice(index,1);
+    savePicks();
+    renderPicks();
+  }
+}
 
-  let selected=[];
-  let combined=1;
+function submitPayment() {
+  const name=document.getElementById('customerName').value.trim();
+  const phone=document.getElementById('customerPhone').value.trim();
+  const code=document.getElementById('transactionCode').value.trim();
 
-  for(const item of unique){
-   if(selected.length>=max) break;
-
-   selected.push(item);
-   combined*=item.odds;
-
-   if(combined>=target) break;
+  if(!name || !phone || !code) {
+    alert('Please complete all payment fields.');
+    return;
   }
 
-  if(combined<target){
-   status.textContent=
-   "NO QUALIFYING ACCUMULATOR. Available odds do not reach your target.";
-   return;
-  }
-
-  const rawProbability=selected.reduce(
-   (p,x)=>p*x.probability,1
-  );
-
-  let html=`
-   <div class="match">
-    <h3>5+ ODDS COMBINATION</h3>
-  `;
-
-  selected.forEach((x,i)=>{
-
-   html+=`
-    <div class="stat">
-     <b>${i+1}. ${x.home} vs ${x.away}</b>
-     <p>Selection: <span class="gold">${x.selection}</span></p>
-     <p>Odds: <b>${x.odds.toFixed(2)}</b></p>
-     <p class="small">${x.league}</p>
-     <p class="small">Bookmaker: ${x.bookmaker}</p>
-    </div>
-   `;
-  });
-
-  html+=`
-    <hr>
-    <h2 class="gold">TOTAL ODDS: ${combined.toFixed(2)}</h2>
-    <p>Number of selections: ${selected.length}</p>
-    <p>Raw implied combined probability:
-    ${(rawProbability*100).toFixed(2)}%</p>
-    <p class="red">HIGH RISK: Every selection must win for the accumulator to win.</p>
-    <p class="small">This probability is a simple product of individual inverse odds, not a calibrated prediction. Bookmaker margin and match correlation are not removed.</p>
-   </div>
-  `;
-
-  box.innerHTML=html;
-
-  status.textContent=
-   "Odds analysis completed using available API bookmaker data.";
-
- }catch(e){
-  status.textContent="Error: "+e.message;
- }
+  document.getElementById('paymentMessage').innerHTML =
+    '<p style="color:var(--cyan)">Details entered. Actual payment verification requires a secure server and administrator review.</p>';
 }
 
-// PAYMENT
-
-function copyPayment(){
-
- const number="0741342508";
-
- if(navigator.clipboard){
-  navigator.clipboard.writeText(number)
-   .then(()=>alert("Payment number copied."));
- }else{
-  alert("M-Pesa number: "+number);
- }
-}
-
-function sendPaymentRequest(){
-
- const name=document.getElementById("payName").value.trim();
- const phone=document.getElementById("payPhone").value.trim();
- const code=document.getElementById("payCode").value.trim();
-
- const message=document.getElementById("paymentMessage");
-
- if(!name||!phone||!code){
-  message.textContent="Please complete all payment details.";
-  return;
- }
-
- const text=
- "CORRECT PREDICT PAYMENT VERIFICATION REQUEST\n"+
- "Name: "+name+"\n"+
- "Phone: "+phone+"\n"+
- "M-Pesa code: "+code+"\n"+
- "Amount: KSh 50\n"+
- "Subscription: Daily";
-
- const url="https://wa.me/254741342508?text="+
- encodeURIComponent(text);
-
- message.textContent="Opening WhatsApp to send your verification request.";
-
- window.open(url,"_blank");
-}
-
+renderPicks();
 </script>
 
 </body>
