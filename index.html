@@ -4,583 +4,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CORRECT PREDICT</title>
-
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
+<title>CORRECT PREDICT | Football Intelligence</title>
 <style>
 :root {
-  --gold:#e8b84b;
-  --cyan:#00d5ed;
-  --navy:#071426;
-  --panel:#101f35;
-  --white:#f5f7fb;
-  --muted:#9eacc0;
+  --bg:#080B18;
+  --panel:#141B30;
+  --panel2:#202943;
+  --gold:#F5C542;
+  --cyan:#42D9E8;
+  --pink:#E83E91;
+  --white:#fff;
+  --muted:#9AA6C0;
 }
-* {box-sizing:border-box}
-body {
-  margin:0;
-  background:var(--navy);
-  color:var(--white);
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--white);
   font-family:Arial,sans-serif;
 }
-header {
-  padding:20px;
-  text-align:center;
-  background:#030914;
-  border-bottom:2px solid var(--gold);
+header{
+  padding:20px;background:#10172A;
+  border-bottom:1px solid #303952;
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
 }
-.logo {
-  color:var(--gold);
-  font-size:28px;
-  font-weight:900;
-  letter-spacing:2px;
+.logo{font-size:23px;font-weight:900;color:var(--gold)}
+.logo span{color:var(--cyan)}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:13px}
+nav a:hover{color:var(--gold)}
+.hero{text-align:center;padding:35px 15px}
+.hero h1{font-size:30px;margin:5px}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted)}
+.container{max-width:1100px;margin:auto;padding:15px}
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
 }
-header p {color:var(--cyan);margin:7px}
-nav {
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  flex-wrap:wrap;
-  padding:12px;
-  background:#0b192b;
+.stat,.card{
+ background:var(--panel);padding:18px;
+ border:1px solid #29334e;border-radius:12px;
 }
-button {
-  background:var(--gold);
-  color:#101010;
-  border:0;
-  padding:12px 16px;
-  border-radius:6px;
-  font-weight:bold;
-  cursor:pointer;
+.stat{text-align:center}
+.stat strong{display:block;color:var(--gold);font-size:23px}
+.stat small{color:var(--muted)}
+.section-title{
+ color:var(--gold);font-size:20px;margin:28px 0 15px;
 }
-button.secondary {
-  background:#17334d;
-  color:white;
+.card{margin-bottom:13px}
+.match{
+ display:flex;justify-content:space-between;
+ align-items:center;gap:10px;flex-wrap:wrap;
 }
-button.danger {background:#b73535;color:white}
-button:disabled {opacity:.5;cursor:not-allowed}
-.container {
-  max-width:1050px;
-  margin:auto;
-  padding:18px;
+.team{font-weight:bold;font-size:15px}
+.vs{color:var(--cyan);font-weight:bold}
+.tag{
+ background:#26344f;padding:6px 10px;
+ border-radius:20px;font-size:11px;color:var(--cyan);
 }
-.panel {
-  background:var(--panel);
-  border:1px solid #263b54;
-  border-radius:12px;
-  padding:18px;
-  margin:15px 0;
+.prediction{
+ display:flex;justify-content:space-between;
+ border-top:1px solid #303952;margin-top:14px;
+ padding-top:12px;gap:8px;flex-wrap:wrap;
+ font-size:13px;
 }
-h2 {color:var(--gold);font-size:21px}
-h3 {color:var(--cyan)}
-input,select,textarea {
-  width:100%;
-  padding:13px;
-  margin:7px 0 13px;
-  background:#071426;
-  color:white;
-  border:1px solid #344a63;
-  border-radius:6px;
+.gold{color:var(--gold)}
+.cyan{color:var(--cyan)}
+button{
+ border:0;border-radius:7px;padding:12px 18px;
+ background:var(--gold);color:#111;font-weight:bold;
+ cursor:pointer;
 }
-label {color:var(--muted);font-size:13px}
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:12px;
+button:hover{opacity:.85}
+input,select,textarea{
+ width:100%;padding:12px;margin:7px 0;
+ background:#0C1325;color:white;
+ border:1px solid #35415d;border-radius:7px;
 }
-.game {
-  background:#09182b;
-  border:1px solid #29415d;
-  padding:13px;
-  border-radius:8px;
-  margin:10px 0;
+.form-card{max-width:500px;margin:20px auto}
+.hidden{display:none!important}
+footer{
+ text-align:center;padding:30px;color:var(--muted);
+ border-top:1px solid #29334e;margin-top:40px;
 }
-.game strong {color:var(--gold)}
-.small {font-size:12px;color:var(--muted)}
-.hidden {display:none}
-.status {padding:10px;color:var(--cyan)}
-footer {
-  text-align:center;
-  padding:25px;
-  color:var(--muted);
-  border-top:1px solid #263b54;
+@media(max-width:600px){
+ .stats{grid-template-columns:1fr}
+ .hero h1{font-size:25px}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">CORRECT PREDICT</div>
-  <p>SMART FOOTBALL ANALYSIS</p>
+ <div class="logo">CORRECT <span>PREDICT</span></div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#predictions">Predictions</a>
+  <a href="#subscribe">Subscribe</a>
+  <a href="#admin">Admin</a>
+ </nav>
 </header>
 
-<nav>
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('predictions')">Predictions</button>
-  <button onclick="showSection('admin')">Admin Area</button>
-</nav>
+<section class="hero" id="home">
+ <h1>FOOTBALL <span>INTELLIGENCE</span></h1>
+ <p>Statistics. Analysis. Smart Predictions.</p>
+ <button onclick="showSection('subscribe')">GET DAILY ACCESS</button>
+</section>
 
 <main class="container">
 
-<!-- HOME -->
-<section id="home">
-  <div class="panel">
-    <h2>Welcome to CORRECT PREDICT</h2>
-    <p>Football analysis, match statistics and prediction insights.</p>
-    <button onclick="showSection('predictions')">
-      View Published Predictions
-    </button>
+<div class="stats">
+ <div class="stat">
+  <strong>AI</strong>
+  <small>Analysis Engine</small>
+ </div>
+ <div class="stat">
+  <strong>10</strong>
+  <small>Daily Top Picks Target</small>
+ </div>
+ <div class="stat">
+  <strong>KSh 50</strong>
+  <small>Daily Subscription</small>
+ </div>
+</div>
+
+<section id="predictions">
+ <h2 class="section-title">⚽ DAILY PREDICTIONS</h2>
+ <div id="games">
+  <div class="card">
+   <p class="muted">No games have been published yet.</p>
+   <p>Predictions will appear here after the administrator adds fixtures.</p>
   </div>
-  <div class="panel">
-    <h3>Our prediction categories</h3>
-    <p>Full-time 1X2 | Double Chance | Over/Under 2.5 | BTTS | Correct Score</p>
-  </div>
+ </div>
 </section>
 
-<!-- CUSTOMER PREDICTIONS -->
-<section id="predictions" class="hidden">
-  <div class="panel">
-    <h2>Published Predictions</h2>
-    <p class="small">Only approved and published predictions appear here.</p>
-    <button onclick="loadPublicPredictions()">Refresh Predictions</button>
-    <div id="publicGames"></div>
+<section id="subscribe">
+ <h2 class="section-title">MEMBERSHIP ACCESS</h2>
+ <div class="card form-card">
+  <h3 class="gold">Daily Subscription — KSh 50</h3>
+  <p>Pay using M-Pesa to activate your daily access.</p>
+  <input id="phone" placeholder="Your M-Pesa phone number">
+  <button onclick="showPayment()">Continue to Payment</button>
+  <div id="payment" class="hidden">
+   <hr>
+   <h3 class="cyan">M-Pesa Payment Details</h3>
+   <p>Pay KSh 50 to Pochi la Biashara:</p>
+   <h2 class="gold">0741342508</h2>
+   <p>After payment, contact the administrator with your transaction code for verification.</p>
+   <input id="transaction" placeholder="M-Pesa transaction code">
+   <button onclick="submitPayment()">Submit Payment Details</button>
   </div>
+  <p id="paymentStatus"></p>
+ </div>
 </section>
 
-<!-- ADMIN LOGIN -->
-<section id="admin" class="hidden">
-  <div class="panel" id="loginPanel">
-    <h2>Administrator Login</h2>
-    <label>Admin username</label>
-    <input id="username" placeholder="Enter username">
-    <label>Password</label>
-    <input id="password" type="password" placeholder="Enter password">
-    <button onclick="adminLogin()">Login</button>
-    <div id="loginMessage" class="status"></div>
+<section id="admin">
+ <h2 class="section-title">ADMINISTRATION</h2>
+ <div class="card form-card">
+  <h3>Administrator Login</h3>
+  <input id="adminPassword" type="password" placeholder="Admin password">
+  <button onclick="adminLogin()">Login</button>
+  <div id="adminPanel" class="hidden">
+   <h3 class="gold">Add Football Fixture</h3>
+   <input id="homeTeam" placeholder="Home team">
+   <input id="awayTeam" placeholder="Away team">
+   <input id="league" placeholder="League">
+   <input id="matchDate" type="datetime-local">
+   <select id="prediction">
+    <option value="">Select prediction</option>
+    <option>1</option>
+    <option>X</option>
+    <option>2</option>
+    <option>1X</option>
+    <option>X2</option>
+    <option>12</option>
+   </select>
+   <input id="score" placeholder="Correct score prediction e.g. 2-1">
+   <button onclick="addGame()">Publish Fixture</button>
+   <p id="adminStatus"></p>
   </div>
-
-  <!-- ADMIN DASHBOARD -->
-  <div id="dashboard" class="hidden">
-
-    <div class="panel">
-      <h2>Admin Dashboard</h2>
-      <p>Manage fixtures, predictions and publishing.</p>
-      <button class="danger" onclick="adminLogout()">Logout</button>
-    </div>
-
-    <!-- MANUAL ENTRY -->
-    <div class="panel">
-      <h2>1. Enter Games Manually</h2>
-
-      <label>League</label>
-      <input id="league" placeholder="e.g. English Premier League">
-
-      <div class="grid">
-        <div>
-          <label>Home Team</label>
-          <input id="homeTeam" placeholder="Home team">
-        </div>
-        <div>
-          <label>Away Team</label>
-          <input id="awayTeam" placeholder="Away team">
-        </div>
-      </div>
-
-      <div class="grid">
-        <div>
-          <label>Match Date</label>
-          <input id="matchDate" type="date">
-        </div>
-        <div>
-          <label>Kick-off Time</label>
-          <input id="matchTime" type="time">
-        </div>
-      </div>
-
-      <button onclick="addManualGame()">Add Game</button>
-    </div>
-
-    <!-- FILE UPLOAD -->
-    <div class="panel">
-      <h2>2. Upload Games</h2>
-      <p>Upload Excel, CSV or TXT fixtures.</p>
-
-      <label>Select fixture file</label>
-      <input type="file" id="gameFile"
-        accept=".xlsx,.xls,.csv,.txt">
-
-      <button onclick="readGameFile()">Convert Games</button>
-
-      <div class="small">
-        Recommended columns: League, Home Team, Away Team,
-        Date, Time.
-      </div>
-
-      <div id="uploadMessage" class="status"></div>
-      <div id="uploadPreview"></div>
-
-      <button class="secondary" onclick="saveUploadedGames()">
-        Save Converted Games
-      </button>
-    </div>
-
-    <!-- FIXTURE LIST -->
-    <div class="panel">
-      <h2>3. Manage Fixtures</h2>
-      <button onclick="loadAdminGames()">Refresh Fixtures</button>
-      <div id="adminGames"></div>
-    </div>
-
-    <!-- PREDICTION GENERATION -->
-    <div class="panel">
-      <h2>4. Generate Predictions</h2>
-      <p>Select a fixture and request analysis from the prediction server.</p>
-      <button onclick="generatePredictions()">
-        Generate Predictions
-      </button>
-      <div id="predictionMessage" class="status"></div>
-    </div>
-
-    <!-- PUBLISH -->
-    <div class="panel">
-      <h2>5. Publish Predictions</h2>
-      <p>Review generated predictions on the server before publishing.</p>
-      <button onclick="publishPredictions()">Publish Approved Games</button>
-      <div id="publishMessage" class="status"></div>
-    </div>
-
-  </div>
+ </div>
 </section>
 
 </main>
 
 <footer>
-  CORRECT PREDICT © 2026
-  <p>Analyse carefully. Predict responsibly.</p>
+ <h3 class="gold">CORRECT PREDICT</h3>
+ <p>Football intelligence and statistical analysis.</p>
+ <small>Predictions are estimates, not guaranteed results. 18+.</small>
 </footer>
 
 <script>
-
-// API CONNECTION
-// The backend server must be hosted on this same domain.
-// Change this URL if your API runs on a separate domain.
-
-const API_BASE = window.location.origin;
-
-let adminToken = null;
-let convertedGames = [];
-
-// NAVIGATION
-function showSection(section) {
-  ['home','predictions','admin'].forEach(id => {
-    document.getElementById(id).classList.add('hidden');
+function showSection(id){
+ document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+function showPayment(){
+ const phone=document.getElementById("phone").value.trim();
+ if(!phone){alert("Enter your phone number");return;}
+ document.getElementById("payment").classList.remove("hidden");
+}
+function submitPayment(){
+ const phone=document.getElementById("phone").value.trim();
+ const transaction=document.getElementById("transaction").value.trim();
+ if(!transaction){alert("Enter your transaction code");return;}
+ document.getElementById("paymentStatus").textContent=
+ "Payment details submitted for verification. Your access is not active until verified.";
+}
+function adminLogin(){
+ const password=document.getElementById("adminPassword").value;
+ if(password==="CHANGE_THIS_PASSWORD"){
+  document.getElementById("adminPanel").classList.remove("hidden");
+ }else{
+  alert("Incorrect password");
+ }
+}
+async function addGame(){
+ const game={
+  homeTeam:document.getElementById("homeTeam").value.trim(),
+  awayTeam:document.getElementById("awayTeam").value.trim(),
+  league:document.getElementById("league").value.trim(),
+  date:document.getElementById("matchDate").value,
+  prediction:document.getElementById("prediction").value,
+  score:document.getElementById("score").value.trim()
+ };
+ if(!game.homeTeam||!game.awayTeam||!game.prediction){
+  alert("Complete the required fixture details");
+  return;
+ }
+ try{
+  const response=await fetch("/api/games",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify(game)
   });
-  document.getElementById(section).classList.remove('hidden');
+  if(!response.ok)throw new Error("Server error");
+  document.getElementById("adminStatus").textContent="Fixture saved successfully.";
+  loadGames();
+ }catch(error){
+  document.getElementById("adminStatus").textContent=
+  "Could not save fixture. Check API server connection.";
+ }
 }
-
-// API REQUEST
-async function apiRequest(path, options = {}) {
-  const headers = {
-    ...(options.body instanceof FormData ? {} : {
-      'Content-Type':'application/json'
-    }),
-    ...(adminToken ? {'Authorization':'Bearer '+adminToken} : {}),
-    ...options.headers
-  };
-
-  const response = await fetch(API_BASE + path, {
-    ...options,
-    headers
-  });
-
-  const data = await response.json().catch(() => ({}));
-
-  if (!response.ok) {
-    throw new Error(data.message || data.error || 'Server request failed');
-  }
-
-  return data;
+async function loadGames(){
+ try{
+  const response=await fetch("/api/games");
+  if(!response.ok)return;
+  const games=await response.json();
+  const container=document.getElementById("games");
+  if(!games.length)return;
+  container.innerHTML=games.map(g=>`
+   <div class="card">
+    <span class="tag">${escapeHTML(g.league||"Football")}</span>
+    <div class="match">
+     <span class="team">${escapeHTML(g.homeTeam)}</span>
+     <span class="vs">VS</span>
+     <span class="team">${escapeHTML(g.awayTeam)}</span>
+    </div>
+    <div class="prediction">
+     <span>Pick: <b class="gold">${escapeHTML(g.prediction)}</b></span>
+     <span>Correct score: <b class="cyan">${escapeHTML(g.score||"Pending")}</b></span>
+    </div>
+   </div>`).join("");
+ }catch(e){}
 }
-
-// ADMIN LOGIN
-async function adminLogin() {
-  const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value;
-
-  try {
-    const data = await apiRequest('/api/admin/login', {
-      method:'POST',
-      body:JSON.stringify({username,password})
-    });
-
-    adminToken = data.token;
-
-    if (!adminToken) throw new Error('Server did not return a login token');
-
-    document.getElementById('loginPanel').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-
-    loadAdminGames();
-  } catch(error) {
-    document.getElementById('loginMessage').textContent = error.message;
-  }
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
-
-// LOGOUT
-function adminLogout() {
-  adminToken = null;
-  document.getElementById('dashboard').classList.add('hidden');
-  document.getElementById('loginPanel').classList.remove('hidden');
-  document.getElementById('password').value = '';
-}
-
-// MANUAL GAME ENTRY
-async function addManualGame() {
-  const game = {
-    league:document.getElementById('league').value.trim(),
-    homeTeam:document.getElementById('homeTeam').value.trim(),
-    awayTeam:document.getElementById('awayTeam').value.trim(),
-    date:document.getElementById('matchDate').value,
-    time:document.getElementById('matchTime').value
-  };
-
-  if (!game.homeTeam || !game.awayTeam) {
-    alert('Enter both teams');
-    return;
-  }
-
-  try {
-    await apiRequest('/api/admin/games', {
-      method:'POST',
-      body:JSON.stringify(game)
-    });
-
-    alert('Game added successfully');
-
-    ['league','homeTeam','awayTeam','matchDate','matchTime']
-      .forEach(id => document.getElementById(id).value = '');
-
-    loadAdminGames();
-  } catch(error) {
-    alert(error.message);
-  }
-}
-
-// READ UPLOADED FILE
-async function readGameFile() {
-  const file = document.getElementById('gameFile').files[0];
-
-  if (!file) {
-    alert('Select a file first');
-    return;
-  }
-
-  try {
-    let rows = [];
-
-    if (/\.(xlsx|xls)$/i.test(file.name)) {
-      const buffer = await file.arrayBuffer();
-      const workbook = XLSX.read(buffer);
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      rows = XLSX.utils.sheet_to_json(sheet);
-    } else {
-      const text = await file.text();
-      rows = parseCSV(text);
-    }
-
-    convertedGames = rows.map(row => {
-      const normalized = {};
-      Object.keys(row).forEach(key => {
-        normalized[key.toLowerCase().trim().replace(/[\s_-]/g,'')] = row[key];
-      });
-
-      return {
-        league:normalized.league || 'Unknown League',
-        homeTeam:normalized.hometeam || normalized.home || '',
-        awayTeam:normalized.awayteam || normalized.away || '',
-        date:normalized.date || '',
-        time:normalized.time || ''
-      };
-    }).filter(g => g.homeTeam && g.awayTeam);
-
-    showUploadPreview();
-
-    document.getElementById('uploadMessage').textContent =
-      convertedGames.length + ' fixtures converted successfully.';
-  } catch(error) {
-    document.getElementById('uploadMessage').textContent =
-      'File error: ' + error.message;
-  }
-}
-
-// BASIC CSV/TXT CONVERTER
-function parseCSV(text) {
-  const lines = text.trim().split(/\r?\n/).filter(Boolean);
-  if (!lines.length) return [];
-
-  const first = lines[0].split(/[,\t;]/).map(x => x.trim().toLowerCase());
-
-  const hasHeader = first.some(x =>
-    ['hometeam','home team','home','awayteam','away team','away'].includes(x)
-  );
-
-  let headers = hasHeader
-    ? first
-    : ['league','hometeam','awayteam','date','time'];
-
-  const start = hasHeader ? 1 : 0;
-
-  return lines.slice(start).map(line => {
-    const values = line.split(/[,\t;]/).map(x => x.trim());
-    const obj = {};
-    headers.forEach((h,i) => obj[h] = values[i] || '');
-    return obj;
-  });
-}
-
-// PREVIEW CONVERTED FIXTURES
-function showUploadPreview() {
-  document.getElementById('uploadPreview').innerHTML =
-    convertedGames.map((g,i) => `
-      <div class="game">
-        <strong>${i+1}. ${escapeHTML(g.homeTeam)} vs ${escapeHTML(g.awayTeam)}</strong>
-        <p>${escapeHTML(g.league)} | ${escapeHTML(g.date)} ${escapeHTML(g.time)}</p>
-      </div>
-    `).join('');
-}
-
-// SAVE UPLOADED GAMES
-async function saveUploadedGames() {
-  if (!convertedGames.length) {
-    alert('Convert a file first');
-    return;
-  }
-
-  try {
-    await apiRequest('/api/admin/games/bulk', {
-      method:'POST',
-      body:JSON.stringify({games:convertedGames})
-    });
-
-    alert('Fixtures saved successfully');
-    convertedGames = [];
-    document.getElementById('uploadPreview').innerHTML = '';
-    loadAdminGames();
-  } catch(error) {
-    alert(error.message);
-  }
-}
-
-// LOAD ADMIN FIXTURES
-async function loadAdminGames() {
-  if (!adminToken) return;
-
-  try {
-    const data = await apiRequest('/api/admin/games');
-    const games = data.games || [];
-
-    document.getElementById('adminGames').innerHTML =
-      games.map(g => `
-        <div class="game">
-          <strong>${escapeHTML(g.homeTeam)} vs ${escapeHTML(g.awayTeam)}</strong>
-          <p>${escapeHTML(g.league || '')}</p>
-          <p class="small">${escapeHTML(g.status || 'Pending')}</p>
-          <button class="danger" onclick="deleteGame('${encodeURIComponent(g.id)}')">
-            Delete
-          </button>
-        </div>
-      `).join('') || '<p>No games added yet.</p>';
-
-  } catch(error) {
-    document.getElementById('adminGames').textContent = error.message;
-  }
-}
-
-// DELETE GAME
-async function deleteGame(id) {
-  if (!confirm('Delete this fixture?')) return;
-
-  try {
-    await apiRequest('/api/admin/games/' + id, {method:'DELETE'});
-    loadAdminGames();
-  } catch(error) {
-    alert(error.message);
-  }
-}
-
-// GENERATE PREDICTIONS
-async function generatePredictions() {
-  const message = document.getElementById('predictionMessage');
-  message.textContent = 'Requesting analysis...';
-
-  try {
-    const data = await apiRequest('/api/admin/predict', {
-      method:'POST',
-      body:JSON.stringify({})
-    });
-
-    message.textContent = data.message || 'Prediction request completed.';
-    loadAdminGames();
-  } catch(error) {
-    message.textContent = error.message;
-  }
-}
-
-// PUBLISH APPROVED PREDICTIONS
-async function publishPredictions() {
-  const message = document.getElementById('publishMessage');
-
-  if (!confirm('Publish approved predictions for customers?')) return;
-
-  try {
-    const data = await apiRequest('/api/admin/publish', {
-      method:'POST',
-      body:JSON.stringify({})
-    });
-
-    message.textContent = data.message || 'Publishing request completed.';
-  } catch(error) {
-    message.textContent = error.message;
-  }
-}
-
-// CUSTOMER PREDICTIONS
-async function loadPublicPredictions() {
-  const area = document.getElementById('publicGames');
-  area.textContent = 'Loading...';
-
-  try {
-    const data = await apiRequest('/api/public/predictions');
-    const games = data.games || [];
-
-    area.innerHTML = games.map(g => `
-      <div class="game">
-        <strong>${escapeHTML(g.homeTeam)} vs ${escapeHTML(g.awayTeam)}</strong>
-        <p>${escapeHTML(g.league || '')}</p>
-        <p>1X2: ${escapeHTML(g.prediction || 'Not available')}</p>
-        <p>Correct Score: ${escapeHTML(g.correctScore || 'Not available')}</p>
-        <p>Over/Under: ${escapeHTML(g.overUnder || 'Not available')}</p>
-        <p>BTTS: ${escapeHTML(g.btts || 'Not available')}</p>
-      </div>
-    `).join('') || 'No published predictions available.';
-  } catch(error) {
-    area.textContent = error.message;
-  }
-}
-
-// HTML ESCAPE
-function escapeHTML(value) {
-  return String(value ?? '').replace(/[&<>"']/g, c => ({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  })[c]);
-}
-
+loadGames();
 </script>
 </body>
 </html>
